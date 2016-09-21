@@ -4,7 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
+
+import com.mkyong.helloworld.service.entity.UserEntity;
 
 @Service
 public class HelloWorldService {
@@ -22,15 +23,17 @@ public class HelloWorldService {
 
 	}
 
-	public String getTitle(String name) {
+	public String getDefaultTitle() {
+		return titleService.getDefaultTitle();
+	}
+
+	public String getTitle(UserEntity user) {
+
+		String name = user.name;
 
 		logger.debug("getTitle() is executed! $name : {}", name);
 
-		if (StringUtils.isEmpty(name)) {
-			return titleService.getDefaultTitle();
-		} else {
-			return "Hello " + name;
-		}
+		return titleService.getTitle(user);
 
 	}
 

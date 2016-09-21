@@ -1,5 +1,6 @@
 package com.mkyong.helloworld.web;
 
+import java.util.Locale;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mkyong.helloworld.service.HelloWorldService;
+import com.mkyong.helloworld.service.entity.UserEntity;
 
 @Controller
 public class WelcomeController {
@@ -29,9 +31,9 @@ public class WelcomeController {
 
 		logger.debug("index() is executed!");
 
-		model.put("title", helloWorldService.getTitle(""));
+		model.put("title", helloWorldService.getDefaultTitle());
 		model.put("msg", helloWorldService.getDesc());
-		
+
 		return "index";
 	}
 
@@ -42,10 +44,15 @@ public class WelcomeController {
 
 		ModelAndView model = new ModelAndView();
 		model.setViewName("index");
-		
-		model.addObject("title", helloWorldService.getTitle(name));
+
+		// test user
+		UserEntity user = new UserEntity();
+		user.name = name;
+		user.locale = Locale.JAPAN;
+
+		model.addObject("title", helloWorldService.getTitle(user));
 		model.addObject("msg", helloWorldService.getDesc());
-		
+
 		return model;
 
 	}
