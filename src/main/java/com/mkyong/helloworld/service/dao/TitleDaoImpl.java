@@ -14,8 +14,13 @@ public class TitleDaoImpl implements TitleDao {
 
 	@Override
 	public String getGreeting(Locale locale) {
+
 		if (locale.equals(Locale.JAPAN)) {
 			return "Konnichiha";
+		} else if (locale.equals(Locale.CHINA)) {
+			return "Niaho";
+		} else if (locale.equals(Locale.FRANCE)) {
+			return "Bon Jour";
 		} else {
 			return "Hello";
 		}

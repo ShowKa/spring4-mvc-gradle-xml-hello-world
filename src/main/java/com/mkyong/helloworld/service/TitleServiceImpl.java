@@ -16,7 +16,7 @@ public class TitleServiceImpl implements TitleService {
 
 	@Override
 	public String getDefaultTitle() {
-		return "Helle Spring4 !!";
+		return "Hello Spring4 !!";
 	}
 
 	@Override
