@@ -6,16 +6,13 @@ import static org.mockito.Mockito.when;
 import java.util.Locale;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
 
 import com.mkyong.helloworld.TestCaseBase;
 import com.mkyong.helloworld.service.dao.TitleDao;
 import com.mkyong.helloworld.service.entity.UserEntity;
 
-@RunWith(MockitoJUnitRunner.class)
 public class TitleServiceImplTest extends TestCaseBase {
 
 	@InjectMocks
@@ -43,6 +40,6 @@ public class TitleServiceImplTest extends TestCaseBase {
 
 		// test
 		String title = titleService.getTitle(user);
-		assertEquals("Konnichiha ShowKa", title);
+		assertEquals("Konnichiha" + " " + user.name, title);
 	}
 }
