@@ -11,7 +11,7 @@ import com.mkyong.helloworld.service.dao.TitleDao;
 import com.mkyong.helloworld.service.dao.mock.TitleDaoMockSetter;
 import com.mkyong.helloworld.service.entity.UserEntity;
 
-public class TitleServiceImplTest extends TestCaseBase {
+public class TitleServiceImplTestMockito extends TestCaseBase {
 
 	@InjectMocks
 	private TitleServiceImpl titleService = new TitleServiceImpl();
