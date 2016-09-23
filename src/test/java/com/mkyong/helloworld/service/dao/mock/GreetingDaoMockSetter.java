@@ -7,11 +7,11 @@ import java.util.Locale;
 
 import org.mockito.stubbing.OngoingStubbing;
 
-import com.mkyong.helloworld.service.dao.TitleDao;
+import com.mkyong.helloworld.service.dao.GreetingDao;
 
 import mockit.Expectations;
 
-public class TitleDaoMockSetter {
+public class GreetingDaoMockSetter {
 
 	public static final String JAPANESE_GREETING = "Konnichiha";
 	public static final String CHINESE_GREETING = "Nihao";
@@ -19,24 +19,24 @@ public class TitleDaoMockSetter {
 	public static final String ENGLISH_GREETING = "Hello";
 
 	// Mockito
-	public static OngoingStubbing<String> returnJapaneseGreeting(TitleDao titleDao) {
+	public static OngoingStubbing<String> returnJapaneseGreeting(GreetingDao titleDao) {
 		return when(titleDao.getGreeting((Locale) anyObject())).thenReturn(JAPANESE_GREETING);
 	}
 
-	public static OngoingStubbing<String> returnChineseGreeting(TitleDao titleDao) {
+	public static OngoingStubbing<String> returnChineseGreeting(GreetingDao titleDao) {
 		return when(titleDao.getGreeting((Locale) anyObject())).thenReturn(CHINESE_GREETING);
 	}
 
-	public static OngoingStubbing<String> returnFrenchGreeting(TitleDao titleDao) {
+	public static OngoingStubbing<String> returnFrenchGreeting(GreetingDao titleDao) {
 		return when(titleDao.getGreeting((Locale) anyObject())).thenReturn(FRENCH_GREETING);
 	}
 
-	public static OngoingStubbing<String> returnEnglishGreeting(TitleDao titleDao) {
+	public static OngoingStubbing<String> returnEnglishGreeting(GreetingDao titleDao) {
 		return when(titleDao.getGreeting((Locale) anyObject())).thenReturn(ENGLISH_GREETING);
 	}
 
 	// JMockit
-	public static Expectations expectJapaneseGreeting(TitleDao titleDao) {
+	public static Expectations expectJapaneseGreeting(GreetingDao titleDao) {
 		return new Expectations() {
 			{
 				titleDao.getGreeting(Locale.JAPAN);
@@ -45,7 +45,7 @@ public class TitleDaoMockSetter {
 		};
 	}
 
-	public static Expectations expectChineseGreeting(TitleDao titleDao) {
+	public static Expectations expectChineseGreeting(GreetingDao titleDao) {
 		return new Expectations() {
 			{
 				titleDao.getGreeting(Locale.CHINA);

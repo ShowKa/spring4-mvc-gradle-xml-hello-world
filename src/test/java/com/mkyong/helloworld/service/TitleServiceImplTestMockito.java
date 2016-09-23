@@ -7,8 +7,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
 import com.mkyong.helloworld.TestCaseBase;
-import com.mkyong.helloworld.service.dao.TitleDao;
-import com.mkyong.helloworld.service.dao.mock.TitleDaoMockSetter;
+import com.mkyong.helloworld.service.dao.GreetingDao;
+import com.mkyong.helloworld.service.dao.mock.GreetingDaoMockSetter;
 import com.mkyong.helloworld.service.entity.UserEntity;
 
 public class TitleServiceImplTestMockito extends TestCaseBase {
@@ -17,7 +17,7 @@ public class TitleServiceImplTestMockito extends TestCaseBase {
 	private TitleServiceImpl titleService = new TitleServiceImpl();
 
 	@Mock
-	private TitleDao titleDao;
+	private GreetingDao greetingDao;
 
 	@Test
 	public void testGetDefaultTitle() {
@@ -37,11 +37,11 @@ public class TitleServiceImplTestMockito extends TestCaseBase {
 		user.locale = Locale.JAPAN;
 
 		// mock
-		TitleDaoMockSetter.returnJapaneseGreeting(titleDao);
+		GreetingDaoMockSetter.returnJapaneseGreeting(greetingDao);
 
 		// test
 		String title = titleService.getTitle(user);
-		assertEquals(TitleDaoMockSetter.JAPANESE_GREETING + " " + user.name + " San", title);
+		assertEquals(GreetingDaoMockSetter.JAPANESE_GREETING + " " + user.name + " San", title);
 	}
 
 	/**
@@ -56,11 +56,11 @@ public class TitleServiceImplTestMockito extends TestCaseBase {
 		user.locale = Locale.CHINA;
 
 		// mock
-		TitleDaoMockSetter.returnChineseGreeting(titleDao);
+		GreetingDaoMockSetter.returnChineseGreeting(greetingDao);
 
 		// test
 		String title = titleService.getTitle(user);
-		assertEquals(TitleDaoMockSetter.CHINESE_GREETING + " " + user.name + " XianSheng", title);
+		assertEquals(GreetingDaoMockSetter.CHINESE_GREETING + " " + user.name + " XianSheng", title);
 	}
 
 	/**
@@ -75,11 +75,11 @@ public class TitleServiceImplTestMockito extends TestCaseBase {
 		user.locale = Locale.FRANCE;
 
 		// mock
-		TitleDaoMockSetter.returnFrenchGreeting(titleDao);
+		GreetingDaoMockSetter.returnFrenchGreeting(greetingDao);
 
 		// test
 		String title = titleService.getTitle(user);
-		assertEquals(TitleDaoMockSetter.FRENCH_GREETING + " " + "Monsieur." + user.name, title);
+		assertEquals(GreetingDaoMockSetter.FRENCH_GREETING + " " + "Monsieur." + user.name, title);
 	}
 
 	/**
@@ -94,10 +94,10 @@ public class TitleServiceImplTestMockito extends TestCaseBase {
 		user.locale = Locale.US;
 
 		// mock
-		TitleDaoMockSetter.returnEnglishGreeting(titleDao);
+		GreetingDaoMockSetter.returnEnglishGreeting(greetingDao);
 
 		// test
 		String title = titleService.getTitle(user);
-		assertEquals(TitleDaoMockSetter.ENGLISH_GREETING + " " + "Mr." + user.name, title);
+		assertEquals(GreetingDaoMockSetter.ENGLISH_GREETING + " " + "Mr." + user.name, title);
 	}
 }

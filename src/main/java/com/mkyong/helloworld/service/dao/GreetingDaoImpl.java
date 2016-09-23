@@ -5,7 +5,7 @@ import java.util.Locale;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TitleDaoImpl implements TitleDao {
+public class GreetingDaoImpl implements GreetingDao {
 
 	@Override
 	public String getGreeting() {
@@ -18,7 +18,7 @@ public class TitleDaoImpl implements TitleDao {
 		if (locale.equals(Locale.JAPAN)) {
 			return "Konnichiha";
 		} else if (locale.equals(Locale.CHINA)) {
-			return "Niaho";
+			return "Nihao";
 		} else if (locale.equals(Locale.FRANCE)) {
 			return "Bon Jour";
 		} else {

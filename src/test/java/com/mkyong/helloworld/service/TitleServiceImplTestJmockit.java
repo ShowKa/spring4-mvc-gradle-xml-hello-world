@@ -5,8 +5,8 @@ import java.util.Locale;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.mkyong.helloworld.service.dao.TitleDao;
-import com.mkyong.helloworld.service.dao.mock.TitleDaoMockSetter;
+import com.mkyong.helloworld.service.dao.GreetingDao;
+import com.mkyong.helloworld.service.dao.mock.GreetingDaoMockSetter;
 import com.mkyong.helloworld.service.entity.UserEntity;
 
 import junit.framework.TestCase;
@@ -22,7 +22,7 @@ public class TitleServiceImplTestJmockit extends TestCase {
 	TitleServiceImpl titleService;
 
 	@Injectable
-	private TitleDao titleDao;
+	private GreetingDao greetingDao;
 
 	@Test
 	public void testDefault() {
@@ -32,18 +32,18 @@ public class TitleServiceImplTestJmockit extends TestCase {
 		user.locale = Locale.JAPAN;
 
 		// mock
-		TitleDaoMockSetter.expectJapaneseGreeting(titleDao);
+		GreetingDaoMockSetter.expectJapaneseGreeting(greetingDao);
 
 		// test
 		String title = titleService.getTitle(user);
-		assertEquals(TitleDaoMockSetter.JAPANESE_GREETING + " " + user.name + " San", title);
+		assertEquals(GreetingDaoMockSetter.JAPANESE_GREETING + " " + user.name + " San", title);
 
 		// Verification
 		new Verifications() {
 			{
-				titleDao.getGreeting(Locale.JAPAN);
+				greetingDao.getGreeting(Locale.JAPAN);
 				times = 1;
-				titleDao.getGreeting(Locale.CHINA);
+				greetingDao.getGreeting(Locale.CHINA);
 				times = 0;
 			}
 		};

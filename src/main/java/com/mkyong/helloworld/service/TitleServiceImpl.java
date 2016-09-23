@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import com.mkyong.helloworld.service.dao.TitleDao;
+import com.mkyong.helloworld.service.dao.GreetingDao;
 import com.mkyong.helloworld.service.entity.UserEntity;
 
 @Component
@@ -14,7 +14,7 @@ import com.mkyong.helloworld.service.entity.UserEntity;
 public class TitleServiceImpl implements TitleService {
 
 	@Autowired
-	private TitleDao titleDao;
+	private GreetingDao titleDao;
 
 	@Override
 	public String getDefaultTitle() {
