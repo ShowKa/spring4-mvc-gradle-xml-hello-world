@@ -7,11 +7,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
 import com.mkyong.helloworld.TestCaseBase;
-import com.mkyong.helloworld.service.dao.CountryDao;
-import com.mkyong.helloworld.service.dao.GreetingDao;
+import com.mkyong.helloworld.dao.i.CountryDao;
+import com.mkyong.helloworld.dao.i.GreetingDao;
+import com.mkyong.helloworld.entity.User;
 import com.mkyong.helloworld.service.dao.mock.CountryDaoMockSetter;
 import com.mkyong.helloworld.service.dao.mock.GreetingDaoMockSetter;
-import com.mkyong.helloworld.service.entity.User;
 
 public class TitleServiceImplTestMockito extends TestCaseBase {
 

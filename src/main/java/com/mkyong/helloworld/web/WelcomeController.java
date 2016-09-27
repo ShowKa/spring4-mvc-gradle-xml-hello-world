@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mkyong.helloworld.entity.User;
 import com.mkyong.helloworld.service.HelloWorldService;
-import com.mkyong.helloworld.service.entity.User;
 
 @Controller
 public class WelcomeController {

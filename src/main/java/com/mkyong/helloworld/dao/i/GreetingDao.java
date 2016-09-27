@@ -1,4 +1,4 @@
-package com.mkyong.helloworld.service.dao;
+package com.mkyong.helloworld.dao.i;
 
 import java.util.Locale;
 

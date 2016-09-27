@@ -4,8 +4,8 @@ import static org.mockito.Mockito.when;
 
 import org.mockito.stubbing.OngoingStubbing;
 
-import com.mkyong.helloworld.service.dao.CountryDao;
-import com.mkyong.helloworld.service.entity.Country;
+import com.mkyong.helloworld.dao.i.CountryDao;
+import com.mkyong.helloworld.entity.Country;
 
 import mockit.Expectations;
 

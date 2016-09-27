@@ -7,7 +7,7 @@ import java.util.Locale;
 
 import org.mockito.stubbing.OngoingStubbing;
 
-import com.mkyong.helloworld.service.dao.GreetingDao;
+import com.mkyong.helloworld.dao.i.GreetingDao;
 
 import mockit.Expectations;
 

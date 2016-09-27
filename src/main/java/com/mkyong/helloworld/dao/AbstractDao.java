@@ -1,4 +1,4 @@
-package com.mkyong.helloworld.service.dao;
+package com.mkyong.helloworld.dao;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;

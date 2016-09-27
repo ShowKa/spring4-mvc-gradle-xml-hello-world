@@ -1,4 +1,4 @@
-package com.mkyong.helloworld.service.entity;
+package com.mkyong.helloworld.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

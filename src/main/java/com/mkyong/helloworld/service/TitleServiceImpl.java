@@ -7,9 +7,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.mkyong.helloworld.service.dao.CountryDao;
-import com.mkyong.helloworld.service.dao.GreetingDao;
-import com.mkyong.helloworld.service.entity.User;
+import com.mkyong.helloworld.dao.i.CountryDao;
+import com.mkyong.helloworld.dao.i.GreetingDao;
+import com.mkyong.helloworld.entity.User;
+import com.mkyong.helloworld.service.i.TitleService;
 
 @Component
 @Service

@@ -5,7 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mkyong.helloworld.service.entity.User;
+import com.mkyong.helloworld.entity.User;
+import com.mkyong.helloworld.service.i.TitleService;
 
 @Service
 public class HelloWorldService {

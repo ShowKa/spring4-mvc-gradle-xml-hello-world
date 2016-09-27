@@ -1,8 +1,10 @@
-package com.mkyong.helloworld.service.dao;
+package com.mkyong.helloworld.dao;
 
 import java.util.Locale;
 
 import org.springframework.stereotype.Component;
+
+import com.mkyong.helloworld.dao.i.GreetingDao;
 
 @Component
 public class GreetingDaoImpl implements GreetingDao {

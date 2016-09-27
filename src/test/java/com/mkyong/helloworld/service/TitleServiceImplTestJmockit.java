@@ -5,11 +5,11 @@ import java.util.Locale;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.mkyong.helloworld.service.dao.CountryDao;
-import com.mkyong.helloworld.service.dao.GreetingDao;
+import com.mkyong.helloworld.dao.i.CountryDao;
+import com.mkyong.helloworld.dao.i.GreetingDao;
+import com.mkyong.helloworld.entity.User;
 import com.mkyong.helloworld.service.dao.mock.CountryDaoMockSetter;
 import com.mkyong.helloworld.service.dao.mock.GreetingDaoMockSetter;
-import com.mkyong.helloworld.service.entity.User;
 
 import junit.framework.TestCase;
 import mockit.Injectable;
