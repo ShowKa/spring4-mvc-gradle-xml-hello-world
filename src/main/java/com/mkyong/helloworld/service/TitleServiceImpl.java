@@ -5,16 +5,22 @@ import java.util.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.mkyong.helloworld.service.dao.CountryDao;
 import com.mkyong.helloworld.service.dao.GreetingDao;
-import com.mkyong.helloworld.service.entity.UserEntity;
+import com.mkyong.helloworld.service.entity.User;
 
 @Component
 @Service
+@Transactional
 public class TitleServiceImpl implements TitleService {
 
 	@Autowired
 	private GreetingDao titleDao;
+
+	@Autowired
+	private CountryDao countyDao;
 
 	@Override
 	public String getDefaultTitle() {
@@ -22,22 +28,35 @@ public class TitleServiceImpl implements TitleService {
 	}
 
 	@Override
-	public String getTitle(UserEntity user) {
+	public String getTitle(User user) {
 
 		Locale locale = user.locale;
 
+		// honorific
 		String honorificName = null;
+		Integer countryId = null;
 		if (locale.equals(Locale.JAPAN)) {
 			honorificName = user.name + " " + "San";
+			countryId = 50;
 		} else if (locale.equals(Locale.CHINA)) {
 			honorificName = user.name + " " + "XianSheng";
+			countryId = 23;
 		} else if (locale.equals(Locale.FRANCE)) {
 			honorificName = "Monsieur." + user.name;
+			countryId = 34;
 		} else {
 			honorificName = "Mr." + user.name;
 		}
 
-		return titleDao.getGreeting(user.locale) + " " + honorificName;
+		// country
+		String country = null;
+		if (countryId != null) {
+			country = countyDao.getByKey(countryId).country;
+		} else {
+			country = "Somewhere";
+		}
+
+		return titleDao.getGreeting(user.locale) + " " + honorificName + " from " + country;
 	}
 
 }

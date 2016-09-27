@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mkyong.helloworld.service.entity.UserEntity;
+import com.mkyong.helloworld.service.entity.User;
 
 @Service
 public class HelloWorldService {
@@ -27,7 +27,7 @@ public class HelloWorldService {
 		return titleService.getDefaultTitle();
 	}
 
-	public String getTitle(UserEntity user) {
+	public String getTitle(User user) {
 
 		String name = user.name;
 

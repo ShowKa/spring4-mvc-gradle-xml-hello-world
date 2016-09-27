@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mkyong.helloworld.service.HelloWorldService;
-import com.mkyong.helloworld.service.entity.UserEntity;
+import com.mkyong.helloworld.service.entity.User;
 
 @Controller
 public class WelcomeController {
@@ -46,7 +46,7 @@ public class WelcomeController {
 		model.setViewName("index");
 
 		// test user
-		UserEntity user = new UserEntity();
+		User user = new User();
 		user.name = name;
 		user.locale = Locale.JAPAN;
 

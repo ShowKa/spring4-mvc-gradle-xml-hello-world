@@ -1,9 +1,9 @@
 package com.mkyong.helloworld.service;
 
-import com.mkyong.helloworld.service.entity.UserEntity;
+import com.mkyong.helloworld.service.entity.User;
 
 public interface TitleService {
 	public String getDefaultTitle();
 
-	public String getTitle(UserEntity user);
+	public String getTitle(User user);
 }
