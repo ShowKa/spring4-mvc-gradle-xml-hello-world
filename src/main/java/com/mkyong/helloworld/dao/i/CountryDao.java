@@ -3,7 +3,9 @@ package com.mkyong.helloworld.dao.i;
 import com.mkyong.helloworld.entity.Country;
 
 public interface CountryDao {
-	Country getByKey(int id);
+	public Country getByKey(Integer key);
 
-	void persist(Country country);
+	public void persist(Country country);
+
+	public void delete(Country country);
 }
