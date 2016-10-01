@@ -1,5 +1,8 @@
-package com.mkyong.helloworld.service.dao.mock;
+package com.mkyong.helloworld.dao.mock;
 
+import static com.mkyong.helloworld.entity.CountryCatalog.CHINA;
+import static com.mkyong.helloworld.entity.CountryCatalog.FRANCE;
+import static com.mkyong.helloworld.entity.CountryCatalog.JAPAN;
 import static org.mockito.Mockito.when;
 
 import org.mockito.stubbing.OngoingStubbing;
@@ -10,23 +13,6 @@ import com.mkyong.helloworld.entity.Country;
 import mockit.Expectations;
 
 public class CountryDaoMockSetter {
-	public static Country JAPAN = new Country();
-	static {
-		JAPAN.country_id = 50;
-		JAPAN.country = "Japan";
-	}
-
-	public static Country CHINA = new Country();
-	static {
-		CHINA.country_id = 23;
-		CHINA.country = "China";
-	}
-
-	public static Country FRANCE = new Country();
-	static {
-		FRANCE.country_id = 34;
-		FRANCE.country = "France";
-	}
 
 	// Mockito
 	public static OngoingStubbing<Country> returnJapan(CountryDao dao) {

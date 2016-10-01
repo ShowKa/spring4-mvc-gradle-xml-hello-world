@@ -1,5 +1,8 @@
 package com.mkyong.helloworld.service;
 
+import static com.mkyong.helloworld.entity.CountryCatalog.JAPAN;
+import static com.mkyong.helloworld.entity.GreetingCatalog.JAPANESE_GREETING;
+
 import java.util.Locale;
 
 import org.junit.Test;
@@ -7,9 +10,9 @@ import org.junit.runner.RunWith;
 
 import com.mkyong.helloworld.dao.i.CountryDao;
 import com.mkyong.helloworld.dao.i.GreetingDao;
+import com.mkyong.helloworld.dao.mock.CountryDaoMockSetter;
+import com.mkyong.helloworld.dao.mock.GreetingDaoMockSetter;
 import com.mkyong.helloworld.entity.User;
-import com.mkyong.helloworld.service.dao.mock.CountryDaoMockSetter;
-import com.mkyong.helloworld.service.dao.mock.GreetingDaoMockSetter;
 
 import junit.framework.TestCase;
 import mockit.Injectable;
@@ -42,15 +45,14 @@ public class TitleServiceImplTestJmockit extends TestCase {
 
 		// test
 		String title = titleService.getTitle(user);
-		assertEquals(GreetingDaoMockSetter.JAPANESE_GREETING + " " + user.name + " San" + " from "
-				+ CountryDaoMockSetter.JAPAN.country, title);
+		assertEquals(JAPANESE_GREETING + " " + user.name + " San" + " from " + JAPAN.country, title);
 
 		// Verification
 		new Verifications() {
 			{
 				greetingDao.getGreeting(Locale.JAPAN);
 				times = 1;
-				countryDao.getByKey(CountryDaoMockSetter.JAPAN.country_id);
+				countryDao.getByKey(JAPAN.country_id);
 				times = 1;
 			}
 		};
