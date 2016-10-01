@@ -3,6 +3,7 @@ package com.mkyong.helloworld.dao;
 import static org.junit.Assert.assertEquals;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,20 @@ public class CountryDaoImplTest extends DaoTestCaseBase {
 	private CountryDaoImpl countryDao;
 
 	@Test
-	public void testGet() {
+	public void testGetById() {
 		assertEquals(countryDao.getByKey(50).country, "Japan");
+	}
+
+	@Test
+	public void testGetByName() {
+		// data
+		String countryName = "Japan";
+
+		// get
+		List<Country> result = countryDao.getByName(countryName);
+
+		// assert
+		assertEquals(result.get(0).country, "Japan");
 	}
 
 	@Test
@@ -32,9 +45,9 @@ public class CountryDaoImplTest extends DaoTestCaseBase {
 		countryDao.persist(testDataCountry);
 
 		// get inserted
-		Country insertedCountry = countryDao.getByKey(testDataCountry.country_id);
+		Country result = countryDao.getByKey(testDataCountry.country_id);
 
-		// result
-		assertEquals(insertedCountry.country, testDataCountry.country);
+		// assert
+		assertEquals(result.country, testDataCountry.country);
 	}
 }
