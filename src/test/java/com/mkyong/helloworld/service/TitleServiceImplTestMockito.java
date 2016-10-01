@@ -1,19 +1,26 @@
 package com.mkyong.helloworld.service;
 
+import static com.mkyong.helloworld.entity.CountryCatalog.CHINA;
+import static com.mkyong.helloworld.entity.CountryCatalog.FRANCE;
+import static com.mkyong.helloworld.entity.CountryCatalog.JAPAN;
+import static com.mkyong.helloworld.entity.GreetingCatalog.CHINESE_GREETING;
+import static com.mkyong.helloworld.entity.GreetingCatalog.ENGLISH_GREETING;
+import static com.mkyong.helloworld.entity.GreetingCatalog.FRENCH_GREETING;
+import static com.mkyong.helloworld.entity.GreetingCatalog.JAPANESE_GREETING;
+
 import java.util.Locale;
 
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
-import com.mkyong.helloworld.TestCaseBase;
 import com.mkyong.helloworld.dao.i.CountryDao;
 import com.mkyong.helloworld.dao.i.GreetingDao;
+import com.mkyong.helloworld.dao.mock.CountryDaoMockSetter;
+import com.mkyong.helloworld.dao.mock.GreetingDaoMockSetter;
 import com.mkyong.helloworld.entity.User;
-import com.mkyong.helloworld.service.dao.mock.CountryDaoMockSetter;
-import com.mkyong.helloworld.service.dao.mock.GreetingDaoMockSetter;
 
-public class TitleServiceImplTestMockito extends TestCaseBase {
+public class TitleServiceImplTestMockito extends ServiceTestCaseBase {
 
 	@InjectMocks
 	private TitleServiceImpl titleService = new TitleServiceImpl();
@@ -47,8 +54,7 @@ public class TitleServiceImplTestMockito extends TestCaseBase {
 
 		// test
 		String title = titleService.getTitle(user);
-		assertEquals(GreetingDaoMockSetter.JAPANESE_GREETING + " " + user.name + " San" + " from "
-				+ CountryDaoMockSetter.JAPAN.country, title);
+		assertEquals(JAPANESE_GREETING + " " + user.name + " San" + " from " + JAPAN.country, title);
 	}
 
 	/**
@@ -68,8 +74,7 @@ public class TitleServiceImplTestMockito extends TestCaseBase {
 
 		// test
 		String title = titleService.getTitle(user);
-		assertEquals(GreetingDaoMockSetter.CHINESE_GREETING + " " + user.name + " XianSheng" + " from "
-				+ CountryDaoMockSetter.CHINA.country, title);
+		assertEquals(CHINESE_GREETING + " " + user.name + " XianSheng" + " from " + CHINA.country, title);
 	}
 
 	/**
@@ -89,8 +94,7 @@ public class TitleServiceImplTestMockito extends TestCaseBase {
 
 		// test
 		String title = titleService.getTitle(user);
-		assertEquals(GreetingDaoMockSetter.FRENCH_GREETING + " " + "Monsieur." + user.name + " from "
-				+ CountryDaoMockSetter.FRANCE.country, title);
+		assertEquals(FRENCH_GREETING + " " + "Monsieur." + user.name + " from " + FRANCE.country, title);
 	}
 
 	/**
@@ -109,6 +113,6 @@ public class TitleServiceImplTestMockito extends TestCaseBase {
 
 		// test
 		String title = titleService.getTitle(user);
-		assertEquals(GreetingDaoMockSetter.ENGLISH_GREETING + " " + "Mr." + user.name + " from " + "Somewhere", title);
+		assertEquals(ENGLISH_GREETING + " " + "Mr." + user.name + " from " + "Somewhere", title);
 	}
 }

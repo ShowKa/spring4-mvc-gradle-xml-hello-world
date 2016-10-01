@@ -1,5 +1,9 @@
-package com.mkyong.helloworld.service.dao.mock;
+package com.mkyong.helloworld.dao.mock;
 
+import static com.mkyong.helloworld.entity.GreetingCatalog.CHINESE_GREETING;
+import static com.mkyong.helloworld.entity.GreetingCatalog.ENGLISH_GREETING;
+import static com.mkyong.helloworld.entity.GreetingCatalog.FRENCH_GREETING;
+import static com.mkyong.helloworld.entity.GreetingCatalog.JAPANESE_GREETING;
 import static org.mockito.Matchers.anyObject;
 import static org.mockito.Mockito.when;
 
@@ -12,11 +16,6 @@ import com.mkyong.helloworld.dao.i.GreetingDao;
 import mockit.Expectations;
 
 public class GreetingDaoMockSetter {
-
-	public static final String JAPANESE_GREETING = "Konnichiha";
-	public static final String CHINESE_GREETING = "Nihao";
-	public static final String FRENCH_GREETING = "BonJour";
-	public static final String ENGLISH_GREETING = "Hello";
 
 	// Mockito
 	public static OngoingStubbing<String> returnJapaneseGreeting(GreetingDao titleDao) {
