@@ -9,6 +9,7 @@
 
 <spring:url value="/resources/core/css/hello.css" var="coreCss" />
 <spring:url value="/resources/core/css/bootstrap.min.css" var="bootstrapCss" />
+<spring:url value="/U01G001" var="url_u01g001" />
 <link href="${bootstrapCss}" rel="stylesheet" />
 <link href="${coreCss}" rel="stylesheet" />
 </head>
@@ -44,10 +45,10 @@
 
 	<div class="row">
 		<div class="col-md-4">
-			<h2>Heading</h2>
-			<p>顧客</p>
+			<h2>顧客</h2>
+			<p>顧客の管理をします。<p>
 			<p>
-				<a class="btn btn-default" href="#" role="button">View details</a>
+				<a class="btn btn-default" href="${url_u01g001}" role="button">検索</a>
 			</p>
 		</div>
 		<div class="col-md-4">

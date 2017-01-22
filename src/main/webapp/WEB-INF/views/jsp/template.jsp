@@ -7,7 +7,7 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="#">顧客検索</a>
+			<a class="navbar-brand" href="#">set title here!!</a>
 		</div>
 	</div>
 </nav>
