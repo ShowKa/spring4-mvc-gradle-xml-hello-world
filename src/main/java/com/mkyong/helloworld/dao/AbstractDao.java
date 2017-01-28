@@ -26,7 +26,7 @@ public abstract class AbstractDao<PK extends Serializable, T> {
 	}
 
 	@SuppressWarnings("unchecked")
-	public T getByKey(PK key) {
+	public T getByPrimaryKey(PK key) {
 		return (T) getSession().get(persistentClass, key);
 	}
 
@@ -43,6 +43,12 @@ public abstract class AbstractDao<PK extends Serializable, T> {
 	}
 
 	protected Criteria createEntityCriteria() {
+		Criteria criteria = getSession().createCriteria(persistentClass);
+		criteria.setMaxResults(1000);
+		return criteria;
+	}
+
+	protected Criteria createEntityCriteriaUnlimited() {
 		return getSession().createCriteria(persistentClass);
 	}
 

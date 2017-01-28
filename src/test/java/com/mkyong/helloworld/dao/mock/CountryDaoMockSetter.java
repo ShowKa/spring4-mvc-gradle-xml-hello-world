@@ -16,22 +16,22 @@ public class CountryDaoMockSetter {
 
 	// Mockito
 	public static OngoingStubbing<Country> returnJapan(CountryDao dao) {
-		return when(dao.getByKey(JAPAN.country_id)).thenReturn(JAPAN);
+		return when(dao.getByPrimaryKey(JAPAN.country_id)).thenReturn(JAPAN);
 	}
 
 	public static OngoingStubbing<Country> returnChina(CountryDao dao) {
-		return when(dao.getByKey(CHINA.country_id)).thenReturn(CHINA);
+		return when(dao.getByPrimaryKey(CHINA.country_id)).thenReturn(CHINA);
 	}
 
 	public static OngoingStubbing<Country> returnFrance(CountryDao dao) {
-		return when(dao.getByKey(FRANCE.country_id)).thenReturn(FRANCE);
+		return when(dao.getByPrimaryKey(FRANCE.country_id)).thenReturn(FRANCE);
 	}
 
 	// JMockit
 	public static Expectations expectJapan(CountryDao dao) {
 		return new Expectations() {
 			{
-				dao.getByKey(JAPAN.country_id);
+				dao.getByPrimaryKey(JAPAN.country_id);
 				result = JAPAN;
 			}
 		};

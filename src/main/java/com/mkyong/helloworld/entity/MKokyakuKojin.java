@@ -1,5 +1,5 @@
 package com.mkyong.helloworld.entity;
-// Generated Jan 28, 2017 1:11:14 AM by Hibernate Tools 4.3.1.Final
+// Generated Jan 28, 2017 1:40:57 PM by Hibernate Tools 4.3.1.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

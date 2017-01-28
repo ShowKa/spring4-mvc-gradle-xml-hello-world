@@ -52,7 +52,7 @@ public class TitleServiceImplTestJmockit extends TestCase {
 			{
 				greetingDao.getGreeting(Locale.JAPAN);
 				times = 1;
-				countryDao.getByKey(JAPAN.country_id);
+				countryDao.getByPrimaryKey(JAPAN.country_id);
 				times = 1;
 			}
 		};

@@ -5,7 +5,7 @@ import java.util.List;
 import com.mkyong.helloworld.entity.Country;
 
 public interface CountryDao {
-	public Country getByKey(Integer key);
+	public Country getByPrimaryKey(Integer key);
 
 	public void persist(Country country);
 

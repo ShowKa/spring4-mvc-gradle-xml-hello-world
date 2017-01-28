@@ -17,7 +17,7 @@ public class CountryDaoImplTest extends DaoTestCaseBase {
 
 	@Test
 	public void testGetById() {
-		assertEquals(countryDao.getByKey(50).country, "Japan");
+		assertEquals(countryDao.getByPrimaryKey(50).country, "Japan");
 	}
 
 	@Test
@@ -45,7 +45,7 @@ public class CountryDaoImplTest extends DaoTestCaseBase {
 		countryDao.persist(testDataCountry);
 
 		// get inserted
-		Country result = countryDao.getByKey(testDataCountry.country_id);
+		Country result = countryDao.getByPrimaryKey(testDataCountry.country_id);
 
 		// assert
 		assertEquals(result.country, testDataCountry.country);

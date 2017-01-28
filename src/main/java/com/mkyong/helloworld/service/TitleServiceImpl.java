@@ -52,7 +52,7 @@ public class TitleServiceImpl implements TitleService {
 		// country
 		String country = null;
 		if (countryId != null) {
-			country = countyDao.getByKey(countryId).country;
+			country = countyDao.getByPrimaryKey(countryId).country;
 		} else {
 			country = "Somewhere";
 		}
