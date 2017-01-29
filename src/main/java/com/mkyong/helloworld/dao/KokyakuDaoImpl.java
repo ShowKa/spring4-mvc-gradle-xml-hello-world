@@ -15,9 +15,6 @@ import com.mkyong.helloworld.entity.MKokyaku;
 @Component
 public class KokyakuDaoImpl extends AbstractDao<String, MKokyaku> implements KokyakuDao {
 
-	/**
-	 * 顧客検索処理
-	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<MKokyaku> search(KokyakuSearchParameter param) {
@@ -38,19 +35,12 @@ public class KokyakuDaoImpl extends AbstractDao<String, MKokyaku> implements Kok
 		return criteria.list();
 	}
 
-	/**
-	 * 顧客検索処理
-	 * 
-	 * <pre>
-	 * 顧客名で検索
-	 * </pre>
-	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<MKokyaku> searchByName(String name) {
 		Criteria criteria = createEntityCriteria();
 		criteria.add(Restrictions.like("name", "%" + name + "%"));
+		criteria.addOrder(Order.asc("code"));
 		return criteria.list();
 	}
-
 }

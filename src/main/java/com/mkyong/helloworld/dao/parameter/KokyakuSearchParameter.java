@@ -6,6 +6,8 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class KokyakuSearchParameter {
+	/** 顧客コード. */
 	private String code;
+	/** 顧客名 */
 	private String name;
 }

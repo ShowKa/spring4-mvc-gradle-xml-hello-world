@@ -1,5 +1,5 @@
 package com.mkyong.helloworld.entity;
-// Generated Jan 28, 2017 1:40:57 PM by Hibernate Tools 4.3.1.Final
+// Generated Jan 28, 2017 6:19:52 PM by Hibernate Tools 4.3.1.Final
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -10,33 +10,33 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class MKokyakuBushoId implements java.io.Serializable {
 
-	private int kokyakuId;
-	private int bushoId;
+	private String kokyakuCode;
+	private String bushoCode;
 
 	public MKokyakuBushoId() {
 	}
 
-	public MKokyakuBushoId(int kokyakuId, int bushoId) {
-		this.kokyakuId = kokyakuId;
-		this.bushoId = bushoId;
+	public MKokyakuBushoId(String kokyakuCode, String bushoCode) {
+		this.kokyakuCode = kokyakuCode;
+		this.bushoCode = bushoCode;
 	}
 
-	@Column(name = "kokyaku_id", nullable = false)
-	public int getKokyakuId() {
-		return this.kokyakuId;
+	@Column(name = "kokyaku_code", nullable = false)
+	public String getKokyakuCode() {
+		return this.kokyakuCode;
 	}
 
-	public void setKokyakuId(int kokyakuId) {
-		this.kokyakuId = kokyakuId;
+	public void setKokyakuCode(String kokyakuCode) {
+		this.kokyakuCode = kokyakuCode;
 	}
 
-	@Column(name = "busho_id", nullable = false)
-	public int getBushoId() {
-		return this.bushoId;
+	@Column(name = "busho_code", nullable = false)
+	public String getBushoCode() {
+		return this.bushoCode;
 	}
 
-	public void setBushoId(int bushoId) {
-		this.bushoId = bushoId;
+	public void setBushoCode(String bushoCode) {
+		this.bushoCode = bushoCode;
 	}
 
 	public boolean equals(Object other) {
@@ -48,14 +48,17 @@ public class MKokyakuBushoId implements java.io.Serializable {
 			return false;
 		MKokyakuBushoId castOther = (MKokyakuBushoId) other;
 
-		return (this.getKokyakuId() == castOther.getKokyakuId()) && (this.getBushoId() == castOther.getBushoId());
+		return ((this.getKokyakuCode() == castOther.getKokyakuCode()) || (this.getKokyakuCode() != null
+				&& castOther.getKokyakuCode() != null && this.getKokyakuCode().equals(castOther.getKokyakuCode())))
+				&& ((this.getBushoCode() == castOther.getBushoCode()) || (this.getBushoCode() != null
+						&& castOther.getBushoCode() != null && this.getBushoCode().equals(castOther.getBushoCode())));
 	}
 
 	public int hashCode() {
 		int result = 17;
 
-		result = 37 * result + this.getKokyakuId();
-		result = 37 * result + this.getBushoId();
+		result = 37 * result + (getKokyakuCode() == null ? 0 : this.getKokyakuCode().hashCode());
+		result = 37 * result + (getBushoCode() == null ? 0 : this.getBushoCode().hashCode());
 		return result;
 	}
 
