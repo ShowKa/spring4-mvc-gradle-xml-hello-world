@@ -24,11 +24,12 @@ public class KokyakuKojinServiceImpl extends KokyakuServiceImpl implements Kokya
 		}
 
 		// 親顧客設定チェック
-		if (StringUtils.isEmpty(kojinKokyakuDomain.getKokyakuKojinEntity().getMKokyaku().getCode())) {
+		if (StringUtils.isEmpty(kojinKokyakuDomain.getKokyakuKojinEntity().getOyaKokyakuCode())) {
 			return false;
 		}
 
 		// この個人顧客の担当部署 ∈ 親納品先の担当部署一覧
-		return kokyakuTantoBushoService.existsTantoBusho(kojinKokyakuDomain.getKokyakuEntity().getCode(), tantoBushoCode);
+		return kokyakuTantoBushoService.existsTantoBusho(kojinKokyakuDomain.getKokyakuEntity().getCode(),
+				tantoBushoCode);
 	}
 }

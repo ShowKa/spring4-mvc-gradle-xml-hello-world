@@ -2,7 +2,7 @@ package com.mkyong.helloworld.dao.i;
 
 import com.mkyong.helloworld.domain.KokyakuTantoBushoDomain;
 import com.mkyong.helloworld.entity.MKokyakuBusho;
-import com.mkyong.helloworld.entity.MKokyakuBushoId;
+import com.mkyong.helloworld.entity.MKokyakuBushoPK;
 
 public interface KokyakuBushoDao {
 	/**
@@ -12,7 +12,7 @@ public interface KokyakuBushoDao {
 	 *            主キー
 	 * @return エンティティー
 	 */
-	public MKokyakuBusho getByPrimaryKey(MKokyakuBushoId id);
+	public MKokyakuBusho getByPrimaryKey(MKokyakuBushoPK id);
 
 	/**
 	 * 永続化
@@ -37,6 +37,6 @@ public interface KokyakuBushoDao {
 	 *            顧客コード、部署コード
 	 * @return 顧客担当部署ドメイン
 	 */
-	public KokyakuTantoBushoDomain getKokyakuTantoBushoDomain(MKokyakuBushoId id);
+	public KokyakuTantoBushoDomain getKokyakuTantoBushoDomain(MKokyakuBushoPK id);
 
 }

@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.mkyong.helloworld.dao.i.KokyakuBushoDao;
 import com.mkyong.helloworld.entity.MKokyakuBusho;
-import com.mkyong.helloworld.entity.MKokyakuBushoId;
+import com.mkyong.helloworld.entity.MKokyakuBushoPK;
 import com.mkyong.helloworld.service.i.KokyakuTantoBushoService;
 
 public class KokyakuTantoBushoServiceImpl implements KokyakuTantoBushoService {
@@ -14,7 +14,7 @@ public class KokyakuTantoBushoServiceImpl implements KokyakuTantoBushoService {
 
 	@Override
 	public boolean existsTantoBusho(String kokyakuCode, String bushoCode) {
-		MKokyakuBushoId id = new MKokyakuBushoId(kokyakuCode, bushoCode);
+		MKokyakuBushoPK id = new MKokyakuBushoPK(kokyakuCode, bushoCode);
 		MKokyakuBusho e = kokyakuBushoDao.getByPrimaryKey(id);
 		if (e == null) {
 			return false;
