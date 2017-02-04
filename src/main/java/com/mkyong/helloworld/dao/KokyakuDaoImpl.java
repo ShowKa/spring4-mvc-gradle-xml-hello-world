@@ -1,8 +1,10 @@
 package com.mkyong.helloworld.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Component;
@@ -29,7 +31,7 @@ public class KokyakuDaoImpl extends AbstractDao<String, MKokyaku> implements Kok
 
 		String name = param.getName();
 		if (!StringUtils.isEmpty(name)) {
-			criteria.add(Restrictions.like("name", "%" + name + "%"));
+			criteria.add(Restrictions.like("name", name, MatchMode.ANYWHERE));
 		}
 
 		criteria.addOrder(Order.asc("code"));
@@ -37,12 +39,21 @@ public class KokyakuDaoImpl extends AbstractDao<String, MKokyaku> implements Kok
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public List<MKokyaku> searchByName(String name) {
+
+		// criteria
 		Criteria criteria = createEntityCriteria();
-		criteria.add(Restrictions.like("name", "%" + name + "%"));
+		criteria.add(Restrictions.like("name", name, MatchMode.ANYWHERE));
 		criteria.addOrder(Order.asc("code"));
-		return criteria.list();
+
+		// search
+		final List<MKokyaku> list = new ArrayList<>();
+
+		// CAST
+		for (final Object o : criteria.list()) {
+			list.add((MKokyaku) o);
+		}
+		return list;
 	}
 
 	@Override

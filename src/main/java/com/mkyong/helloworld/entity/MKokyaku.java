@@ -1,40 +1,45 @@
 package com.mkyong.helloworld.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.persistence.Version;
 
 /**
  * The persistent class for the m_kokyaku database table.
  * 
  */
 @Entity
-@Table(name="m_kokyaku")
-@NamedQuery(name="MKokyaku.findAll", query="SELECT m FROM MKokyaku m")
-public class MKokyaku implements Serializable {
+@Table(name = "m_kokyaku")
+@NamedQuery(name = "MKokyaku.findAll", query = "SELECT m FROM MKokyaku m")
+public class MKokyaku extends AbstractEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(unique=true, nullable=false, length=255)
+	@Column(unique = true, nullable = false, length = 255)
 	private String code;
 
-	@Column(nullable=false, length=255)
+	@Column(nullable = false, length = 255)
 	private String address;
 
-	@Column(name="gentei_kubun", nullable=false, length=255)
+	@Column(name = "gentei_kubun", nullable = false, length = 255)
 	private String genteiKubun;
 
-	@Column(name="kokyaku_kubun", nullable=false, length=255)
+	@Column(name = "kokyaku_kubun", nullable = false, length = 255)
 	private String kokyakuKubun;
 
-	@Column(nullable=false, length=255)
+	@Column(nullable = false, length = 255)
 	private String name;
 
-	@Column(name="shukan_busho_code", nullable=false, length=255)
+	@Column(name = "shukan_busho_code", nullable = false, length = 255)
 	private String shukanBushoCode;
 
 	@Version
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private int version;
 
 	public MKokyaku() {
@@ -88,10 +93,12 @@ public class MKokyaku implements Serializable {
 		this.shukanBushoCode = shukanBushoCode;
 	}
 
+	@Override
 	public int getVersion() {
 		return this.version;
 	}
 
+	@Override
 	public void setVersion(int version) {
 		this.version = version;
 	}

@@ -3,12 +3,16 @@ package com.mkyong.helloworld.dao;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 
+import javax.persistence.OptimisticLockException;
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public abstract class AbstractDao<PK extends Serializable, T> {
+import com.mkyong.helloworld.entity.AbstractEntity;
+
+public abstract class AbstractDao<PK extends Serializable, T extends AbstractEntity> {
 
 	private final Class<T> persistentClass;
 
@@ -40,6 +44,14 @@ public abstract class AbstractDao<PK extends Serializable, T> {
 
 	public void delete(T entity) {
 		getSession().delete(entity);
+	}
+
+	public void delete(PK key, int version) {
+		T e = getByPrimaryKey(key);
+		if (e.getVersion() != version) {
+			throw new OptimisticLockException();
+		}
+		delete(e);
 	}
 
 	protected Criteria createEntityCriteria() {

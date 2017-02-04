@@ -16,7 +16,7 @@ import javax.persistence.Version;
 @Entity
 @Table(name = "m_busho")
 @NamedQuery(name = "MBusho.findAll", query = "SELECT m FROM MBusho m")
-public class MBusho implements Serializable {
+public class MBusho extends AbstractEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -49,10 +49,12 @@ public class MBusho implements Serializable {
 		this.name = name;
 	}
 
+	@Override
 	public int getVersion() {
 		return this.version;
 	}
 
+	@Override
 	public void setVersion(int version) {
 		this.version = version;
 	}

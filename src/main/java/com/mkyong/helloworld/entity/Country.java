@@ -6,10 +6,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 @Entity
 @Table(name = "country")
-public class Country {
+public class Country extends AbstractEntity {
 	@Id
 	@Column(name = "country_id", nullable = false)
 	// @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,5 +21,18 @@ public class Country {
 
 	@Column(name = "last_update", nullable = false)
 	public Timestamp lastUpdate;
+
+	@Version
+	private int version;
+
+	@Override
+	public int getVersion() {
+		return this.version;
+	}
+
+	@Override
+	public void setVersion(int version) {
+		this.version = version;
+	}
 
 }
