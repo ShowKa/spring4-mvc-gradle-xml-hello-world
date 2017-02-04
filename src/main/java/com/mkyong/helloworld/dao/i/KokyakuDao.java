@@ -3,6 +3,7 @@ package com.mkyong.helloworld.dao.i;
 import java.util.List;
 
 import com.mkyong.helloworld.dao.parameter.KokyakuSearchParameter;
+import com.mkyong.helloworld.domain.KokyakuDomain;
 import com.mkyong.helloworld.entity.MKokyaku;
 
 public interface KokyakuDao {
@@ -50,5 +51,14 @@ public interface KokyakuDao {
 	 * @return 顧客 Entity List
 	 */
 	public List<MKokyaku> searchByName(String name);
+
+	/**
+	 * 顧客ドメインを取得
+	 * 
+	 * @param pk
+	 *            顧客コード、部署コード
+	 * @return 顧客ドメイン
+	 */
+	public KokyakuDomain getKokyakuDomain(String kokyakuCode);
 
 }

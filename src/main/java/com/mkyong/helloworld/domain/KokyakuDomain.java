@@ -1,7 +1,6 @@
 package com.mkyong.helloworld.domain;
 
 import com.mkyong.helloworld.entity.MKokyaku;
-import com.mkyong.helloworld.entity.MKokyakuBusho;
 import com.mkyong.helloworld.kubun.GenteiKubun;
 import com.mkyong.helloworld.kubun.KokyakuKubun;
 
@@ -19,13 +18,7 @@ import lombok.Getter;
 public class KokyakuDomain {
 	// Entities
 	/** 顧客Entity. */
-	private MKokyaku kokyaku;
-	/** 顧客部署Entity. */
-	private MKokyakuBusho kokyakuBusho;
-
-	// DAO
-
-	// Constructor
+	private MKokyaku kokyakuEntity;
 
 	// public method
 	/**
@@ -34,7 +27,7 @@ public class KokyakuDomain {
 	 * @retrun 個人限定顧客ならtrue
 	 */
 	public boolean isKojinGentei() {
-		if (isKojin() && GenteiKubun.限定.eq(kokyaku.getGenteiKubun())) {
+		if (isKojin() && GenteiKubun.限定.eq(kokyakuEntity.getGenteiKubun())) {
 			return true;
 		}
 		return false;
@@ -46,7 +39,7 @@ public class KokyakuDomain {
 	 * @return 個人ならtrue
 	 */
 	public boolean isKojin() {
-		if (KokyakuKubun.個人.eq(kokyaku.getKokyakuKubun())) {
+		if (KokyakuKubun.個人.eq(kokyakuEntity.getKokyakuKubun())) {
 			return true;
 		}
 		return false;

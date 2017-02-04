@@ -3,7 +3,6 @@ package com.mkyong.helloworld.domain;
 import org.junit.Test;
 
 import com.mkyong.helloworld.entity.MKokyaku;
-import com.mkyong.helloworld.entity.MKokyakuBusho;
 import com.mkyong.helloworld.kubun.GenteiKubun;
 import com.mkyong.helloworld.kubun.KokyakuKubun;
 
@@ -15,8 +14,7 @@ public class KokyakuDomainTest extends TestCase {
 		MKokyaku k = new MKokyaku();
 		k.setKokyakuKubun(KokyakuKubun.個人.getCode());
 		k.setGenteiKubun(GenteiKubun.限定.getCode());
-		MKokyakuBusho kb = new MKokyakuBusho();
-		KokyakuDomain kokyakuDomain = new KokyakuDomain(k, kb);
+		KokyakuDomain kokyakuDomain = new KokyakuDomain(k);
 
 		assertEquals(true, kokyakuDomain.isKojinGentei());
 	}
@@ -26,8 +24,7 @@ public class KokyakuDomainTest extends TestCase {
 		MKokyaku k = new MKokyaku();
 		k.setKokyakuKubun(KokyakuKubun.法人.getCode());
 		k.setGenteiKubun(GenteiKubun.限定.getCode());
-		MKokyakuBusho kb = new MKokyakuBusho();
-		KokyakuDomain kokyakuDomain = new KokyakuDomain(k, kb);
+		KokyakuDomain kokyakuDomain = new KokyakuDomain(k);
 
 		assertEquals(false, kokyakuDomain.isKojinGentei());
 	}
@@ -37,8 +34,7 @@ public class KokyakuDomainTest extends TestCase {
 		MKokyaku k = new MKokyaku();
 		k.setKokyakuKubun(KokyakuKubun.個人.getCode());
 		k.setGenteiKubun(GenteiKubun.限定しない.getCode());
-		MKokyakuBusho kb = new MKokyakuBusho();
-		KokyakuDomain kokyakuDomain = new KokyakuDomain(k, kb);
+		KokyakuDomain kokyakuDomain = new KokyakuDomain(k);
 
 		assertEquals(false, kokyakuDomain.isKojinGentei());
 	}
