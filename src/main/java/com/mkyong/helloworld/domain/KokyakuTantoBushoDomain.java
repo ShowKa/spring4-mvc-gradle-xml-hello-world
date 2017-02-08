@@ -7,9 +7,9 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class KokyakuTantoBushoDomain {
+public class KokyakuTantoBushoDomain extends AbstractDomain {
 	// Entity
-	private MKokyakuBusho mKokyakuBusho;
+	private MKokyakuBusho mKokyakuBushoEntity;
 
 	// Domain
 	private KokyakuDomain kokyakuDomain;

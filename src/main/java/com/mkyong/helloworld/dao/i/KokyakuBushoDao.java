@@ -1,6 +1,5 @@
 package com.mkyong.helloworld.dao.i;
 
-import com.mkyong.helloworld.domain.KokyakuTantoBushoDomain;
 import com.mkyong.helloworld.entity.MKokyakuBusho;
 import com.mkyong.helloworld.entity.MKokyakuBushoPK;
 
@@ -10,33 +9,32 @@ public interface KokyakuBushoDao {
 	 * 
 	 * @param id
 	 *            主キー
-	 * @return エンティティー
+	 * @return エンティティ
 	 */
 	public MKokyakuBusho getByPrimaryKey(MKokyakuBushoPK id);
 
 	/**
-	 * 永続化
+	 * 登録
 	 * 
 	 * @param entity
-	 *            エンティティー
+	 *            エンティティ
 	 */
 	public void persist(MKokyakuBusho entity);
+
+	/**
+	 * 更新
+	 * 
+	 * @param entity
+	 *            エンティティ
+	 */
+	public void update(MKokyakuBusho entity);
 
 	/**
 	 * 削除
 	 * 
 	 * @param entity
-	 *            エンティティー
+	 *            エンティティ
 	 */
 	public void delete(MKokyakuBusho entity);
-
-	/**
-	 * 顧客担当部署ドメインを取得
-	 * 
-	 * @param pk
-	 *            顧客コード、部署コード
-	 * @return 顧客担当部署ドメイン
-	 */
-	public KokyakuTantoBushoDomain getKokyakuTantoBushoDomain(MKokyakuBushoPK id);
 
 }
