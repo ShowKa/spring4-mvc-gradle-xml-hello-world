@@ -12,7 +12,8 @@ public class KokyakuDomainTest extends TestCase {
 	@Test
 	public void test_IsKojin_01() {
 		KokyakuDomain kokyakuDomain = new KokyakuDomainBuilder().withKokyakuKubun(KokyakuKubun.個人)
-				.withGenteiKubun(GenteiKubun.限定).build();
+				.withGenteiKubun(GenteiKubun.限定)
+				.build();
 
 		assertEquals(true, kokyakuDomain.isKojinGentei());
 	}
@@ -20,7 +21,8 @@ public class KokyakuDomainTest extends TestCase {
 	@Test
 	public void test_IsKojin_02() {
 		KokyakuDomain kokyakuDomain = new KokyakuDomainBuilder().withKokyakuKubun(KokyakuKubun.法人)
-				.withGenteiKubun(GenteiKubun.限定).build();
+				.withGenteiKubun(GenteiKubun.限定)
+				.build();
 
 		assertEquals(false, kokyakuDomain.isKojinGentei());
 	}
@@ -28,7 +30,8 @@ public class KokyakuDomainTest extends TestCase {
 	@Test
 	public void test_IsKojin_03() {
 		KokyakuDomain kokyakuDomain = new KokyakuDomainBuilder().withKokyakuKubun(KokyakuKubun.個人)
-				.withGenteiKubun(GenteiKubun.限定しない).build();
+				.withGenteiKubun(GenteiKubun.限定しない)
+				.build();
 
 		assertEquals(false, kokyakuDomain.isKojinGentei());
 	}

@@ -12,6 +12,7 @@ import org.springframework.util.StringUtils;
 
 import com.mkyong.helloworld.dao.i.KokyakuDao;
 import com.mkyong.helloworld.dao.parameter.KokyakuSearchParameter;
+import com.mkyong.helloworld.domain.KokyakuDomain;
 import com.mkyong.helloworld.entity.MKokyaku;
 
 @Component
@@ -54,4 +55,17 @@ public class KokyakuDaoImpl extends AbstractDao<String, MKokyaku> implements Kok
 		}
 		return list;
 	}
+
+	@Override
+	public void register(KokyakuDomain domain) {
+		MKokyaku entity = new MKokyaku();
+		entity.setAddress(domain.getAddress());
+		entity.setCode(domain.getCode());
+		entity.setGenteiKubun(domain.getGenteiKubun().getCode());
+		entity.setKokyakuKubun(domain.getKokyakuKubun().getCode());
+		entity.setName(domain.getName());
+		entity.setShukanBushoCode(domain.getShukanBushoCode());
+		persist(entity);
+	}
+
 }

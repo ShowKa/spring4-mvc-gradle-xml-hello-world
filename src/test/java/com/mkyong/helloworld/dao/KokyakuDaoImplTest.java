@@ -7,17 +7,15 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.mkyong.helloworld.dao.parameter.KokyakuSearchParameter;
+import com.mkyong.helloworld.domain.KokyakuDomain;
+import com.mkyong.helloworld.domain.builder.KokyakuDomainBuilder;
 import com.mkyong.helloworld.entity.MKokyaku;
+import com.mkyong.helloworld.kubun.GenteiKubun;
+import com.mkyong.helloworld.kubun.KokyakuKubun;
 
 public class KokyakuDaoImplTest extends DaoTestCaseBase {
 	@Autowired
 	private KokyakuDaoImpl kokyakuDao;
-
-	@Test
-	public void testGetByPK() {
-		MKokyaku entity = kokyakuDao.getByPrimaryKey("UT001");
-		Assert.assertEquals(entity.getName(), "UT001顧客");
-	}
 
 	@Test
 	public void testGetByName() {
@@ -59,73 +57,27 @@ public class KokyakuDaoImplTest extends DaoTestCaseBase {
 	}
 
 	@Test
-	public void testPersist() {
-		// create entity
-		MKokyaku e = new MKokyaku();
-		e.setCode("aaa");
-		e.setShukanBushoCode("UT001");
-		e.setAddress("aaa");
-		e.setGenteiKubun("1");
-		e.setKokyakuKubun("1");
-		e.setName("asjfka");
+	public void testRegister() {
+		// register
+		// [注意] コミットしない限り、一意制約違反は起きない。
+		KokyakuDomain d = new KokyakuDomainBuilder().withAddress("住所テスト")
+				.withCode("XXXXX")
+				.withGenteiKubun(GenteiKubun.限定)
+				.withKokyakuKubun(KokyakuKubun.法人)
+				.withName("名前テスト")
+				.withShukanBushoCode("UT01")
+				.build();
+		kokyakuDao.register(d);
 
-		// save
-		kokyakuDao.persist(e);
+		// get
+		MKokyaku e = kokyakuDao.getByPrimaryKey("XXXXX");
 
-		// get result
-		MKokyaku r = kokyakuDao.getByPrimaryKey("aaa");
-		Assert.assertEquals(e.getCode(), r.getCode());
-		Assert.assertEquals(e.getName(), r.getName());
-	}
-
-	@Test
-	public void testUpdate() {
-		// create entity
-		MKokyaku e = new MKokyaku();
-		e.setCode("UT001");
-		e.setShukanBushoCode("UT001");
-		e.setAddress("changeAddress");
-		e.setGenteiKubun("1");
-		e.setKokyakuKubun("1");
-		e.setName("changeName");
-		// 注意！ コミットしないとupdateの楽観的排他制御は有効とならない。
-		e.setVersion(1);
-
-		// 更新
-		kokyakuDao.update(e);
-
-		// get result
-		MKokyaku r = kokyakuDao.getByPrimaryKey("UT001");
-		Assert.assertEquals("changeName", r.getName());
-	}
-
-	@Test
-	public void testDelete() {
-		// create entity
-		MKokyaku e = new MKokyaku();
-		e.setCode("UT001");
-		e.setShukanBushoCode("dummy");
-		e.setAddress("dummy");
-		e.setGenteiKubun("dummy");
-		e.setKokyakuKubun("dummy");
-		e.setName("dummy");
-		e.setVersion(1);
-
-		// 削除
-		kokyakuDao.delete(e);
-
-		// get result
-		MKokyaku r = kokyakuDao.getByPrimaryKey("UT001");
-		Assert.assertNull(r);
-	}
-
-	@Test
-	public void testDeleteWithPkAndVersion() {
-		// 削除
-		kokyakuDao.delete("UT001", 1);
-
-		// get result
-		MKokyaku r = kokyakuDao.getByPrimaryKey("UT001");
-		Assert.assertNull(r);
+		// assert
+		Assert.assertEquals(e.getAddress(), d.getAddress());
+		Assert.assertEquals(e.getCode(), d.getCode());
+		Assert.assertEquals(e.getGenteiKubun(), d.getGenteiKubun().getCode());
+		Assert.assertEquals(e.getKokyakuKubun(), d.getGenteiKubun().getCode());
+		Assert.assertEquals(e.getName(), d.getName());
+		Assert.assertEquals(e.getShukanBushoCode(), d.getShukanBushoCode());
 	}
 }

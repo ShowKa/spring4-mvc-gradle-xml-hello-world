@@ -1,7 +1,6 @@
 package com.mkyong.helloworld.kubun;
 
 public interface Kubun {
-	String getLabel();
 
 	String getCode();
 
