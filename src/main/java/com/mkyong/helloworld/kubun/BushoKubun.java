@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public enum GenteiKubun implements Kubun {
-	限定("01"), 限定しない("02");
+public enum BushoKubun implements Kubun {
+	営業所("01"), 本部("99");
 	private String code;
 }

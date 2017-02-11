@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -20,14 +22,18 @@ public class MBusho extends AbstractEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(unique = true, nullable = false, length = 255)
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	private String code;
 
-	@Column(nullable = false, length = 255)
+	@Column(name = "busho_kubun")
+	private String bushoKubun;
+
+	@Column(name = "jigyo_kubun")
+	private String jigyoKubun;
+
 	private String name;
 
 	@Version
-	@Column(nullable = false)
 	private int version;
 
 	public MBusho() {
@@ -39,6 +45,22 @@ public class MBusho extends AbstractEntity implements Serializable {
 
 	public void setCode(String code) {
 		this.code = code;
+	}
+
+	public String getBushoKubun() {
+		return this.bushoKubun;
+	}
+
+	public void setBushoKubun(String bushoKubun) {
+		this.bushoKubun = bushoKubun;
+	}
+
+	public String getJigyoKubun() {
+		return this.jigyoKubun;
+	}
+
+	public void setJigyoKubun(String jigyoKubun) {
+		this.jigyoKubun = jigyoKubun;
 	}
 
 	public String getName() {
