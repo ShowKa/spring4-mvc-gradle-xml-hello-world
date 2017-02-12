@@ -1,22 +1,16 @@
 package com.mkyong.helloworld.service;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.Rule;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
-import org.mockito.MockitoAnnotations;
-import org.mockito.runners.MockitoJUnitRunner;
 
 import junit.framework.TestCase;
+import mockit.integration.junit4.JMockit;
 
-@RunWith(MockitoJUnitRunner.class)
-public class ServiceTestCaseBase extends TestCase {
-	@Before
-	public void setup() {
-		MockitoAnnotations.initMocks(this);
-	}
+@RunWith(JMockit.class)
+public abstract class ServiceTestCaseBase extends TestCase {
 
-	@Test
-	public void dummy() {
-		assertEquals(true, true);
-	}
+	@Rule
+	public ExpectedException expectedEx = ExpectedException.none();
+
 }

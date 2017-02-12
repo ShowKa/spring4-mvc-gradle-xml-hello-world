@@ -1,5 +1,6 @@
 package com.mkyong.helloworld.domain.builder;
 
+import com.mkyong.helloworld.domain.BushoDateDomain;
 import com.mkyong.helloworld.domain.BushoDomain;
 import com.mkyong.helloworld.kubun.BushoKubun;
 import com.mkyong.helloworld.kubun.JigyoKubun;
@@ -19,6 +20,9 @@ public class BushoDomainBuilder extends AbstractDomainBuilder<BushoDomain, Busho
 	/** 部署名 */
 	private String name;
 
+	/** 部署日付ドメイン */
+	private BushoDateDomain bushoDateDomain;
+
 	/** バージョン */
 	private int version;
 
@@ -29,12 +33,13 @@ public class BushoDomainBuilder extends AbstractDomainBuilder<BushoDomain, Busho
 		builder.withBushoKubun(domain.getBushoKubun());
 		builder.withJigyoKubun(domain.getJigyoKubun());
 		builder.withName(domain.getName());
+		builder.withBushoDateDomain(domain.getBushoDateDomain());
 		builder.withVersion(domain.getVersion());
 	}
 
 	@Override
 	protected BushoDomain createDomainObject() {
-		return new BushoDomain(code, bushoKubun, jigyoKubun, name, version);
+		return new BushoDomain(code, bushoKubun, jigyoKubun, name, bushoDateDomain, version);
 	}
 
 	@Override
@@ -111,6 +116,23 @@ public class BushoDomainBuilder extends AbstractDomainBuilder<BushoDomain, Busho
 			@Override
 			public void configure(BushoDomainBuilder builder) {
 				builder.name = name;
+			}
+		});
+		return getThis();
+	}
+
+	/**
+	 * {@link BushoDomain}に与える部署日付ドメインをこのビルダに設定する。
+	 *
+	 * @param bushoDateDomain
+	 *            部署日付ドメイン
+	 * @return {@link BushoDomainBuilder}
+	 */
+	public BushoDomainBuilder withBushoDateDomain(final BushoDateDomain bushoDateDomain) {
+		addConfigurator(new BuilderConfigurator<BushoDomainBuilder>() {
+			@Override
+			public void configure(BushoDomainBuilder builder) {
+				builder.bushoDateDomain = bushoDateDomain;
 			}
 		});
 		return getThis();

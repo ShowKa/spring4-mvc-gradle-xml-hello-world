@@ -59,4 +59,14 @@ public class KokyakuDomain extends AbstractDomain {
 		}
 		return false;
 	}
+
+	/**
+	 * 法人判定
+	 */
+	public boolean isHojin() {
+		if (KokyakuKubun.法人 == kokyakuKubun) {
+			return true;
+		}
+		return false;
+	}
 }

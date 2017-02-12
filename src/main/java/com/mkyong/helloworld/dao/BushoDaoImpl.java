@@ -1,5 +1,7 @@
 package com.mkyong.helloworld.dao;
 
+import org.springframework.stereotype.Component;
+
 import com.mkyong.helloworld.dao.i.BushoDao;
 import com.mkyong.helloworld.domain.BushoDomain;
 import com.mkyong.helloworld.domain.builder.BushoDomainBuilder;
@@ -7,6 +9,7 @@ import com.mkyong.helloworld.entity.MBusho;
 import com.mkyong.helloworld.kubun.BushoKubun;
 import com.mkyong.helloworld.kubun.JigyoKubun;
 
+@Component
 public class BushoDaoImpl extends AbstractDao<String, MBusho> implements BushoDao {
 
 	@Override

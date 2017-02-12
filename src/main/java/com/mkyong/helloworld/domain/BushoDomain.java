@@ -19,6 +19,8 @@ public class BushoDomain extends AbstractDomain {
 
 	private String name;
 
+	private BushoDateDomain bushoDateDomain;
+
 	private int version;
 
 	// public method

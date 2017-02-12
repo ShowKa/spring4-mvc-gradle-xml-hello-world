@@ -11,4 +11,13 @@ public interface KokyakuService {
 	 * @return 登録成否
 	 */
 	public boolean register(KokyakuDomain domain);
+
+	/**
+	 * 顧客データとして正しいか検証する
+	 * 
+	 * @param domain
+	 *            顧客ドメイン
+	 * @return 検証結果
+	 */
+	public boolean validateHojinKokyaku(KokyakuDomain domain);
 }
