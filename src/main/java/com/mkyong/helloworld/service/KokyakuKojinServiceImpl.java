@@ -1,7 +1,6 @@
 package com.mkyong.helloworld.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
 
 import com.mkyong.helloworld.dao.i.KokyakuDao;
 import com.mkyong.helloworld.domain.KokyakuKojinDomain;
@@ -24,7 +23,7 @@ public class KokyakuKojinServiceImpl extends KokyakuServiceImpl implements Kokya
 		}
 
 		// 親顧客設定チェック
-		if (StringUtils.isEmpty(kojinKokyakuDomain.getOyaKokyakuCode())) {
+		if (kojinKokyakuDomain.getOyaKokyakuDomain() == null) {
 			return false;
 		}
 

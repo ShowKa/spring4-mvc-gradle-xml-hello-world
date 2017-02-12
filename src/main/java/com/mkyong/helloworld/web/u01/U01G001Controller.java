@@ -48,7 +48,8 @@ public class U01G001Controller {
 				.withGenteiKubun(GenteiKubun.valueOf(form.getGenteiKubun()))
 				.withKokyakuKubun(KokyakuKubun.valueOf(form.getKokyakuKubun()))
 				.withName(form.getName())
-				.withShukanBushoCode(form.getShukanBushoCode())
+				// FIXME
+				// .withShukanBushoCode(form.getShukanBushoCode())
 				.build();
 	}
 }

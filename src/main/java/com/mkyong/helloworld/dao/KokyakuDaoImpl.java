@@ -64,7 +64,7 @@ public class KokyakuDaoImpl extends AbstractDao<String, MKokyaku> implements Kok
 		entity.setGenteiKubun(domain.getGenteiKubun().getCode());
 		entity.setKokyakuKubun(domain.getKokyakuKubun().getCode());
 		entity.setName(domain.getName());
-		entity.setShukanBushoCode(domain.getShukanBushoCode());
+		entity.setShukanBushoCode(domain.getShukanBushoDomain().getCode());
 		persist(entity);
 	}
 

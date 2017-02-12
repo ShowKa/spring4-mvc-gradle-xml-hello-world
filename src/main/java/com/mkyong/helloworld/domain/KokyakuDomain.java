@@ -33,7 +33,7 @@ public class KokyakuDomain extends AbstractDomain {
 	private String address;
 
 	/** 主幹部署 */
-	private String shukanBushoCode;
+	private BushoDomain shukanBushoDomain;
 
 	// public method
 	/**

@@ -11,6 +11,6 @@ public class KokyakuCatalog {
 			.withGenteiKubun(GenteiKubun.限定しない)
 			.withKokyakuKubun(KokyakuKubun.法人)
 			.withName("UT001名前")
-			.withShukanBushoCode("UT001")
+			// .withShukanBushoCode("UT001")
 			.build();
 }

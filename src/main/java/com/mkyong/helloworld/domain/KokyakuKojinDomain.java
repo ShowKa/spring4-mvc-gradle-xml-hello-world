@@ -16,7 +16,7 @@ public class KokyakuKojinDomain extends KokyakuDomain {
 
 	// private member
 	/** 親顧客コード. */
-	private String oyaKokyakuCode;
+	private KokyakuDomain oyaKokyakuDomain;
 
 	// Constructor
 	/**
@@ -38,9 +38,9 @@ public class KokyakuKojinDomain extends KokyakuDomain {
 	 *            親顧客コード
 	 */
 	public KokyakuKojinDomain(String code, GenteiKubun genteiKubun, KokyakuKubun kokyakuKubun, String name,
-			String address, String shukanBushoCode, String oyaKokyakuCode) {
-		super(code, genteiKubun, kokyakuKubun, name, address, shukanBushoCode);
-		this.oyaKokyakuCode = oyaKokyakuCode;
+			String address, BushoDomain shukanBushoDomain, KokyakuDomain oyaKokyakuDomain) {
+		super(code, genteiKubun, kokyakuKubun, name, address, shukanBushoDomain);
+		this.oyaKokyakuDomain = oyaKokyakuDomain;
 	}
 	// public Method
 

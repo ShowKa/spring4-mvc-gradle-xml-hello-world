@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.mkyong.helloworld.dao.parameter.KokyakuSearchParameter;
 import com.mkyong.helloworld.domain.KokyakuDomain;
+import com.mkyong.helloworld.domain.builder.BushoDomainBuilder;
 import com.mkyong.helloworld.domain.builder.KokyakuDomainBuilder;
 import com.mkyong.helloworld.entity.MKokyaku;
 import com.mkyong.helloworld.kubun.GenteiKubun;
@@ -62,10 +63,10 @@ public class KokyakuDaoImplTest extends DaoTestCaseBase {
 		// [注意] コミットしない限り、一意制約違反は起きない。
 		KokyakuDomain d = new KokyakuDomainBuilder().withAddress("住所テスト")
 				.withCode("XXXXX")
-				.withGenteiKubun(GenteiKubun.限定)
+				.withGenteiKubun(GenteiKubun.限定しない)
 				.withKokyakuKubun(KokyakuKubun.法人)
 				.withName("名前テスト")
-				.withShukanBushoCode("UT01")
+				.withShukanBushoDomain(new BushoDomainBuilder().withCode("UT01").build())
 				.build();
 		kokyakuDao.register(d);
 
@@ -76,8 +77,8 @@ public class KokyakuDaoImplTest extends DaoTestCaseBase {
 		Assert.assertEquals(e.getAddress(), d.getAddress());
 		Assert.assertEquals(e.getCode(), d.getCode());
 		Assert.assertEquals(e.getGenteiKubun(), d.getGenteiKubun().getCode());
-		Assert.assertEquals(e.getKokyakuKubun(), d.getGenteiKubun().getCode());
+		Assert.assertEquals(e.getKokyakuKubun(), d.getKokyakuKubun().getCode());
 		Assert.assertEquals(e.getName(), d.getName());
-		Assert.assertEquals(e.getShukanBushoCode(), d.getShukanBushoCode());
+		Assert.assertEquals(e.getShukanBushoCode(), d.getShukanBushoDomain().getCode());
 	}
 }

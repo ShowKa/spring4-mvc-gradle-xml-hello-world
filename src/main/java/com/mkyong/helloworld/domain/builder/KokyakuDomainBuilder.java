@@ -1,5 +1,6 @@
 package com.mkyong.helloworld.domain.builder;
 
+import com.mkyong.helloworld.domain.BushoDomain;
 import com.mkyong.helloworld.domain.KokyakuDomain;
 import com.mkyong.helloworld.kubun.GenteiKubun;
 import com.mkyong.helloworld.kubun.KokyakuKubun;
@@ -22,8 +23,8 @@ public class KokyakuDomainBuilder extends AbstractDomainBuilder<KokyakuDomain, K
 	/** 住所 */
 	private String address;
 
-	/** 主幹部署コード */
-	private String shukanBushoCode;
+	/** 主幹部署ドメイン */
+	private BushoDomain shukanBushoDomain;
 
 	// protected method
 	@Override
@@ -33,12 +34,12 @@ public class KokyakuDomainBuilder extends AbstractDomainBuilder<KokyakuDomain, K
 		builder.withKokyakuKubun(domain.getKokyakuKubun());
 		builder.withName(domain.getName());
 		builder.withAddress(domain.getAddress());
-		builder.withShukanBushoCode(domain.getShukanBushoCode());
+		builder.withShukanBushoDomain(domain.getShukanBushoDomain());
 	}
 
 	@Override
 	protected KokyakuDomain createDomainObject() {
-		return new KokyakuDomain(code, genteiKubun, kokyakuKubun, name, address, shukanBushoCode);
+		return new KokyakuDomain(code, genteiKubun, kokyakuKubun, name, address, shukanBushoDomain);
 	}
 
 	@Override
@@ -144,14 +145,13 @@ public class KokyakuDomainBuilder extends AbstractDomainBuilder<KokyakuDomain, K
 	 *            主幹部署コード
 	 * @return {@link KokyakuDomainBuilder}
 	 */
-	public KokyakuDomainBuilder withShukanBushoCode(final String shukanBushoCode) {
+	public KokyakuDomainBuilder withShukanBushoDomain(final BushoDomain shukanBushoDomain) {
 		addConfigurator(new BuilderConfigurator<KokyakuDomainBuilder>() {
 			@Override
 			public void configure(KokyakuDomainBuilder builder) {
-				builder.shukanBushoCode = shukanBushoCode;
+				builder.shukanBushoDomain = shukanBushoDomain;
 			}
 		});
 		return getThis();
 	}
-
 }
