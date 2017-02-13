@@ -1,20 +1,21 @@
 package com.mkyong.helloworld.domain;
 
-import com.mkyong.helloworld.domain.value.DateWithoutTime;
+import com.mkyong.helloworld.value.EigyoDate;
+import com.mkyong.helloworld.value.KeijyoDate;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class BushoDateDomain {
+public class BushoDateDomain extends AbstractDomain {
 
 	// private members
 	private String bushoCode;
 
-	private DateWithoutTime eigyoDate;
+	private EigyoDate eigyoDate;
 
-	private DateWithoutTime keijoDate;
+	private KeijyoDate keijoDate;
 
 	private int version;
 

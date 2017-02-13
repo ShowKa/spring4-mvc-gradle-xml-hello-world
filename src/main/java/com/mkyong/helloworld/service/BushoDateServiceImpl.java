@@ -3,10 +3,10 @@ package com.mkyong.helloworld.service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.mkyong.helloworld.dao.i.KyujitsuDao;
-import com.mkyong.helloworld.domain.value.DateWithoutTime;
 import com.mkyong.helloworld.entity.MKyujitsu;
 import com.mkyong.helloworld.entity.MKyujitsuPK;
 import com.mkyong.helloworld.service.i.BushoDateService;
+import com.mkyong.helloworld.value.TheDate;
 
 public class BushoDateServiceImpl implements BushoDateService {
 
@@ -14,12 +14,12 @@ public class BushoDateServiceImpl implements BushoDateService {
 	private KyujitsuDao kyujitsuDao;
 
 	@Override
-	public boolean isEigyoDate(String bushoCode, DateWithoutTime date) {
+	public boolean isEigyoDate(String bushoCode, TheDate date) {
 
 		// 部署の休日情報取得
 		MKyujitsuPK id = new MKyujitsuPK();
 		id.setBushoCode(bushoCode);
-		id.setKyujitsu(date.toDate());
+		id.setKyujitsu(date.toCalendar());
 		MKyujitsu kyujitsu = kyujitsuDao.getByPrimaryKey(id);
 
 		// 判定

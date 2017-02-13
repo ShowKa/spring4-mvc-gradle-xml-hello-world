@@ -1,6 +1,7 @@
 package com.mkyong.helloworld.entity;
 
 import java.io.Serializable;
+import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -20,7 +21,7 @@ public class MKyujitsuPK implements Serializable {
 	private String bushoCode;
 
 	@Temporal(TemporalType.DATE)
-	private java.util.Date kyujitsu;
+	private Calendar kyujitsu;
 
 	public MKyujitsuPK() {
 	}
@@ -33,11 +34,11 @@ public class MKyujitsuPK implements Serializable {
 		this.bushoCode = bushoCode;
 	}
 
-	public java.util.Date getKyujitsu() {
+	public Calendar getKyujitsu() {
 		return this.kyujitsu;
 	}
 
-	public void setKyujitsu(java.util.Date kyujitsu) {
+	public void setKyujitsu(Calendar kyujitsu) {
 		this.kyujitsu = kyujitsu;
 	}
 

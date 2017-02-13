@@ -1,6 +1,6 @@
 package com.mkyong.helloworld.service.i;
 
-import com.mkyong.helloworld.domain.value.DateWithoutTime;
+import com.mkyong.helloworld.value.TheDate;
 
 public interface BushoDateService {
 	/**
@@ -12,5 +12,5 @@ public interface BushoDateService {
 	 *            対象日付
 	 * @return 対象日付が営業日ならtrue
 	 */
-	public boolean isEigyoDate(String bushoCode, DateWithoutTime date);
+	public boolean isEigyoDate(String bushoCode, TheDate date);
 }
