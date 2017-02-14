@@ -2,6 +2,7 @@ apply plugin: 'java'
 apply plugin: 'war'
 apply plugin: 'eclipse-wtp'
 apply plugin: 'jetty'
+apply plugin: 'checkstyle'
 
 // JDK 8
 sourceCompatibility = 1.8
@@ -68,3 +69,12 @@ eclipse {
   }
 }
 
+eclipse.jdt.file {
+	withProperties { properties ->
+		def formatter = new XmlSlurper().parse(file('config/format/formatter.xml'))
+
+		formatter.profile.setting.each {
+			properties.put(it.@id as String, it.@value as String)
+		}
+	}
+}
