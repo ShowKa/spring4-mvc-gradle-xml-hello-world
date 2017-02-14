@@ -4,15 +4,13 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Calendar;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+@AllArgsConstructor
 @Getter
-public class TheDate {
+public class TheDate extends AbstractValue {
 	private LocalDate date;
-
-	public TheDate(LocalDate date) {
-		this.date = date;
-	}
 
 	public TheDate(java.util.Date date) {
 		this.date = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -37,5 +35,13 @@ public class TheDate {
 		Calendar c = Calendar.getInstance();
 		c.set(date.getYear(), date.getMonthValue(), date.getDayOfMonth());
 		return c;
+	}
+	
+	@Override
+	public boolean isEmpty() {
+		if(this.date == null) {
+			return true;
+		}
+		return false;
 	}
 }
