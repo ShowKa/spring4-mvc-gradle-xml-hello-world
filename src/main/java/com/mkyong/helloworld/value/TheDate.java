@@ -4,15 +4,13 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Calendar;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+@AllArgsConstructor
 @Getter
-public class TheDate {
+public class TheDate extends AbstractValue {
 	private LocalDate date;
-
-	public TheDate(LocalDate date) {
-		this.date = date;
-	}
 
 	public TheDate(java.util.Date date) {
 		this.date = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -25,8 +23,8 @@ public class TheDate {
 		this.date = LocalDate.of(y, m, d);
 	}
 
-	public TheDate(int year, int month, int date) {
-		this.date = LocalDate.of(year, month, date);
+	public TheDate(int year, int month, int dayOfMonth) {
+		this.date = LocalDate.of(year, month, dayOfMonth);
 	}
 
 	public java.util.Date toDate() {
@@ -35,7 +33,24 @@ public class TheDate {
 
 	public Calendar toCalendar() {
 		Calendar c = Calendar.getInstance();
-		c.set(date.getYear(), date.getMonthValue(), date.getDayOfMonth());
+		c.set(date.getYear(), date.getMonthValue() - 1, date.getDayOfMonth());
 		return c;
+	}
+
+	@Override
+	public boolean isEmpty() {
+		if (this.date == null) {
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	protected boolean equals(AbstractValue other) {
+		if (!(other instanceof TheDate)) {
+			return false;
+		}
+		TheDate _other = (TheDate) other;
+		return _other.date.equals(_other.date);
 	}
 }

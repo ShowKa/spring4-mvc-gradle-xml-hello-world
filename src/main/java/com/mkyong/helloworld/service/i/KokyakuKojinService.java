@@ -5,8 +5,7 @@ import com.mkyong.helloworld.domain.KokyakuKojinDomain;
 public interface KokyakuKojinService {
 
 	/**
-	 * 個人顧客の整合性チェック.
-	 * 
+	 * 個人顧客データとして正しいか検証する
 	 * <pre>
 	 * 以下の条件を満たす。
 	 * 区分=個人
@@ -14,8 +13,19 @@ public interface KokyakuKojinService {
 	 * この個人顧客の担当部署 ∈ 親納品先の担当部署一覧
 	 * </pre>
 	 * 
-	 * @return OKならtrue
+	 * @param domain
+	 *            個人顧客ドメイン
+	 * @return 検証結果
 	 */
-	public boolean validateKojin(KokyakuKojinDomain kokyakuKojin, String tantoBushoCode);
+	public boolean validateKokyakuKojin(KokyakuKojinDomain domain);
+	
+	/**
+	 * 顧客個人ドメイン登録
+	 * 
+	 * @param domain
+	 *            顧客個人ドメイン
+	 * @return 登録成否
+	 */
+	public boolean registerKokyakuKojin(KokyakuKojinDomain domain);
 
 }

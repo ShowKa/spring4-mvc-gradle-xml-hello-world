@@ -38,7 +38,7 @@ public class KokyakuServiceImplTest extends ServiceTestCaseBase {
 		};
 
 		// test
-		boolean actual = service.register(domain);
+		boolean actual = service.registerKokyakuHojin(domain);
 		assertEquals(true, actual);
 
 		// Verification
@@ -55,7 +55,7 @@ public class KokyakuServiceImplTest extends ServiceTestCaseBase {
 		expectedEx.expect(ApplicationException.class);
 		expectedEx.expectMessage("AP0001");
 		KokyakuDomain domain = new KokyakuDomainBuilder().withGenteiKubun(GenteiKubun.限定).build();
-		service.validateHojinKokyaku(domain);
+		service.validateKokyakuHojin(domain);
 		fail();
 	}
 
@@ -66,7 +66,7 @@ public class KokyakuServiceImplTest extends ServiceTestCaseBase {
 		BushoDomain shukanBushoDomain = new BushoDomainBuilder().withBushoKubun(BushoKubun.本部).build();
 		KokyakuDomain domain = new KokyakuDomainBuilder().withGenteiKubun(GenteiKubun.限定しない)
 				.withShukanBushoDomain(shukanBushoDomain).build();
-		service.validateHojinKokyaku(domain);
+		service.validateKokyakuHojin(domain);
 		fail();
 	}
 
@@ -75,7 +75,7 @@ public class KokyakuServiceImplTest extends ServiceTestCaseBase {
 		BushoDomain shukanBushoDomain = new BushoDomainBuilder().withBushoKubun(BushoKubun.営業所).build();
 		KokyakuDomain domain = new KokyakuDomainBuilder().withGenteiKubun(GenteiKubun.限定しない)
 				.withShukanBushoDomain(shukanBushoDomain).build();
-		boolean actual = service.validateHojinKokyaku(domain);
+		boolean actual = service.validateKokyakuHojin(domain);
 		assertEquals(true, actual);
 	}
 }

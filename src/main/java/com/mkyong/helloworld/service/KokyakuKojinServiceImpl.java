@@ -2,7 +2,7 @@ package com.mkyong.helloworld.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.mkyong.helloworld.dao.i.KokyakuDao;
+import com.mkyong.helloworld.dao.i.KokyakuKojinDao;
 import com.mkyong.helloworld.domain.KokyakuKojinDomain;
 import com.mkyong.helloworld.service.i.KokyakuKojinService;
 import com.mkyong.helloworld.service.i.KokyakuTantoBushoService;
@@ -10,24 +10,32 @@ import com.mkyong.helloworld.service.i.KokyakuTantoBushoService;
 public class KokyakuKojinServiceImpl extends KokyakuServiceImpl implements KokyakuKojinService {
 
 	@Autowired
-	KokyakuDao kokyakuDao;
+	KokyakuKojinDao kokyakuKojinDao;
 
 	@Autowired
 	KokyakuTantoBushoService kokyakuTantoBushoService;
 
 	@Override
-	public boolean validateKojin(KokyakuKojinDomain kojinKokyakuDomain, String tantoBushoCode) {
-		// 個人チェック
-		if (!kojinKokyakuDomain.isKojin()) {
+	public boolean validateKokyakuKojin(KokyakuKojinDomain domain) {
+		// 顧客区分チェック
+		if (!domain.isKojin()) {
 			return false;
 		}
 
-		// 親顧客設定チェック
-		if (kojinKokyakuDomain.getOyaKokyakuDomain() == null) {
+		// 親納品先が存在しないならNG
+		if(!this.existsKokyaku(domain.getOyaKokyakuDomain().getCode())) {
 			return false;
 		}
 
 		// この個人顧客の担当部署 ∈ 親納品先の担当部署一覧
-		return kokyakuTantoBushoService.existsTantoBusho(kojinKokyakuDomain.getCode(), tantoBushoCode);
+		// FIXME 多分、ここでやるべき処理じゃない。
+		return kokyakuTantoBushoService.existsTantoBusho(domain.getCode(), null);
 	}
+	
+	@Override
+	public boolean registerKokyakuKojin(KokyakuKojinDomain domain) {
+		kokyakuKojinDao.register(domain);
+		return true;
+	}
+
 }

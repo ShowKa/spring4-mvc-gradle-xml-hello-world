@@ -47,7 +47,7 @@ public class KokyakuDaoImpl extends AbstractDao<String, MKokyaku> implements Kok
 		criteria.addOrder(Order.asc("code"));
 
 		// search
-		final List<MKokyaku> list = new ArrayList<>();
+		final List<MKokyaku> list = new ArrayList<MKokyaku>();
 
 		// CAST
 		for (final Object o : criteria.list()) {
