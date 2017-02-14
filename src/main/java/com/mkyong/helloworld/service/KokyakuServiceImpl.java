@@ -17,11 +17,11 @@ public class KokyakuServiceImpl implements KokyakuService {
 	/** 顧客DAO */
 	@Autowired
 	private KokyakuDao kokyakuDao;
-	
+
 	@Override
 	public boolean existsKokyaku(String kokykuCode) {
 		MKokyaku entity = kokyakuDao.getByPrimaryKey(kokykuCode);
-		if(entity == null) {
+		if (entity == null) {
 			return false;
 		}
 		return true;

@@ -10,7 +10,7 @@ import com.mkyong.helloworld.entity.MKokyakuKojin;
 
 @Component
 public class KokyakuKojinDaoImpl extends AbstractDao<String, MKokyakuKojin> implements KokyakuKojinDao {
-	
+
 	@Autowired
 	private KokyakuDao kokyakuDao;
 
@@ -18,7 +18,7 @@ public class KokyakuKojinDaoImpl extends AbstractDao<String, MKokyakuKojin> impl
 	public void register(KokyakuKojinDomain domain) {
 		// 顧客登録
 		kokyakuDao.register(domain);
-		
+
 		// 顧客個人登録
 		MKokyakuKojin e = new MKokyakuKojin();
 		e.setKokyakuCode(domain.getCode());

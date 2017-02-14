@@ -23,7 +23,7 @@ public class KokyakuKojinServiceImpl extends KokyakuServiceImpl implements Kokya
 		}
 
 		// 親納品先が存在しないならNG
-		if(!this.existsKokyaku(domain.getOyaKokyakuDomain().getCode())) {
+		if (!this.existsKokyaku(domain.getOyaKokyakuDomain().getCode())) {
 			return false;
 		}
 
@@ -31,7 +31,7 @@ public class KokyakuKojinServiceImpl extends KokyakuServiceImpl implements Kokya
 		// FIXME 多分、ここでやるべき処理じゃない。
 		return kokyakuTantoBushoService.existsTantoBusho(domain.getCode(), null);
 	}
-	
+
 	@Override
 	public boolean registerKokyakuKojin(KokyakuKojinDomain domain) {
 		kokyakuKojinDao.register(domain);
