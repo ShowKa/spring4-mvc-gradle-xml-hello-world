@@ -23,8 +23,8 @@ public class TheDate extends AbstractValue {
 		this.date = LocalDate.of(y, m, d);
 	}
 
-	public TheDate(int year, int month, int date) {
-		this.date = LocalDate.of(year, month, date);
+	public TheDate(int year, int month, int dayOfMonth) {
+		this.date = LocalDate.of(year, month, dayOfMonth);
 	}
 
 	public java.util.Date toDate() {
@@ -33,15 +33,24 @@ public class TheDate extends AbstractValue {
 
 	public Calendar toCalendar() {
 		Calendar c = Calendar.getInstance();
-		c.set(date.getYear(), date.getMonthValue(), date.getDayOfMonth());
+		c.set(date.getYear(), date.getMonthValue() - 1, date.getDayOfMonth());
 		return c;
 	}
-	
+
 	@Override
 	public boolean isEmpty() {
-		if(this.date == null) {
+		if (this.date == null) {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	protected boolean equals(AbstractValue other) {
+		if (!(other instanceof TheDate)) {
+			return false;
+		}
+		TheDate _other = (TheDate) other;
+		return _other.date.equals(_other.date);
 	}
 }
