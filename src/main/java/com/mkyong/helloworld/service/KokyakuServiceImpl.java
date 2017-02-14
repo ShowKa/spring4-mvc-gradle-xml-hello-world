@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.mkyong.helloworld.dao.i.KokyakuDao;
 import com.mkyong.helloworld.domain.KokyakuDomain;
-import com.mkyong.helloworld.domain.KokyakuKojinDomain;
+import com.mkyong.helloworld.entity.MKokyaku;
 import com.mkyong.helloworld.kubun.BushoKubun;
 import com.mkyong.helloworld.kubun.GenteiKubun;
 import com.mkyong.helloworld.service.i.KokyakuService;
@@ -17,9 +17,18 @@ public class KokyakuServiceImpl implements KokyakuService {
 	/** 顧客DAO */
 	@Autowired
 	private KokyakuDao kokyakuDao;
+	
+	@Override
+	public boolean existsKokyaku(String kokykuCode) {
+		MKokyaku entity = kokyakuDao.getByPrimaryKey(kokykuCode);
+		if(entity == null) {
+			return false;
+		}
+		return true;
+	}
 
 	@Override
-	public boolean register(KokyakuDomain domain) {
+	public boolean registerKokyakuHojin(KokyakuDomain domain) {
 		kokyakuDao.register(domain);
 		return true;
 	}
@@ -34,11 +43,6 @@ public class KokyakuServiceImpl implements KokyakuService {
 	}
 
 	@Override
-	public boolean validateKokyakuKojin(KokyakuKojinDomain domain) {
-		return true;
-	}
-
-	@Override
 	public boolean validateKokyaku(KokyakuDomain domain) {
 		// 主幹部署が営業所ならOK
 		if (BushoKubun.営業所 != domain.getShukanBushoDomain().getBushoKubun()) {
@@ -46,5 +50,4 @@ public class KokyakuServiceImpl implements KokyakuService {
 		}
 		return true;
 	}
-
 }

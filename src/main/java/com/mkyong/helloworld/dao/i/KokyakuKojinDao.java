@@ -1,5 +1,6 @@
 package com.mkyong.helloworld.dao.i;
 
+import com.mkyong.helloworld.domain.KokyakuKojinDomain;
 import com.mkyong.helloworld.entity.MKokyakuKojin;
 
 /**
@@ -31,5 +32,11 @@ public interface KokyakuKojinDao {
 	 * @param kokyakuKojin
 	 */
 	public void delete(MKokyakuKojin kokyakuKojin);
+
+	/**
+	 * ドメイン登録
+	 * @param domain
+	 */
+	public void register(KokyakuKojinDomain domain);
 
 }

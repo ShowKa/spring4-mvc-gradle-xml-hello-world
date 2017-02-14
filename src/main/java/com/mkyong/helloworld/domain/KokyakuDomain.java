@@ -39,7 +39,7 @@ public class KokyakuDomain extends AbstractDomain {
 	/**
 	 * 個人限定判定
 	 * 
-	 * @retrun 個人限定顧客ならtrue
+	 * @return 個人限定顧客ならtrue
 	 */
 	public boolean isKojinGentei() {
 		if (isKojin() && GenteiKubun.限定 == genteiKubun) {

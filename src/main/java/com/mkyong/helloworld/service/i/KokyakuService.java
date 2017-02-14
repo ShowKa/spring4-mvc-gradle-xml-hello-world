@@ -1,9 +1,16 @@
 package com.mkyong.helloworld.service.i;
 
 import com.mkyong.helloworld.domain.KokyakuDomain;
-import com.mkyong.helloworld.domain.KokyakuKojinDomain;
 
 public interface KokyakuService {
+
+	/**
+	 * 顧客コード存在判定
+	 * @param kokykuCode
+	 * @return 存在するならtrue
+	 */
+	public boolean existsKokyaku(String kokykuCode);
+	
 	/**
 	 * 顧客ドメイン登録
 	 * 
@@ -11,7 +18,8 @@ public interface KokyakuService {
 	 *            顧客ドメイン
 	 * @return 登録成否
 	 */
-	public boolean register(KokyakuDomain domain);
+	public boolean registerKokyakuHojin(KokyakuDomain domain);
+
 
 	/**
 	 * 法人顧客データとして正しいか検証する
@@ -21,15 +29,6 @@ public interface KokyakuService {
 	 * @return 検証結果
 	 */
 	public boolean validateKokyakuHojin(KokyakuDomain domain);
-	
-	/**
-	 * 個人顧客データとして正しいか検証する
-	 * 
-	 * @param domain
-	 *            個人顧客ドメイン
-	 * @return 検証結果
-	 */
-	public boolean validateKokyakuKojin(KokyakuKojinDomain domain);
 	
 	/**
 	 * 顧客データとして正しいか検証する

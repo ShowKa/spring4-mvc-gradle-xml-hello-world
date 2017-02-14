@@ -38,7 +38,7 @@ public class KokyakuServiceImplTest extends ServiceTestCaseBase {
 		};
 
 		// test
-		boolean actual = service.register(domain);
+		boolean actual = service.registerKokyakuHojin(domain);
 		assertEquals(true, actual);
 
 		// Verification
