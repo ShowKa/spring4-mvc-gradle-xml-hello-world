@@ -13,4 +13,12 @@ public class KokyakuTantoBushoDomain extends AbstractDomain {
 
 	// Domain
 	private KokyakuDomain kokyakuDomain;
+
+	@Override
+	public boolean isEmpty() {
+		if (mKokyakuBushoEntity == null) {
+			return true;
+		}
+		return false;
+	}
 }

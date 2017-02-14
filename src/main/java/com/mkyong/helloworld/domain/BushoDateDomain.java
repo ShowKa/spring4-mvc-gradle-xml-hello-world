@@ -23,4 +23,12 @@ public class BushoDateDomain extends AbstractDomain {
 	public boolean eigyoDateEqualsKeiyoDate() {
 		return this.eigyoDate.equals(this.keijoDate);
 	}
+
+	@Override
+	public boolean isEmpty() {
+		if (bushoCode == null) {
+			return true;
+		}
+		return false;
+	}
 }

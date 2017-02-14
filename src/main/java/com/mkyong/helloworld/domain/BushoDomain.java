@@ -60,5 +60,13 @@ public class BushoDomain extends AbstractDomain {
 		return false;
 	}
 
+	@Override
+	public boolean isEmpty() {
+		if (code == null) {
+			return true;
+		}
+		return false;
+	}
+
 	// private method
 }
