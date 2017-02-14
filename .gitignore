@@ -1,8 +1,10 @@
 .DS_Store
 /bin/
 /build/
+/.settings/
+.classpath
+.project
 
 # Gradle
 .gradle/
 !gradle-wrapper.jar
-/.settings/gradle/
