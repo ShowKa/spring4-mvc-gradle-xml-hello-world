@@ -38,8 +38,14 @@ public class U01G001Controller {
 
 	@RequestMapping(value = "/U01G001/registerHojin", method = RequestMethod.POST)
 	public void registerHojin(@ModelAttribute U01G001Form form) {
+		// ドメイン作成
 		KokyakuDomain domain = buildKokyakuDomainFromForm(form);
-		kokyakuService.validateHojinKokyaku(domain);
+		
+		// 検証
+		kokyakuService.validateKokyaku(domain);
+		kokyakuService.validateKokyakuHojin(domain);
+
+		// 登録
 		kokyakuService.register(domain);
 	}
 
