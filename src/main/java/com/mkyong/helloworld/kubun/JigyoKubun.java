@@ -1,5 +1,7 @@
 package com.mkyong.helloworld.kubun;
 
+import com.mkyong.helloworld.kubun.i.Kubun;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

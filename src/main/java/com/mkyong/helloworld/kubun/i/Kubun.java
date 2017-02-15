@@ -1,4 +1,4 @@
-package com.mkyong.helloworld.kubun;
+package com.mkyong.helloworld.kubun.i;
 
 public interface Kubun {
 
