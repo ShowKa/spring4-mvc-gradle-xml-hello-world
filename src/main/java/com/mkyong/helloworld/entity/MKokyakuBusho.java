@@ -1,47 +1,54 @@
 package com.mkyong.helloworld.entity;
 
-import java.io.Serializable;
-import javax.persistence.*;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Version;
 
 /**
  * The persistent class for the m_kokyaku_busho database table.
  * 
  */
 @Entity
-@Table(name="m_kokyaku_busho")
-@NamedQuery(name="MKokyakuBusho.findAll", query="SELECT m FROM MKokyakuBusho m")
-public class MKokyakuBusho extends AbstractEntity  {
-	private static final long serialVersionUID = 1L;
+@Table(name = "m_kokyaku_busho")
+@NamedQuery(name = "MKokyakuBusho.findAll", query = "SELECT m FROM MKokyakuBusho m")
+public class MKokyakuBusho extends AbstractEntity {
 
 	@EmbeddedId
 	private MKokyakuBushoPK id;
 
-	@Column(name="sekininsha_name")
+	@Column(name = "sekininsha_name")
 	private String sekininshaName;
 
-	@Column(name="shohizei_kubun")
+	@Column(name = "shohizei_kubun")
 	private String shohizeiKubun;
 
+	@Version
 	private int version;
 
-	//bi-directional many-to-one association to MBusho
+	// bi-directional many-to-one association to MBusho
 	@ManyToOne
-	@JoinColumn(name="busho_code")
+	@JoinColumn(name = "busho_code")
 	private MBusho MBusho;
 
-	//bi-directional many-to-one association to MKokyaku
+	// bi-directional many-to-one association to MKokyaku
 	@ManyToOne
-	@JoinColumn(name="kokyaku_code")
+	@JoinColumn(name = "kokyaku_code")
 	private MKokyaku MKokyaku;
 
-	//bi-directional many-to-one association to RKokyakuNyukinMoto
-	@OneToMany(mappedBy="MKokyakuBusho")
+	// bi-directional many-to-one association to RKokyakuNyukinMoto
+	@OneToMany(mappedBy = "MKokyakuBusho")
 	private List<RKokyakuNyukinMoto> RKokyakuNyukinMotos;
 
-	//bi-directional many-to-one association to RNyukinMotoShukan
-	@OneToMany(mappedBy="MKokyakuBusho")
+	// bi-directional many-to-one association to RNyukinMotoShukan
+	@OneToMany(mappedBy = "MKokyakuBusho")
 	private List<RNyukinMotoShukan> RNyukinMotoShukans;
 
 	public MKokyakuBusho() {

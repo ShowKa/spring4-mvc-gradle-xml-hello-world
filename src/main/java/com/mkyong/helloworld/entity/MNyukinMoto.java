@@ -1,42 +1,48 @@
 package com.mkyong.helloworld.entity;
 
-import java.io.Serializable;
-import javax.persistence.*;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Version;
 
 /**
  * The persistent class for the m_nyukin_moto database table.
  * 
  */
 @Entity
-@Table(name="m_nyukin_moto")
-@NamedQuery(name="MNyukinMoto.findAll", query="SELECT m FROM MNyukinMoto m")
-public class MNyukinMoto extends AbstractEntity  {
-	private static final long serialVersionUID = 1L;
+@Table(name = "m_nyukin_moto")
+@NamedQuery(name = "MNyukinMoto.findAll", query = "SELECT m FROM MNyukinMoto m")
+public class MNyukinMoto extends AbstractEntity {
 
 	@Id
 	private int id;
 
-	@Column(name="hanbai_kubun")
+	@Column(name = "hanbai_kubun")
 	private String hanbaiKubun;
 
-	@Column(name="nyukin_hoho")
+	@Column(name = "nyukin_hoho")
 	private String nyukinHoho;
 
-	@Column(name="nyukin_tsuki_kubun")
+	@Column(name = "nyukin_tsuki_kubun")
 	private String nyukinTsukiKubun;
 
 	private int shimebi;
 
+	@Version
 	private int version;
 
-	//bi-directional many-to-one association to RKokyakuNyukinMoto
-	@OneToMany(mappedBy="MNyukinMoto")
+	// bi-directional many-to-one association to RKokyakuNyukinMoto
+	@OneToMany(mappedBy = "MNyukinMoto")
 	private List<RKokyakuNyukinMoto> RKokyakuNyukinMotos;
 
-	//bi-directional one-to-one association to RNyukinMotoShukan
-	@OneToOne(mappedBy="MNyukinMoto")
+	// bi-directional one-to-one association to RNyukinMotoShukan
+	@OneToOne(mappedBy = "MNyukinMoto")
 	private RNyukinMotoShukan RNyukinMotoShukan;
 
 	public MNyukinMoto() {

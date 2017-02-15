@@ -1,36 +1,41 @@
 package com.mkyong.helloworld.entity;
 
-import java.io.Serializable;
-import javax.persistence.*;
-
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Version;
 
 /**
  * The persistent class for the r_nyukin_moto_shukan database table.
  * 
  */
 @Entity
-@Table(name="r_nyukin_moto_shukan")
-@NamedQuery(name="RNyukinMotoShukan.findAll", query="SELECT r FROM RNyukinMotoShukan r")
-public class RNyukinMotoShukan extends AbstractEntity  {
-	private static final long serialVersionUID = 1L;
+@Table(name = "r_nyukin_moto_shukan")
+@NamedQuery(name = "RNyukinMotoShukan.findAll", query = "SELECT r FROM RNyukinMotoShukan r")
+public class RNyukinMotoShukan extends AbstractEntity {
 
 	@Id
-	@Column(name="nyukin_moto_id")
+	@Column(name = "nyukin_moto_id")
 	private int nyukinMotoId;
 
+	@Version
 	private int version;
 
-	//bi-directional one-to-one association to MNyukinMoto
+	// bi-directional one-to-one association to MNyukinMoto
 	@OneToOne
-	@JoinColumn(name="nyukin_moto_id")
+	@JoinColumn(name = "nyukin_moto_id")
 	private MNyukinMoto MNyukinMoto;
 
-	//bi-directional many-to-one association to MKokyakuBusho
+	// bi-directional many-to-one association to MKokyakuBusho
 	@ManyToOne
-	@JoinColumns({
-		@JoinColumn(name="busho_code", referencedColumnName="busho_code"),
-		@JoinColumn(name="kokyaku_code", referencedColumnName="kokyaku_code")
-		})
+	@JoinColumns({ @JoinColumn(name = "busho_code", referencedColumnName = "busho_code"),
+			@JoinColumn(name = "kokyaku_code", referencedColumnName = "kokyaku_code") })
 	private MKokyakuBusho MKokyakuBusho;
 
 	public RNyukinMotoShukan() {
