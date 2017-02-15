@@ -1,6 +1,7 @@
 package com.mkyong.helloworld.value;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 
 import com.mkyong.helloworld.system.exception.ApplicationException;
 
@@ -11,12 +12,23 @@ import lombok.Getter;
 @Getter
 public class Kakaku extends AbstractValue {
 
+	// private members
 	/** 税抜価格 */
-	BigDecimal kakaku;
+	private BigDecimal kakaku;
 
 	/** 税(小数) */
-	BigDecimal zei;
+	private BigDecimal zei;
 
+	/** 価格表示用フォーマッタ */
+	private static DecimalFormat formatter = new DecimalFormat("\u00A5###,###");
+
+	// // constructor
+	Kakaku(long kakaku, double zei) {
+		this.kakaku = BigDecimal.valueOf(kakaku);
+		this.zei = BigDecimal.valueOf(zei);
+	}
+
+	// public method
 	@Override
 	public boolean isEmpty() {
 		return kakaku == null;
@@ -42,7 +54,7 @@ public class Kakaku extends AbstractValue {
 	 * 
 	 * <pre>
 	 * 端数がある場合は、ゼロに近づける。
-	 * 絶対値が同じ場合、負の価格であっても、正の価格の場合と同じ値になる。
+	 * 絶対値が同じ場合、負の価格であっても、正の価格の場合と税込価格の絶対値が同じになる。
 	 * </pre>
 	 * 
 	 * @return 税込価格
@@ -55,6 +67,7 @@ public class Kakaku extends AbstractValue {
 	 * 価格加算
 	 * 
 	 * <pre>
+	 * 新しいインスタンスを返却する。呼び出し元の価格は変更しない。
 	 * 税率が一致しない場合はエラー
 	 * </pre>
 	 * 
@@ -73,6 +86,7 @@ public class Kakaku extends AbstractValue {
 	 * 価格加算
 	 * 
 	 * <pre>
+	 * 新しいインスタンスを返却する。呼び出し元の価格は変更しない。
 	 * 税率が一致しない場合はエラー
 	 * </pre>
 	 * 
@@ -95,6 +109,7 @@ public class Kakaku extends AbstractValue {
 	 * 価格減算
 	 * 
 	 * <pre>
+	 * 新しいインスタンスを返却する。呼び出し元の価格は変更しない。
 	 * 税率が一致しない場合はエラー
 	 * </pre>
 	 * 
@@ -102,10 +117,32 @@ public class Kakaku extends AbstractValue {
 	 *            減算対象
 	 * @return 減算後の価格
 	 */
-	public Kakaku subscribe(Kakaku other) {
+	public Kakaku subtract(Kakaku other) {
 		if (!zei.equals(other.zei)) {
 			throw new ApplicationException("AP0005");
 		}
 		return new Kakaku(kakaku.subtract(other.kakaku), zei);
+	}
+
+	/**
+	 * 税込価格をフォーマットした状態で取得
+	 * 
+	 * <pre>
+	 * 例 : ¥1,080
+	 * </pre>
+	 */
+	public String getZeikomiKakakuFormatted() {
+		return formatter.format(getZeikomiKakaku());
+	}
+
+	/**
+	 * 税抜価格をフォーマットした状態で取得
+	 * 
+	 * <pre>
+	 * 例 : ¥1,000
+	 * </pre>
+	 */
+	public String getZeinukiKakakuFormatted() {
+		return formatter.format(kakaku);
 	}
 }
