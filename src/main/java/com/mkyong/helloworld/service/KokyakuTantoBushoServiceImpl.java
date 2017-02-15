@@ -27,12 +27,12 @@ public class KokyakuTantoBushoServiceImpl implements KokyakuTantoBushoService {
 
 	@Override
 	public void update(KokyakuTantoBushoDomain domain) {
-		kokyakuBushoDao.update(domain.getMKokyakuBushoEntity());
+		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public void persist(KokyakuTantoBushoDomain domain) {
-		kokyakuBushoDao.persist(domain.getMKokyakuBushoEntity());
+		// TODO Auto-generated method stub
 	}
 
 }

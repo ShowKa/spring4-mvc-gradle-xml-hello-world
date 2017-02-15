@@ -1,6 +1,6 @@
 package com.mkyong.helloworld.domain;
 
-import com.mkyong.helloworld.entity.MKokyakuBusho;
+import com.mkyong.helloworld.kubun.ShohizeiKubun;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,17 +8,26 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class KokyakuTantoBushoDomain extends AbstractDomain {
-	// Entity
-	private MKokyakuBusho mKokyakuBushoEntity;
 
-	// Domain
+	// private members
+	/** 顧客ドメイン */
 	private KokyakuDomain kokyakuDomain;
+
+	/** 部署ドメイン */
+	private BushoDomain budhoDomain;
+
+	/** 消費税区分 */
+	private ShohizeiKubun shohizeiKubun;
+
+	/** 責任者名 */
+	private String sekininshaName;
+
+	/** バージョン（排他制御用） */
+	private int version;
 
 	@Override
 	public boolean isEmpty() {
-		if (mKokyakuBushoEntity == null) {
-			return true;
-		}
+		// FIXME
 		return false;
 	}
 
