@@ -70,6 +70,9 @@ public class KokyakuDomain extends AbstractDomain {
 		return false;
 	}
 
+	/**
+	 * 顧客コードがnullなら空とする
+	 */
 	@Override
 	public boolean isEmpty() {
 		if (code == null) {
@@ -77,4 +80,19 @@ public class KokyakuDomain extends AbstractDomain {
 		}
 		return false;
 	}
+
+	/**
+	 * 顧客コードが一緒なら同値
+	 */
+	@Override
+	protected boolean equals(AbstractDomain other) {
+		KokyakuDomain o = (KokyakuDomain) other;
+		return this.code.equals(o.code);
+	}
+
+	@Override
+	public int hashCode() {
+		return this.code.hashCode();
+	}
+
 }

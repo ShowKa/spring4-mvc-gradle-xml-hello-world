@@ -68,5 +68,16 @@ public class BushoDomain extends AbstractDomain {
 		return false;
 	}
 
+	@Override
+	protected boolean equals(AbstractDomain other) {
+		BushoDomain o = (BushoDomain) other;
+		return code.equals(o.code);
+	}
+
+	@Override
+	public int hashCode() {
+		return code.hashCode();
+	}
+
 	// private method
 }

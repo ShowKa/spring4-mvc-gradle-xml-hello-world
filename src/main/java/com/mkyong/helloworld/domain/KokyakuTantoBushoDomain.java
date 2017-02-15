@@ -21,4 +21,16 @@ public class KokyakuTantoBushoDomain extends AbstractDomain {
 		}
 		return false;
 	}
+
+	@Override
+	protected boolean equals(AbstractDomain other) {
+		// FIXME
+		return true;
+	}
+
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

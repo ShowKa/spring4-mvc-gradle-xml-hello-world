@@ -31,4 +31,15 @@ public class BushoDateDomain extends AbstractDomain {
 		}
 		return false;
 	}
+
+	@Override
+	protected boolean equals(AbstractDomain other) {
+		BushoDateDomain o = (BushoDateDomain) other;
+		return this.bushoCode.equals(o.bushoCode);
+	}
+
+	@Override
+	public int hashCode() {
+		return bushoCode.hashCode();
+	}
 }

@@ -42,7 +42,40 @@ public class KokyakuKojinDomain extends KokyakuDomain {
 		super(code, genteiKubun, kokyakuKubun, name, address, shukanBushoDomain);
 		this.oyaKokyakuDomain = oyaKokyakuDomain;
 	}
+
 	// public Method
+	@Override
+	public boolean isEmpty() {
+		if (!super.isEmpty()) {
+			return false;
+		}
+		if (!oyaKokyakuDomain.isEmpty()) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	protected boolean equals(AbstractDomain other) {
+		KokyakuKojinDomain o = (KokyakuKojinDomain) other;
+
+		if (!this.getCode().equals(o.getCode())) {
+			return false;
+		}
+
+		if (!oyaKokyakuDomain.equals(o.oyaKokyakuDomain)) {
+			return false;
+		}
+
+		return true;
+	}
+
+	@Override
+	public int hashCode() {
+		StringBuilder b = new StringBuilder();
+		b.append(getCode()).append(oyaKokyakuDomain.hashCode());
+		return b.toString().hashCode();
+	}
 
 	// private method
 }
