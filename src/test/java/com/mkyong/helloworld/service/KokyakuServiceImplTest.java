@@ -9,6 +9,7 @@ import com.mkyong.helloworld.domain.builder.BushoDomainBuilder;
 import com.mkyong.helloworld.domain.builder.KokyakuDomainBuilder;
 import com.mkyong.helloworld.kubun.BushoKubun;
 import com.mkyong.helloworld.kubun.GenteiKubun;
+import com.mkyong.helloworld.kubun.KokyakuKubun;
 import com.mkyong.helloworld.system.exception.ApplicationException;
 
 import mockit.Expectations;
@@ -62,10 +63,11 @@ public class KokyakuServiceImplTest extends ServiceTestCaseBase {
 	@Test
 	public void testValidateHojin_shukanBusho() {
 		expectedEx.expect(ApplicationException.class);
-		expectedEx.expectMessage("AP0002");
+		expectedEx.expectMessage("AP0001");
 		BushoDomain shukanBushoDomain = new BushoDomainBuilder().withBushoKubun(BushoKubun.本部).build();
 		KokyakuDomain domain = new KokyakuDomainBuilder().withGenteiKubun(GenteiKubun.限定しない)
-				.withShukanBushoDomain(shukanBushoDomain).build();
+				.withShukanBushoDomain(shukanBushoDomain)
+				.build();
 		service.validateKokyakuHojin(domain);
 		fail();
 	}
@@ -73,8 +75,10 @@ public class KokyakuServiceImplTest extends ServiceTestCaseBase {
 	@Test
 	public void testValidateHojin() {
 		BushoDomain shukanBushoDomain = new BushoDomainBuilder().withBushoKubun(BushoKubun.営業所).build();
-		KokyakuDomain domain = new KokyakuDomainBuilder().withGenteiKubun(GenteiKubun.限定しない)
-				.withShukanBushoDomain(shukanBushoDomain).build();
+		KokyakuDomain domain = new KokyakuDomainBuilder().withKokyakuKubun(KokyakuKubun.法人)
+				.withGenteiKubun(GenteiKubun.限定しない)
+				.withShukanBushoDomain(shukanBushoDomain)
+				.build();
 		boolean actual = service.validateKokyakuHojin(domain);
 		assertEquals(true, actual);
 	}
