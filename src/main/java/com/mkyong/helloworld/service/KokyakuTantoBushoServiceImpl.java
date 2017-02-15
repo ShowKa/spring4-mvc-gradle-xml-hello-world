@@ -15,7 +15,9 @@ public class KokyakuTantoBushoServiceImpl implements KokyakuTantoBushoService {
 
 	@Override
 	public boolean existsTantoBusho(String kokyakuCode, String bushoCode) {
-		MKokyakuBushoPK id = new MKokyakuBushoPK(kokyakuCode, bushoCode);
+		MKokyakuBushoPK id = new MKokyakuBushoPK();
+		id.setKokyakuCode(kokyakuCode);
+		id.setBushoCode(bushoCode);
 		MKokyakuBusho e = kokyakuBushoDao.getByPrimaryKey(id);
 		if (e == null) {
 			return false;
