@@ -51,6 +51,6 @@ public class TheDate extends AbstractValue {
 			return false;
 		}
 		TheDate _other = (TheDate) other;
-		return _other.date.equals(_other.date);
+		return this.date.equals(_other.date);
 	}
 }
