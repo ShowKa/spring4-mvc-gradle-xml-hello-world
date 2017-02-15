@@ -72,9 +72,7 @@ public class KokyakuKojinDomain extends KokyakuDomain {
 
 	@Override
 	public int hashCode() {
-		StringBuilder b = new StringBuilder();
-		b.append(getCode()).append(oyaKokyakuDomain.hashCode());
-		return b.toString().hashCode();
+		return generateHashCode(getCode(), oyaKokyakuDomain);
 	}
 
 	// private method
