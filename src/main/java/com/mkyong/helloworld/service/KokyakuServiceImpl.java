@@ -35,6 +35,12 @@ public class KokyakuServiceImpl implements KokyakuService {
 
 	@Override
 	public boolean validateKokyakuHojin(KokyakuDomain domain) {
+
+		// 顧客区分=法人 ならOK
+		if (!domain.isHojin()) {
+			throw new ApplicationException("AP0001");
+		}
+
 		// 限定区分=限定しないならOK
 		if (GenteiKubun.限定しない != domain.getGenteiKubun()) {
 			throw new ApplicationException("AP0001");
