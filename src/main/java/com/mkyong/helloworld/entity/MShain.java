@@ -70,4 +70,9 @@ public class MShain extends AbstractEntity implements Serializable {
 		this.version = version;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		return true;
+	}
+
 }
