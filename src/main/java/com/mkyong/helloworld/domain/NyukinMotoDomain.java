@@ -9,6 +9,7 @@ import lombok.Getter;
 @Getter
 public class NyukinMotoDomain extends AbstractDomain {
 
+	// private members
 	/** ID */
 	Integer id;
 
@@ -20,6 +21,27 @@ public class NyukinMotoDomain extends AbstractDomain {
 
 	/** バージョン（排他制御用) */
 	Integer version;
+
+	// public method
+	/**
+	 * 入金元整合性判定
+	 * 
+	 * <pre>
+	 * 現金販売なのに掛売り情報がある場合はfalse。
+	 * 掛売りなのに掛売り情報がない場合はfalse
+	 * </pre>
+	 * 
+	 * @return 判定結果
+	 */
+	public boolean validateNyukinMoto() {
+		if (hanbaiKubun == HanbaiKubun.掛売) {
+			return nyukinKakeInfo != null;
+		}
+		if (hanbaiKubun == HanbaiKubun.現金) {
+			return nyukinKakeInfo == null;
+		}
+		return true;
+	}
 
 	@Override
 	public boolean isEmpty() {

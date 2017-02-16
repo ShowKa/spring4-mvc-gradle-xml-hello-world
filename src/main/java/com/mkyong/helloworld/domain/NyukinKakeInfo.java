@@ -2,6 +2,7 @@ package com.mkyong.helloworld.domain;
 
 import com.mkyong.helloworld.kubun.NyukinHohoKubun;
 import com.mkyong.helloworld.kubun.NyukinTsukiKubun;
+import com.mkyong.helloworld.value.TheDate;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,10 +19,13 @@ public class NyukinKakeInfo extends AbstractDomain {
 	NyukinTsukiKubun nyukinTsukiKubun;
 
 	/** 入金方法 */
-	NyukinHohoKubun nyukinHoho;
+	NyukinHohoKubun nyukinHohoKubun;
 
 	/** 入金日 */
 	Integer nyukinDate;
+
+	/** バージョン(排他制御用) */
+	Integer version;
 
 	// public method
 	/**
@@ -35,6 +39,31 @@ public class NyukinKakeInfo extends AbstractDomain {
 	 */
 	public Integer getNyukinSight() {
 		return (30 * nyukinTsukiKubun.getMonthSpan()) + (nyukinDate - shimeDate);
+	}
+
+	/**
+	 * 引数で渡した日付を基準にして、次の請求締め日を取得
+	 * 
+	 * @param date
+	 *            基準日
+	 * @return 次の請求締め日
+	 */
+	public TheDate getNextSeikyuSimeDate(TheDate date) {
+		// TODO
+		return null;
+	}
+
+	/**
+	 * 
+	 * 引数で渡した日付を基準にして、入金予定日を取得する。
+	 * 
+	 * @param date
+	 *            基準日
+	 * @return 入金予定日
+	 */
+	public TheDate getNyukinYoteiDate(TheDate date) {
+		// TODO
+		return null;
 	}
 
 	/**
