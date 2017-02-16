@@ -1,5 +1,6 @@
 package com.mkyong.helloworld.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -18,7 +19,8 @@ import javax.persistence.Version;
 @Entity
 @Table(name = "m_nyukin_moto")
 @NamedQuery(name = "MNyukinMoto.findAll", query = "SELECT m FROM MNyukinMoto m")
-public class MNyukinMoto extends AbstractEntity {
+public class MNyukinMoto extends AbstractEntity implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	private int id;
@@ -26,16 +28,12 @@ public class MNyukinMoto extends AbstractEntity {
 	@Column(name = "hanbai_kubun")
 	private String hanbaiKubun;
 
-	@Column(name = "nyukin_hoho")
-	private String nyukinHoho;
-
-	@Column(name = "nyukin_tsuki_kubun")
-	private String nyukinTsukiKubun;
-
-	private int shimebi;
-
 	@Version
 	private int version;
+
+	// bi-directional one-to-one association to MNyukinKakeInfo
+	@OneToOne(mappedBy = "MNyukinMoto")
+	private MNyukinKakeInfo MNyukinKakeInfo;
 
 	// bi-directional many-to-one association to RKokyakuNyukinMoto
 	@OneToMany(mappedBy = "MNyukinMoto")
@@ -64,36 +62,20 @@ public class MNyukinMoto extends AbstractEntity {
 		this.hanbaiKubun = hanbaiKubun;
 	}
 
-	public String getNyukinHoho() {
-		return this.nyukinHoho;
-	}
-
-	public void setNyukinHoho(String nyukinHoho) {
-		this.nyukinHoho = nyukinHoho;
-	}
-
-	public String getNyukinTsukiKubun() {
-		return this.nyukinTsukiKubun;
-	}
-
-	public void setNyukinTsukiKubun(String nyukinTsukiKubun) {
-		this.nyukinTsukiKubun = nyukinTsukiKubun;
-	}
-
-	public int getShimebi() {
-		return this.shimebi;
-	}
-
-	public void setShimebi(int shimebi) {
-		this.shimebi = shimebi;
-	}
-
 	public int getVersion() {
 		return this.version;
 	}
 
 	public void setVersion(int version) {
 		this.version = version;
+	}
+
+	public MNyukinKakeInfo getMNyukinKakeInfo() {
+		return this.MNyukinKakeInfo;
+	}
+
+	public void setMNyukinKakeInfo(MNyukinKakeInfo MNyukinKakeInfo) {
+		this.MNyukinKakeInfo = MNyukinKakeInfo;
 	}
 
 	public List<RKokyakuNyukinMoto> getRKokyakuNyukinMotos() {
