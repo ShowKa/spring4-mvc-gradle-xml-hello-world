@@ -1,5 +1,7 @@
 package com.mkyong.helloworld.domain;
 
+import java.time.LocalDate;
+
 import com.mkyong.helloworld.kubun.NyukinHohoKubun;
 import com.mkyong.helloworld.kubun.NyukinTsukiKubun;
 import com.mkyong.helloworld.value.TheDate;
@@ -11,7 +13,10 @@ import lombok.Getter;
 @Getter
 public class NyukinKakeInfo extends AbstractDomain {
 
-	// private members
+	// private member
+	/** ID */
+	Integer id;
+
 	/** 締日 */
 	Integer shimeDate;
 
@@ -42,15 +47,20 @@ public class NyukinKakeInfo extends AbstractDomain {
 	}
 
 	/**
-	 * 引数で渡した日付を基準にして、次の請求締め日を取得
+	 * 引数で渡した日付を基準にして、次の請求締日を取得
 	 * 
 	 * @param date
 	 *            基準日
-	 * @return 次の請求締め日
+	 * @return 次の請求締日
 	 */
 	public TheDate getNextSeikyuSimeDate(TheDate date) {
-		// TODO
-		return null;
+		LocalDate _d = date.getDate();
+		LocalDate shimeDateOfThisMonth = _d.withDayOfMonth(shimeDate);
+		if (shimeDateOfThisMonth.getDayOfMonth() > shimeDate) {
+			return new TheDate(shimeDateOfThisMonth);
+		}
+		// 今月締日が過ぎているので来月の締日を返却する。
+		return new TheDate(shimeDateOfThisMonth.plusMonths(1));
 	}
 
 	/**
@@ -62,8 +72,9 @@ public class NyukinKakeInfo extends AbstractDomain {
 	 * @return 入金予定日
 	 */
 	public TheDate getNyukinYoteiDate(TheDate date) {
-		// TODO
-		return null;
+		TheDate nextShimeDate = getNextSeikyuSimeDate(date);
+		LocalDate nyukinMonth = nextShimeDate.getDate().plusMonths(nyukinTsukiKubun.getMonthSpan());
+		return new TheDate(nyukinMonth.withDayOfMonth(nyukinDate));
 	}
 
 	/**
@@ -87,20 +98,18 @@ public class NyukinKakeInfo extends AbstractDomain {
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return id == null;
 	}
 
 	@Override
 	protected boolean equals(AbstractDomain other) {
-		// TODO Auto-generated method stub
-		return false;
+		NyukinKakeInfo o = (NyukinKakeInfo) other;
+		return id.equals(o.id);
 	}
 
 	@Override
 	public int hashCode() {
-		// TODO Auto-generated method stub
-		return 0;
+		return id.hashCode();
 	}
 
 }
