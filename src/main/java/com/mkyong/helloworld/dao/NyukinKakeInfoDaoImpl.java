@@ -1,5 +1,7 @@
 package com.mkyong.helloworld.dao;
 
+import org.springframework.stereotype.Component;
+
 import com.mkyong.helloworld.dao.i.NyukinKakeInfoDao;
 import com.mkyong.helloworld.domain.NyukinKakeInfoDomain;
 import com.mkyong.helloworld.domain.builder.NyukinKakeInfoDomainBuilder;
@@ -7,7 +9,8 @@ import com.mkyong.helloworld.entity.MNyukinKakeInfo;
 import com.mkyong.helloworld.kubun.NyukinHohoKubun;
 import com.mkyong.helloworld.kubun.NyukinTsukiKubun;
 
-public class NyukinKakeInfoDaoImple extends AbstractDao<Integer, MNyukinKakeInfo> implements NyukinKakeInfoDao {
+@Component
+public class NyukinKakeInfoDaoImpl extends AbstractDao<Integer, MNyukinKakeInfo> implements NyukinKakeInfoDao {
 
 	@Override
 	public NyukinKakeInfoDomain getNyukinKakeInfoDomain(Integer id) {
