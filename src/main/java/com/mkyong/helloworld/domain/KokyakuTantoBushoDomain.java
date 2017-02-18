@@ -22,6 +22,9 @@ public class KokyakuTantoBushoDomain extends AbstractDomain {
 	/** 責任者名 */
 	private String sekininshaName;
 
+	/** 入金元 */
+	private NyukinMotoDomain nyukinMotoDomain;
+
 	/** バージョン（排他制御用） */
 	private int version;
 
