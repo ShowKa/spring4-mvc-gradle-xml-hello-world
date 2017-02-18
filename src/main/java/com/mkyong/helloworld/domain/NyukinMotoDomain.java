@@ -17,7 +17,7 @@ public class NyukinMotoDomain extends AbstractDomain {
 	HanbaiKubun hanbaiKubun;
 
 	/** 入金掛売情報 */
-	NyukinKakeInfo nyukinKakeInfo;
+	NyukinKakeInfoDomain nyukinKakeInfoDomain;
 
 	/** バージョン（排他制御用) */
 	Integer version;
@@ -35,10 +35,10 @@ public class NyukinMotoDomain extends AbstractDomain {
 	 */
 	public boolean validateNyukinMoto() {
 		if (hanbaiKubun == HanbaiKubun.掛売) {
-			return nyukinKakeInfo != null;
+			return nyukinKakeInfoDomain != null;
 		}
 		if (hanbaiKubun == HanbaiKubun.現金) {
-			return nyukinKakeInfo == null;
+			return nyukinKakeInfoDomain == null;
 		}
 		return true;
 	}

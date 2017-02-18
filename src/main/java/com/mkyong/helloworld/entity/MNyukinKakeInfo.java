@@ -30,7 +30,11 @@ public class MNyukinKakeInfo extends AbstractEntity implements Serializable {
 	@Column(name = "nyukin_tsuki_kubun")
 	private String nyukinTsukiKubun;
 
+	@Column(name = "shimebi")
 	private int shimebi;
+
+	@Column(name = "nyukin_date")
+	private int nyukinDate;
 
 	@Version
 	private int version;
@@ -73,6 +77,14 @@ public class MNyukinKakeInfo extends AbstractEntity implements Serializable {
 
 	public void setShimebi(int shimebi) {
 		this.shimebi = shimebi;
+	}
+
+	public int getNyukinDate() {
+		return nyukinDate;
+	}
+
+	public void setNyukinDate(int nyukinDate) {
+		this.nyukinDate = nyukinDate;
 	}
 
 	public int getVersion() {

@@ -11,7 +11,7 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class NyukinKakeInfo extends AbstractDomain {
+public class NyukinKakeInfoDomain extends AbstractDomain {
 
 	// private member
 	/** ID */
@@ -103,7 +103,7 @@ public class NyukinKakeInfo extends AbstractDomain {
 
 	@Override
 	protected boolean equals(AbstractDomain other) {
-		NyukinKakeInfo o = (NyukinKakeInfo) other;
+		NyukinKakeInfoDomain o = (NyukinKakeInfoDomain) other;
 		return id.equals(o.id);
 	}
 
