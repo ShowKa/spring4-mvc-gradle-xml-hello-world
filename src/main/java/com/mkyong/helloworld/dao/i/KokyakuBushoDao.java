@@ -1,7 +1,7 @@
 package com.mkyong.helloworld.dao.i;
 
-import com.mkyong.helloworld.entity.MKokyakuBusho;
-import com.mkyong.helloworld.entity.MKokyakuBushoPK;
+import com.mkyong.helloworld.entity.MKokyakuTantoBusho;
+import com.mkyong.helloworld.entity.MKokyakuTantoBushoPK;
 
 public interface KokyakuBushoDao {
 	/**
@@ -11,7 +11,7 @@ public interface KokyakuBushoDao {
 	 *            主キー
 	 * @return エンティティ
 	 */
-	public MKokyakuBusho getByPrimaryKey(MKokyakuBushoPK id);
+	public MKokyakuTantoBusho getByPrimaryKey(MKokyakuTantoBushoPK id);
 
 	/**
 	 * 登録
@@ -19,7 +19,7 @@ public interface KokyakuBushoDao {
 	 * @param entity
 	 *            エンティティ
 	 */
-	public void persist(MKokyakuBusho entity);
+	public void persist(MKokyakuTantoBusho entity);
 
 	/**
 	 * 更新
@@ -27,7 +27,7 @@ public interface KokyakuBushoDao {
 	 * @param entity
 	 *            エンティティ
 	 */
-	public void update(MKokyakuBusho entity);
+	public void update(MKokyakuTantoBusho entity);
 
 	/**
 	 * 削除
@@ -35,6 +35,6 @@ public interface KokyakuBushoDao {
 	 * @param entity
 	 *            エンティティ
 	 */
-	public void delete(MKokyakuBusho entity);
+	public void delete(MKokyakuTantoBusho entity);
 
 }

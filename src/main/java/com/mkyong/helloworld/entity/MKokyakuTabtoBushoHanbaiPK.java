@@ -4,11 +4,11 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 /**
- * The primary key class for the m_kokyaku_busho database table.
+ * The primary key class for the m_kokyaku_tabto_busho_hanbai database table.
  * 
  */
 @Embeddable
-public class MKokyakuBushoPK implements Serializable {
+public class MKokyakuTabtoBushoHanbaiPK implements Serializable {
 	//default serial version id, required for serializable classes.
 	private static final long serialVersionUID = 1L;
 
@@ -18,7 +18,7 @@ public class MKokyakuBushoPK implements Serializable {
 	@Column(name="busho_code", insertable=false, updatable=false)
 	private String bushoCode;
 
-	public MKokyakuBushoPK() {
+	public MKokyakuTabtoBushoHanbaiPK() {
 	}
 	public String getKokyakuCode() {
 		return this.kokyakuCode;
@@ -37,10 +37,10 @@ public class MKokyakuBushoPK implements Serializable {
 		if (this == other) {
 			return true;
 		}
-		if (!(other instanceof MKokyakuBushoPK)) {
+		if (!(other instanceof MKokyakuTabtoBushoHanbaiPK)) {
 			return false;
 		}
-		MKokyakuBushoPK castOther = (MKokyakuBushoPK)other;
+		MKokyakuTabtoBushoHanbaiPK castOther = (MKokyakuTabtoBushoHanbaiPK)other;
 		return 
 			this.kokyakuCode.equals(castOther.kokyakuCode)
 			&& this.bushoCode.equals(castOther.bushoCode);

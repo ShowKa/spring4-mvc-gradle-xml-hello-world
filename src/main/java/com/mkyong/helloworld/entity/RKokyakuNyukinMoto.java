@@ -28,7 +28,7 @@ public class RKokyakuNyukinMoto extends AbstractEntity {
 	@ManyToOne
 	@JoinColumns({ @JoinColumn(name = "busho_code", referencedColumnName = "busho_code"),
 			@JoinColumn(name = "kokyaku_code", referencedColumnName = "kokyaku_code") })
-	private MKokyakuBusho MKokyakuBusho;
+	private MKokyakuTantoBusho MKokyakuBusho;
 
 	// bi-directional many-to-one association to MNyukinMoto
 	@ManyToOne
@@ -54,11 +54,11 @@ public class RKokyakuNyukinMoto extends AbstractEntity {
 		this.version = version;
 	}
 
-	public MKokyakuBusho getMKokyakuBusho() {
+	public MKokyakuTantoBusho getMKokyakuBusho() {
 		return this.MKokyakuBusho;
 	}
 
-	public void setMKokyakuBusho(MKokyakuBusho MKokyakuBusho) {
+	public void setMKokyakuBusho(MKokyakuTantoBusho MKokyakuBusho) {
 		this.MKokyakuBusho = MKokyakuBusho;
 	}
 
