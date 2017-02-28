@@ -97,11 +97,6 @@ public class NyukinKakeInfoDomain extends AbstractDomain {
 	}
 
 	@Override
-	public boolean isEmpty() {
-		return id == null;
-	}
-
-	@Override
 	protected boolean equals(AbstractDomain other) {
 		NyukinKakeInfoDomain o = (NyukinKakeInfoDomain) other;
 		return id.equals(o.id);

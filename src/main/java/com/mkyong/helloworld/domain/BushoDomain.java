@@ -61,14 +61,6 @@ public class BushoDomain extends AbstractDomain {
 	}
 
 	@Override
-	public boolean isEmpty() {
-		if (code == null) {
-			return true;
-		}
-		return false;
-	}
-
-	@Override
 	protected boolean equals(AbstractDomain other) {
 		BushoDomain o = (BushoDomain) other;
 		return code.equals(o.code);

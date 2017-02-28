@@ -25,14 +25,6 @@ public class BushoDateDomain extends AbstractDomain {
 	}
 
 	@Override
-	public boolean isEmpty() {
-		if (bushoCode == null) {
-			return true;
-		}
-		return false;
-	}
-
-	@Override
 	protected boolean equals(AbstractDomain other) {
 		BushoDateDomain o = (BushoDateDomain) other;
 		return this.bushoCode.equals(o.bushoCode);

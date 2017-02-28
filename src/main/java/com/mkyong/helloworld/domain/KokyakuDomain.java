@@ -71,17 +71,6 @@ public class KokyakuDomain extends AbstractDomain {
 	}
 
 	/**
-	 * 顧客コードがnullなら空とする
-	 */
-	@Override
-	public boolean isEmpty() {
-		if (code == null) {
-			return true;
-		}
-		return false;
-	}
-
-	/**
 	 * 顧客コードが一緒なら同値
 	 */
 	@Override

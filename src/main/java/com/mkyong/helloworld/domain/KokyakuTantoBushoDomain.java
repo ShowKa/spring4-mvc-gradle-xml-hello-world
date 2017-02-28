@@ -29,12 +29,6 @@ public class KokyakuTantoBushoDomain extends AbstractDomain {
 	private int version;
 
 	@Override
-	public boolean isEmpty() {
-		// FIXME
-		return false;
-	}
-
-	@Override
 	protected boolean equals(AbstractDomain other) {
 		// FIXME
 		return true;

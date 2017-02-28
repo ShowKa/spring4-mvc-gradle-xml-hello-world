@@ -43,18 +43,6 @@ public class KokyakuKojinDomain extends KokyakuDomain {
 		this.oyaKokyakuDomain = oyaKokyakuDomain;
 	}
 
-	// public Method
-	@Override
-	public boolean isEmpty() {
-		if (!super.isEmpty()) {
-			return false;
-		}
-		if (!oyaKokyakuDomain.isEmpty()) {
-			return false;
-		}
-		return true;
-	}
-
 	@Override
 	protected boolean equals(AbstractDomain other) {
 		KokyakuKojinDomain o = (KokyakuKojinDomain) other;

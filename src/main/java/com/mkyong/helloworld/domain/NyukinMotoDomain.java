@@ -44,11 +44,6 @@ public class NyukinMotoDomain extends AbstractDomain {
 	}
 
 	@Override
-	public boolean isEmpty() {
-		return hanbaiKubun == null;
-	}
-
-	@Override
 	protected boolean equals(AbstractDomain other) {
 		NyukinMotoDomain o = (NyukinMotoDomain) other;
 		// FIXME
