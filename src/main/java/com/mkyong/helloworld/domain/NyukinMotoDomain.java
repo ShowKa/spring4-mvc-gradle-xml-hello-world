@@ -46,8 +46,7 @@ public class NyukinMotoDomain extends AbstractDomain {
 	@Override
 	protected boolean equals(AbstractDomain other) {
 		NyukinMotoDomain o = (NyukinMotoDomain) other;
-		// FIXME
-		return id == o.id;
+		return id.equals(o.id);
 	}
 
 	@Override
