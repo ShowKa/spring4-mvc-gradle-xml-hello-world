@@ -4,6 +4,7 @@ import com.mkyong.helloworld.domain.BushoDomain;
 import com.mkyong.helloworld.domain.KokyakuDomain;
 import com.mkyong.helloworld.domain.KokyakuTantoBushoDomain;
 import com.mkyong.helloworld.domain.NyukinMotoDomain;
+import com.mkyong.helloworld.domain.SeikyuSakiDomain;
 import com.mkyong.helloworld.kubun.ShohizeiKubun;
 
 public class KokyakuTantoBushoDomainBuilder
@@ -25,6 +26,9 @@ public class KokyakuTantoBushoDomainBuilder
 	/** 入金元 */
 	private NyukinMotoDomain nyukinMotoDomain;
 
+	/** 請求先 */
+	private SeikyuSakiDomain seikyuSakiDomain;
+
 	/** バージョン（排他制御用） */
 	private int version;
 
@@ -36,13 +40,14 @@ public class KokyakuTantoBushoDomainBuilder
 		builder.withShohizeiKubun(domain.getShohizeiKubun());
 		builder.withSekininshaName(domain.getSekininshaName());
 		builder.withNyukinMotoDomain(domain.getNyukinMotoDomain());
+		builder.withSeikyuSakiDomain(domain.getSeikyuSakiDomain());
 		builder.withVersion(domain.getVersion());
 	}
 
 	@Override
 	protected KokyakuTantoBushoDomain createDomainObject() {
 		return new KokyakuTantoBushoDomain(kokyakuDomain, budhoDomain, shohizeiKubun, sekininshaName, nyukinMotoDomain,
-				version);
+				seikyuSakiDomain, version);
 	}
 
 	@Override
@@ -136,6 +141,23 @@ public class KokyakuTantoBushoDomainBuilder
 			@Override
 			public void configure(KokyakuTantoBushoDomainBuilder builder) {
 				builder.nyukinMotoDomain = nyukinMotoDomain;
+			}
+		});
+		return getThis();
+	}
+
+	/**
+	 * {@link KokyakuTantoBushoDomain}に与える入金元をこのビルダに設定する。
+	 *
+	 * @param seikyuSakiDomain
+	 *            請求先ドメイン
+	 * @return {@link KokyakuTantoBushoDomainBuilder}
+	 */
+	public KokyakuTantoBushoDomainBuilder withSeikyuSakiDomain(final SeikyuSakiDomain seikyuSakiDomain) {
+		addConfigurator(new BuilderConfigurator<KokyakuTantoBushoDomainBuilder>() {
+			@Override
+			public void configure(KokyakuTantoBushoDomainBuilder builder) {
+				builder.seikyuSakiDomain = seikyuSakiDomain;
 			}
 		});
 		return getThis();
