@@ -7,6 +7,7 @@ import com.mkyong.helloworld.domain.KokyakuTantoBushoDomain;
 import com.mkyong.helloworld.entity.MKokyakuTantoBusho;
 import com.mkyong.helloworld.entity.MKokyakuTantoBushoPK;
 import com.mkyong.helloworld.service.i.KokyakuTantoBushoService;
+import com.mkyong.helloworld.system.exception.ApplicationException;
 
 public class KokyakuTantoBushoServiceImpl implements KokyakuTantoBushoService {
 
@@ -23,6 +24,16 @@ public class KokyakuTantoBushoServiceImpl implements KokyakuTantoBushoService {
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public boolean validateKokyakuTantoBusho(KokyakuTantoBushoDomain kokyakuTantoBushoDomain) {
+		KokyakuTantoBushoDomain d = kokyakuTantoBushoDomain;
+		boolean existsTantoBusho = existsTantoBusho(d.getKokyakuDomain().getCode(), d.getBudhoDomain().getCode());
+		if (!existsTantoBusho) {
+			throw new ApplicationException("AP01_0001");
+		}
+		return false;
 	}
 
 	@Override

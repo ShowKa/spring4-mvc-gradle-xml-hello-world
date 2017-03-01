@@ -15,6 +15,14 @@ public interface KokyakuTantoBushoService {
 	public boolean existsTantoBusho(String kokyakuCode, String bushoCode);
 
 	/**
+	 * 顧客担当部署の整合性チェック
+	 * 
+	 * @param kokyakuTantoBushoDomain
+	 * @return チェック結果
+	 */
+	public boolean validateKokyakuTantoBusho(KokyakuTantoBushoDomain kokyakuTantoBushoDomain);
+
+	/**
 	 * 顧客担当部署情報更新
 	 * 
 	 * @param domain
