@@ -1,6 +1,9 @@
 package com.mkyong.helloworld.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mkyong.helloworld.dao.i.KyujitsuDao;
 import com.mkyong.helloworld.entity.MKyujitsu;
@@ -8,6 +11,9 @@ import com.mkyong.helloworld.entity.MKyujitsuPK;
 import com.mkyong.helloworld.service.i.BushoDateService;
 import com.mkyong.helloworld.value.TheDate;
 
+@Component
+@Service
+@Transactional
 public class BushoDateServiceImpl implements BushoDateService {
 
 	@Autowired

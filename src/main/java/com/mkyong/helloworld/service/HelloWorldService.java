@@ -3,12 +3,16 @@ package com.mkyong.helloworld.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mkyong.helloworld.entity.User;
 import com.mkyong.helloworld.service.i.TitleService;
 
+@Component
 @Service
+@Transactional
 public class HelloWorldService {
 
 	@Autowired

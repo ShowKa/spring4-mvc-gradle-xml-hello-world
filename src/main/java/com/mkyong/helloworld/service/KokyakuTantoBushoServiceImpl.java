@@ -1,6 +1,9 @@
 package com.mkyong.helloworld.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mkyong.helloworld.dao.i.KokyakuBushoDao;
 import com.mkyong.helloworld.domain.BushoDomain;
@@ -13,6 +16,9 @@ import com.mkyong.helloworld.system.exception.IncorrectKubunException;
 import com.mkyong.helloworld.system.exception.NotExistException;
 import com.mkyong.helloworld.system.exception.ValidateException;
 
+@Component
+@Service
+@Transactional
 public class KokyakuTantoBushoServiceImpl implements KokyakuTantoBushoService {
 
 	@Autowired

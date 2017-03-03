@@ -9,9 +9,11 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.mkyong.helloworld.entity.AbstractEntity;
 
+@Component
 public abstract class AbstractDao<PK extends Serializable, T extends AbstractEntity> {
 
 	private final Class<T> persistentClass;

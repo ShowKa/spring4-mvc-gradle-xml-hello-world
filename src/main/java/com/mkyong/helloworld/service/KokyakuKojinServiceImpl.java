@@ -1,12 +1,18 @@
 package com.mkyong.helloworld.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mkyong.helloworld.dao.i.KokyakuKojinDao;
 import com.mkyong.helloworld.domain.KokyakuKojinDomain;
 import com.mkyong.helloworld.service.i.KokyakuKojinService;
 import com.mkyong.helloworld.service.i.KokyakuTantoBushoService;
 
+@Component
+@Service
+@Transactional
 public class KokyakuKojinServiceImpl extends KokyakuServiceImpl implements KokyakuKojinService {
 
 	@Autowired
