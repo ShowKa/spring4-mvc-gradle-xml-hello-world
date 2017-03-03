@@ -18,6 +18,9 @@ public class KokyakuServiceImpl implements KokyakuService {
 	@Autowired
 	private KokyakuDao kokyakuDao;
 
+	/**
+	 * 顧客存在チェック
+	 */
 	@Override
 	public boolean existsKokyaku(String kokykuCode) {
 		MKokyaku entity = kokyakuDao.getByPrimaryKey(kokykuCode);
@@ -27,12 +30,18 @@ public class KokyakuServiceImpl implements KokyakuService {
 		return true;
 	}
 
+	/**
+	 * 顧客新規登録
+	 */
 	@Override
 	public boolean registerKokyakuHojin(KokyakuDomain domain) {
 		kokyakuDao.register(domain);
 		return true;
 	}
 
+	/**
+	 * 法人顧客整合性検証
+	 */
 	@Override
 	public boolean validateKokyakuHojin(KokyakuDomain domain) {
 
@@ -48,6 +57,9 @@ public class KokyakuServiceImpl implements KokyakuService {
 		return true;
 	}
 
+	/**
+	 * 顧客整合性検証
+	 */
 	@Override
 	public boolean validateKokyaku(KokyakuDomain domain) {
 		// 主幹部署が営業所ならOK

@@ -14,6 +14,9 @@ public class KokyakuTantoBushoServiceImpl implements KokyakuTantoBushoService {
 	@Autowired
 	KokyakuBushoDao kokyakuBushoDao;
 
+	/**
+	 * 担当部署存在チェック
+	 */
 	@Override
 	public boolean existsTantoBusho(String kokyakuCode, String bushoCode) {
 		MKokyakuTantoBushoPK id = new MKokyakuTantoBushoPK();
@@ -26,14 +29,21 @@ public class KokyakuTantoBushoServiceImpl implements KokyakuTantoBushoService {
 		return true;
 	}
 
+	/**
+	 * 顧客担当部署整合性検証
+	 */
 	@Override
 	public boolean validateKokyakuTantoBusho(KokyakuTantoBushoDomain kokyakuTantoBushoDomain) {
 		KokyakuTantoBushoDomain d = kokyakuTantoBushoDomain;
+
+		// 担当部署存在チェック
 		boolean existsTantoBusho = existsTantoBusho(d.getKokyakuDomain().getCode(), d.getBudhoDomain().getCode());
 		if (!existsTantoBusho) {
 			throw new ApplicationException("AP01_0001");
 		}
-		return false;
+
+		// OK
+		return true;
 	}
 
 	@Override
