@@ -29,6 +29,10 @@ public class NotExistException extends ApplicationException {
 	/**
 	 * コンストラクタ
 	 * 
+	 * <pre>
+	 * target : code は存在しません。
+	 * </pre>
+	 * 
 	 * @param target
 	 *            存在しないものの名称
 	 * @param code

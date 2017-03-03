@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.mkyong.helloworld.dao.i.BushoDao;
 import com.mkyong.helloworld.domain.BushoDomain;
+import com.mkyong.helloworld.entity.MBusho;
 import com.mkyong.helloworld.service.i.BushoService;
 
 @Service
@@ -16,5 +17,14 @@ public class BushoServiceImpl implements BushoService {
 	@Override
 	public BushoDomain getBushoDomain(String bushoCode) {
 		return bushoDao.getBushoDomain(bushoCode);
+	}
+
+	/**
+	 * 部署存在チェック
+	 */
+	@Override
+	public boolean existsBusho(String bushoCode) {
+		MBusho e = bushoDao.getByPrimaryKey(bushoCode);
+		return (e != null);
 	}
 }

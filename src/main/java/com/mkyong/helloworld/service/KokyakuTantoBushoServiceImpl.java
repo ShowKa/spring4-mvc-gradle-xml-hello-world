@@ -11,6 +11,7 @@ import com.mkyong.helloworld.kubun.BushoKubun;
 import com.mkyong.helloworld.service.i.KokyakuTantoBushoService;
 import com.mkyong.helloworld.system.exception.IncorrectKubunException;
 import com.mkyong.helloworld.system.exception.NotExistException;
+import com.mkyong.helloworld.system.exception.ValidateException;
 
 public class KokyakuTantoBushoServiceImpl implements KokyakuTantoBushoService {
 
@@ -51,6 +52,16 @@ public class KokyakuTantoBushoServiceImpl implements KokyakuTantoBushoService {
 		// 担当部署の区分チェック
 		if (tantoBusho.getBushoKubun() != BushoKubun.営業所) {
 			throw new IncorrectKubunException("担当部署", tantoBusho.getBushoKubun());
+		}
+
+		// 設定した主幹部署は、担当部署として存在している必要がある。
+		// ただし、主幹部署=担当部署であるなら、チェックは不要。
+		BushoDomain shukanBusho = d.getKokyakuDomain().getShukanBushoDomain();
+		if (!tantoBusho.equals(shukanBusho)) {
+			boolean aleadyTantoExists = existsTantoBusho(d.getKokyakuDomain().getCode(), shukanBusho.getCode());
+			if (!aleadyTantoExists) {
+				throw new ValidateException("担当部署として登録済みの部署のみ主幹部署として登録できます。");
+			}
 		}
 
 		// OK

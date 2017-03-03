@@ -26,7 +26,12 @@ public class IncorrectKubunException extends ApplicationException {
 	/**
 	 * 区分不正例外
 	 * 
-	 * @param kubunName
+	 * <pre>
+	 * targetにkubunは設定できません。
+	 * </pre>
+	 * 
+	 * @param targetName
+	 * @param kubun
 	 */
 	public IncorrectKubunException(String targetName, Kubun kubun) {
 		super(targetName + "に" + kubun.toString() + "は設定できません。");
