@@ -3,11 +3,14 @@ package com.mkyong.helloworld.service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.mkyong.helloworld.dao.i.KokyakuBushoDao;
+import com.mkyong.helloworld.domain.BushoDomain;
 import com.mkyong.helloworld.domain.KokyakuTantoBushoDomain;
 import com.mkyong.helloworld.entity.MKokyakuTantoBusho;
 import com.mkyong.helloworld.entity.MKokyakuTantoBushoPK;
+import com.mkyong.helloworld.kubun.BushoKubun;
 import com.mkyong.helloworld.service.i.KokyakuTantoBushoService;
-import com.mkyong.helloworld.system.exception.ApplicationException;
+import com.mkyong.helloworld.system.exception.IncorrectKubunException;
+import com.mkyong.helloworld.system.exception.NotExistException;
 
 public class KokyakuTantoBushoServiceImpl implements KokyakuTantoBushoService {
 
@@ -36,10 +39,18 @@ public class KokyakuTantoBushoServiceImpl implements KokyakuTantoBushoService {
 	public boolean validateKokyakuTantoBusho(KokyakuTantoBushoDomain kokyakuTantoBushoDomain) {
 		KokyakuTantoBushoDomain d = kokyakuTantoBushoDomain;
 
+		// 担当部署
+		BushoDomain tantoBusho = d.getBudhoDomain();
+
 		// 担当部署存在チェック
-		boolean existsTantoBusho = existsTantoBusho(d.getKokyakuDomain().getCode(), d.getBudhoDomain().getCode());
+		boolean existsTantoBusho = existsTantoBusho(d.getKokyakuDomain().getCode(), tantoBusho.getCode());
 		if (!existsTantoBusho) {
-			throw new ApplicationException("AP01_0001");
+			throw new NotExistException("担当部署", tantoBusho.getCode());
+		}
+
+		// 担当部署の区分チェック
+		if (tantoBusho.getBushoKubun() != BushoKubun.営業所) {
+			throw new IncorrectKubunException("担当部署", tantoBusho.getBushoKubun());
 		}
 
 		// OK
