@@ -12,7 +12,7 @@ public interface KokyakuTantoBushoService {
 	 *            部署コード
 	 * @return チェック結果
 	 */
-	public boolean existsTantoBusho(String kokyakuCode, String bushoCode);
+	public boolean existsKokyakuTantoBusho(String kokyakuCode, String bushoCode);
 
 	/**
 	 * 顧客担当部署の整合性チェック

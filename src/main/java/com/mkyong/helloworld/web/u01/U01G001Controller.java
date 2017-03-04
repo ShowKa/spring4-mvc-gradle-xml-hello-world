@@ -64,6 +64,7 @@ public class U01G001Controller {
 	 * 法人顧客の新規登録
 	 * 
 	 * @param form
+	 *            画面フォーム
 	 */
 	@RequestMapping(value = "/U01G001/registerHojin", method = RequestMethod.POST)
 	public void registerHojin(@ModelAttribute U01G001Form form) {
@@ -79,6 +80,12 @@ public class U01G001Controller {
 		kokyakuService.registerKokyakuHojin(domain.getKokyakuDomain());
 	}
 
+	/**
+	 * 個人顧客の新規登録
+	 * 
+	 * @param form
+	 *            画面フォーム
+	 */
 	@RequestMapping(value = "/U01G001/registerKojin", method = RequestMethod.POST)
 	public void registerKojin(@ModelAttribute U01G001Form form) {
 

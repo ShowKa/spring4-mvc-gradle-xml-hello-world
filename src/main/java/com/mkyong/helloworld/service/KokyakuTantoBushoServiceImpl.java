@@ -7,10 +7,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mkyong.helloworld.dao.i.KokyakuBushoDao;
 import com.mkyong.helloworld.domain.BushoDomain;
+import com.mkyong.helloworld.domain.KokyakuDomain;
 import com.mkyong.helloworld.domain.KokyakuTantoBushoDomain;
 import com.mkyong.helloworld.entity.MKokyakuTantoBusho;
 import com.mkyong.helloworld.entity.MKokyakuTantoBushoPK;
 import com.mkyong.helloworld.kubun.BushoKubun;
+import com.mkyong.helloworld.service.i.BushoService;
 import com.mkyong.helloworld.service.i.KokyakuTantoBushoService;
 import com.mkyong.helloworld.system.exception.IncorrectKubunException;
 import com.mkyong.helloworld.system.exception.NotExistException;
@@ -21,14 +23,18 @@ import com.mkyong.helloworld.system.exception.ValidateException;
 @Transactional
 public class KokyakuTantoBushoServiceImpl implements KokyakuTantoBushoService {
 
+	// service
 	@Autowired
-	KokyakuBushoDao kokyakuBushoDao;
+	private KokyakuBushoDao kokyakuBushoDao;
+
+	@Autowired
+	private BushoService bushoService;
 
 	/**
 	 * 担当部署存在チェック
 	 */
 	@Override
-	public boolean existsTantoBusho(String kokyakuCode, String bushoCode) {
+	public boolean existsKokyakuTantoBusho(String kokyakuCode, String bushoCode) {
 		MKokyakuTantoBushoPK id = new MKokyakuTantoBushoPK();
 		id.setKokyakuCode(kokyakuCode);
 		id.setBushoCode(bushoCode);
@@ -44,13 +50,18 @@ public class KokyakuTantoBushoServiceImpl implements KokyakuTantoBushoService {
 	 */
 	@Override
 	public boolean validateKokyakuTantoBusho(KokyakuTantoBushoDomain kokyakuTantoBushoDomain) {
+
+		// 顧客担当部署
 		KokyakuTantoBushoDomain d = kokyakuTantoBushoDomain;
+
+		// 顧客
+		KokyakuDomain kokyaku = d.getKokyakuDomain();
 
 		// 担当部署
 		BushoDomain tantoBusho = d.getBudhoDomain();
 
 		// 担当部署存在チェック
-		boolean existsTantoBusho = existsTantoBusho(d.getKokyakuDomain().getCode(), tantoBusho.getCode());
+		boolean existsTantoBusho = bushoService.existsBusho(tantoBusho.getCode());
 		if (!existsTantoBusho) {
 			throw new NotExistException("担当部署", tantoBusho.getCode());
 		}
@@ -62,9 +73,9 @@ public class KokyakuTantoBushoServiceImpl implements KokyakuTantoBushoService {
 
 		// 設定した主幹部署は、担当部署として存在している必要がある。
 		// ただし、主幹部署=担当部署であるなら、チェックは不要。
-		BushoDomain shukanBusho = d.getKokyakuDomain().getShukanBushoDomain();
+		BushoDomain shukanBusho = kokyaku.getShukanBushoDomain();
 		if (!tantoBusho.equals(shukanBusho)) {
-			boolean aleadyTantoExists = existsTantoBusho(d.getKokyakuDomain().getCode(), shukanBusho.getCode());
+			boolean aleadyTantoExists = existsKokyakuTantoBusho(kokyaku.getCode(), shukanBusho.getCode());
 			if (!aleadyTantoExists) {
 				throw new ValidateException("担当部署として登録済みの部署のみ主幹部署として登録できます。");
 			}
