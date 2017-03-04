@@ -43,4 +43,13 @@ public interface KokyakuService {
 	 * @return 検証結果
 	 */
 	public boolean validateKokyaku(KokyakuDomain domain);
+
+	/**
+	 * 顧客ドメイン取得
+	 * 
+	 * @param kokyakuCode
+	 *            顧客コード
+	 * @return 顧客ドメイン
+	 */
+	public KokyakuDomain getKokyakuDomain(String kokyakuCode);
 }

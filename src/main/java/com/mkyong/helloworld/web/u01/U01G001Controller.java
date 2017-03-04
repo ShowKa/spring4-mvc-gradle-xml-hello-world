@@ -16,6 +16,7 @@ import com.mkyong.helloworld.domain.NyukinKakeInfoDomain;
 import com.mkyong.helloworld.domain.NyukinMotoDomain;
 import com.mkyong.helloworld.domain.SeikyuSakiDomain;
 import com.mkyong.helloworld.domain.builder.KokyakuDomainBuilder;
+import com.mkyong.helloworld.domain.builder.KokyakuKojinDomainBuilder;
 import com.mkyong.helloworld.domain.builder.KokyakuTantoBushoDomainBuilder;
 import com.mkyong.helloworld.domain.builder.NyukinKakeInfoDomainBuilder;
 import com.mkyong.helloworld.domain.builder.NyukinMotoDomainBuilder;
@@ -111,13 +112,13 @@ public class U01G001Controller {
 	 * @return 顧客ドメイン
 	 */
 	private KokyakuDomain buildKokyakuDomainFromForm(U01G001Form form) {
-		BushoDomain shukanBudho = bushoService.getBushoDomain(form.getShukanBushoCode());
+		BushoDomain shukanBusho = bushoService.getBushoDomain(form.getShukanBushoCode());
 		return new KokyakuDomainBuilder().withAddress(form.getAddress())
 				.withCode(form.getCode())
 				.withGenteiKubun(GenteiKubun.valueOf(form.getGenteiKubun()))
 				.withKokyakuKubun(KokyakuKubun.valueOf(form.getKokyakuKubun()))
 				.withName(form.getName())
-				.withShukanBushoDomain(shukanBudho)
+				.withShukanBushoDomain(shukanBusho)
 				.build();
 	}
 
@@ -129,9 +130,23 @@ public class U01G001Controller {
 	 * @return 顧客個人ドメイン
 	 */
 	private KokyakuKojinDomain buildKokyakuKojijnDomainFromForm(U01G001Form form) {
-		KokyakuDomain kokyakuDomain = buildKokyakuDomainFromForm(form);
-		// FIXME
-		return (KokyakuKojinDomain) kokyakuDomain;
+		// 主管部署
+		BushoDomain shukanBusho = bushoService.getBushoDomain(form.getShukanBushoCode());
+
+		// 親顧客取得
+		KokyakuDomain oyaKokyakuDomain = kokyakuService.getKokyakuDomain(form.getOyaKokyakuCode());
+
+		// build
+		KokyakuKojinDomainBuilder builder = new KokyakuKojinDomainBuilder();
+		KokyakuKojinDomain domain = builder.withAddress(form.getAddress())
+				.withCode(form.getCode())
+				.withGenteiKubun(GenteiKubun.valueOf(form.getGenteiKubun()))
+				.withKokyakuKubun(KokyakuKubun.valueOf(form.getKokyakuKubun()))
+				.withName(form.getName())
+				.withShukanBushoDomain(shukanBusho)
+				.withOyaKokyakuDomain(oyaKokyakuDomain)
+				.build();
+		return domain;
 	}
 
 	/**

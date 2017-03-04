@@ -27,6 +27,10 @@ public class U01G001Form {
 	/** 主幹部署 */
 	private String shukanBushoCode;
 
+	// 顧客ドメイン（個人)
+	/** 親顧客コード */
+	private String oyaKokyakuCode;
+
 	// 顧客担当部署ドメイン
 	/** 担当部署コード */
 	private String tantoBushoCode;

@@ -8,9 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mkyong.helloworld.dao.i.KokyakuDao;
 import com.mkyong.helloworld.domain.BushoDomain;
 import com.mkyong.helloworld.domain.KokyakuDomain;
+import com.mkyong.helloworld.domain.builder.KokyakuDomainBuilder;
 import com.mkyong.helloworld.entity.MKokyaku;
 import com.mkyong.helloworld.kubun.BushoKubun;
 import com.mkyong.helloworld.kubun.GenteiKubun;
+import com.mkyong.helloworld.kubun.KokyakuKubun;
 import com.mkyong.helloworld.service.i.BushoService;
 import com.mkyong.helloworld.service.i.KokyakuService;
 import com.mkyong.helloworld.system.exception.IncorrectKubunException;
@@ -89,5 +91,28 @@ public class KokyakuServiceImpl implements KokyakuService {
 		}
 
 		return true;
+	}
+
+	/**
+	 * 顧客ドメイン取得
+	 */
+	@Override
+	public KokyakuDomain getKokyakuDomain(String kokyakuCode) {
+		// entity
+		MKokyaku e = kokyakuDao.getByPrimaryKey(kokyakuCode);
+
+		// 主幹部署
+		BushoDomain shukanBusho = bushoService.getBushoDomain(e.getShukanBushoCode());
+
+		// build domain
+		KokyakuDomainBuilder builder = new KokyakuDomainBuilder();
+		KokyakuDomain domain = builder.withAddress(e.getAddress())
+				.withCode(e.getCode())
+				.withGenteiKubun(GenteiKubun.valueOf(e.getGenteiKubun()))
+				.withKokyakuKubun(KokyakuKubun.valueOf(e.getKokyakuKubun()))
+				.withName(e.getName())
+				.withShukanBushoDomain(shukanBusho)
+				.build();
+		return domain;
 	}
 }
