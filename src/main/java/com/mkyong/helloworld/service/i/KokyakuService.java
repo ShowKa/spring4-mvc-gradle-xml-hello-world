@@ -6,11 +6,13 @@ public interface KokyakuService {
 
 	/**
 	 * 顧客コード存在判定
+	 * 
 	 * @param kokykuCode
+	 *            顧客コード
 	 * @return 存在するならtrue
 	 */
 	public boolean existsKokyaku(String kokykuCode);
-	
+
 	/**
 	 * 顧客ドメイン登録
 	 * 
@@ -20,7 +22,6 @@ public interface KokyakuService {
 	 */
 	public boolean registerKokyakuHojin(KokyakuDomain domain);
 
-
 	/**
 	 * 法人顧客データとして正しいか検証する
 	 * 
@@ -29,10 +30,13 @@ public interface KokyakuService {
 	 * @return 検証結果
 	 */
 	public boolean validateKokyakuHojin(KokyakuDomain domain);
-	
+
 	/**
 	 * 顧客データとして正しいか検証する
-	 * <pre>全顧客区分で行う共通処理</pre>
+	 * 
+	 * <pre>
+	 * 全顧客区分で行う共通処理
+	 * </pre>
 	 * 
 	 * @param domain
 	 *            顧客ドメイン

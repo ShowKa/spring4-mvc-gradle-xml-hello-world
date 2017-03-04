@@ -13,7 +13,6 @@ import com.mkyong.helloworld.kubun.BushoKubun;
 import com.mkyong.helloworld.kubun.GenteiKubun;
 import com.mkyong.helloworld.service.i.BushoService;
 import com.mkyong.helloworld.service.i.KokyakuService;
-import com.mkyong.helloworld.service.i.KokyakuTantoBushoService;
 import com.mkyong.helloworld.system.exception.IncorrectKubunException;
 import com.mkyong.helloworld.system.exception.NotExistException;
 
@@ -26,10 +25,6 @@ public class KokyakuServiceImpl implements KokyakuService {
 	/** 部署サービス */
 	@Autowired
 	private BushoService bushoService;
-
-	/** 顧客担当部署サービス */
-	@Autowired
-	private KokyakuTantoBushoService kokyakuTantoBushoService;
 
 	// dao
 	/** 顧客DAO */

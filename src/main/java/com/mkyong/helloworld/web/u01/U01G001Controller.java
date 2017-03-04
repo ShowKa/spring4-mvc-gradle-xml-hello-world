@@ -27,6 +27,7 @@ import com.mkyong.helloworld.kubun.NyukinTsukiKubun;
 import com.mkyong.helloworld.kubun.ShohizeiKubun;
 import com.mkyong.helloworld.service.i.BushoService;
 import com.mkyong.helloworld.service.i.KokyakuKojinService;
+import com.mkyong.helloworld.service.i.KokyakuKojinTantoBushoService;
 import com.mkyong.helloworld.service.i.KokyakuService;
 import com.mkyong.helloworld.service.i.KokyakuTantoBushoService;
 
@@ -42,6 +43,9 @@ public class U01G001Controller {
 
 	@Autowired
 	private KokyakuTantoBushoService kokyakuTantoBushoService;
+
+	@Autowired
+	private KokyakuKojinTantoBushoService kokyakuKojinTantoBushoService;
 
 	@Autowired
 	private BushoService bushoService;
@@ -84,6 +88,8 @@ public class U01G001Controller {
 		// 検証
 		kokyakuService.validateKokyaku(domain);
 		kokyakuKojinService.validateKokyakuKojin(domain);
+		// FIXME
+		kokyakuKojinTantoBushoService.validateKokyakuKojinTantoBusho(null);
 
 		// 登録
 		kokyakuKojinService.registerKokyakuKojin(domain);
