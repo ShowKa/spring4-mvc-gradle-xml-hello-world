@@ -51,16 +51,12 @@ public class KokyakuKojinDomain extends KokyakuDomain {
 			return false;
 		}
 
-		if (!oyaKokyakuDomain.equals(o.oyaKokyakuDomain)) {
-			return false;
-		}
-
 		return true;
 	}
 
 	@Override
 	public int hashCode() {
-		return generateHashCode(getCode(), oyaKokyakuDomain);
+		return getCode().hashCode();
 	}
 
 	// private method
