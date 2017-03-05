@@ -3,7 +3,7 @@ package com.mkyong.helloworld.value;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
-import com.mkyong.helloworld.system.exception.ApplicationException;
+import com.mkyong.helloworld.system.exception.SystemException;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -77,7 +77,7 @@ public class Kakaku extends AbstractValue {
 	 */
 	public Kakaku add(Kakaku other) {
 		if (!zei.equals(other.zei)) {
-			throw new ApplicationException("加算対象の金額の税率が一致しません。");
+			throw new SystemException("加算対象の金額の税率が一致しません。");
 		}
 		return new Kakaku(kakaku.add(other.kakaku), zei);
 	}
@@ -98,7 +98,7 @@ public class Kakaku extends AbstractValue {
 		Kakaku base = new Kakaku(this.kakaku, this.zei);
 		for (Kakaku o : others) {
 			if (!zei.equals(o.zei)) {
-				throw new ApplicationException("AP0005");
+				throw new SystemException("加算対象の金額の税率が一致しません。");
 			}
 			base = base.add(o);
 		}
@@ -119,7 +119,7 @@ public class Kakaku extends AbstractValue {
 	 */
 	public Kakaku subtract(Kakaku other) {
 		if (!zei.equals(other.zei)) {
-			throw new ApplicationException("AP0005");
+			throw new SystemException("減産対象の金額の税率が一致しません。");
 		}
 		return new Kakaku(kakaku.subtract(other.kakaku), zei);
 	}

@@ -1,6 +1,6 @@
 package com.mkyong.helloworld.system.exception;
 
-public class ApplicationException extends RuntimeException {
+public abstract class ApplicationException extends RuntimeException {
 	/**
 	 * SID.
 	 */

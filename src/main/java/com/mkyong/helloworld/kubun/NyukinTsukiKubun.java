@@ -1,7 +1,7 @@
 package com.mkyong.helloworld.kubun;
 
 import com.mkyong.helloworld.kubun.i.Kubun;
-import com.mkyong.helloworld.system.exception.ApplicationException;
+import com.mkyong.helloworld.system.exception.SystemException;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,6 +26,6 @@ public enum NyukinTsukiKubun implements Kubun {
 		case 翌々月:
 			return 2;
 		}
-		throw new ApplicationException("存在しない区分");
+		throw new SystemException("存在しない区分");
 	}
 }
