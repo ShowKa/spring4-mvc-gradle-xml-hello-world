@@ -11,7 +11,7 @@ import lombok.Getter;
  *
  */
 @Getter
-public class IncorrectKubunException extends ApplicationException {
+public class IncorrectKubunException extends ValidateException {
 	/**
 	 * SID.
 	 */

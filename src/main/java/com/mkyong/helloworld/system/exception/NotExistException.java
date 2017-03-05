@@ -9,7 +9,7 @@ import lombok.Getter;
  *
  */
 @Getter
-public class NotExistException extends ApplicationException {
+public class NotExistException extends ValidateException {
 
 	/**
 	 * SID.
