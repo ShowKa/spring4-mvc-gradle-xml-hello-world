@@ -41,7 +41,7 @@ public class BushoDomain extends AbstractDomain {
 	 * 
 	 * @return 販売事業をしているならtrue
 	 */
-	public boolean isHanbai() {
+	public boolean isHanbaiJigyoBusho() {
 		if (JigyoKubun.販売 == this.jigyoKubun || JigyoKubun.兼業 == this.jigyoKubun) {
 			return true;
 		}
@@ -53,7 +53,7 @@ public class BushoDomain extends AbstractDomain {
 	 * 
 	 * @return レンタル事業をしているならtrue
 	 */
-	public boolean isRental() {
+	public boolean isRentalJigyoBusho() {
 		if (JigyoKubun.レンタル == this.jigyoKubun || JigyoKubun.兼業 == this.jigyoKubun) {
 			return true;
 		}

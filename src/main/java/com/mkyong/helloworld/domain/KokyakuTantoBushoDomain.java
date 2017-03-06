@@ -13,7 +13,7 @@ public class KokyakuTantoBushoDomain extends AbstractDomain {
 	/** 顧客ドメイン */
 	private KokyakuDomain kokyakuDomain;
 
-	/** 部署ドメイン */
+	/** 担当部署の部署ドメイン */
 	private BushoDomain budhoDomain;
 
 	/** 消費税区分 */
@@ -36,6 +36,37 @@ public class KokyakuTantoBushoDomain extends AbstractDomain {
 
 	/** バージョン（排他制御用） */
 	private int version;
+
+	// public method
+	/**
+	 * 販売事業部署の顧客ドメインとしての整合性検証
+	 * 
+	 * @return 販売担当部署の顧客として正しければtrue
+	 */
+	public boolean validateHanbaiTanto() {
+		if (!budhoDomain.isHanbaiJigyoBusho()) {
+			return false;
+		}
+		if (this.kokyakuTantoBushoHanbaiDomain == null) {
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * レンタル事業部署の顧客ドメインとしての整合性検証
+	 * 
+	 * @return レンタル担当部署の顧客として正しければtrue
+	 */
+	public boolean validateRentalTanto() {
+		if (!budhoDomain.isRentalJigyoBusho()) {
+			return false;
+		}
+		if (this.kokyakuTantoBushoRentalDomain == null) {
+			return false;
+		}
+		return true;
+	}
 
 	@Override
 	protected boolean equals(AbstractDomain other) {
