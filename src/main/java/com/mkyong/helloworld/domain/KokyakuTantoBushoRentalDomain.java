@@ -12,7 +12,7 @@ public class KokyakuTantoBushoRentalDomain extends AbstractDomain {
 	private KokyakuDomain kokyakuDomain;
 
 	/** 部署ドメイン */
-	private BushoDomain budhoDomain;
+	private BushoDomain bushoDomain;
 
 	/** コースコード */
 	private String courseCode;
@@ -24,11 +24,11 @@ public class KokyakuTantoBushoRentalDomain extends AbstractDomain {
 	@Override
 	protected boolean equals(AbstractDomain other) {
 		KokyakuTantoBushoRentalDomain o = (KokyakuTantoBushoRentalDomain) other;
-		return (this.kokyakuDomain.equals(o.kokyakuDomain) && this.budhoDomain.equals(o.budhoDomain));
+		return (this.kokyakuDomain.equals(o.kokyakuDomain) && this.bushoDomain.equals(o.bushoDomain));
 	}
 
 	@Override
 	public int hashCode() {
-		return generateHashCode(this.kokyakuDomain.hashCode(), this.budhoDomain.hashCode());
+		return generateHashCode(this.kokyakuDomain.hashCode(), this.bushoDomain.hashCode());
 	}
 }

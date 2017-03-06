@@ -58,7 +58,7 @@ public class KokyakuTantoBushoServiceImpl implements KokyakuTantoBushoService {
 		KokyakuDomain kokyaku = d.getKokyakuDomain();
 
 		// 担当部署
-		BushoDomain tantoBusho = d.getBudhoDomain();
+		BushoDomain tantoBusho = d.getBushoDomain();
 
 		// 担当部署存在チェック
 		boolean existsTantoBusho = bushoService.existsBusho(tantoBusho.getCode());

@@ -10,7 +10,7 @@ public class KokyakuTantoBushoHanbaiDomainBuilder
 	private com.mkyong.helloworld.domain.KokyakuDomain kokyakuDomain;
 
 	/** budhoDomain */
-	private com.mkyong.helloworld.domain.BushoDomain budhoDomain;
+	private com.mkyong.helloworld.domain.BushoDomain bushoDomain;
 
 	/** blockNumber */
 	private java.lang.String blockNumber;
@@ -22,14 +22,14 @@ public class KokyakuTantoBushoHanbaiDomainBuilder
 	@Override
 	protected void apply(KokyakuTantoBushoHanbaiDomain domain, KokyakuTantoBushoHanbaiDomainBuilder builder) {
 		builder.withKokyakuDomain(domain.getKokyakuDomain());
-		builder.withBudhoDomain(domain.getBudhoDomain());
+		builder.withBudhoDomain(domain.getBushoDomain());
 		builder.withBlockNumber(domain.getBlockNumber());
 		builder.withVersion(domain.getVersion());
 	}
 
 	@Override
 	protected KokyakuTantoBushoHanbaiDomain createDomainObject() {
-		return new KokyakuTantoBushoHanbaiDomain(kokyakuDomain, budhoDomain, blockNumber, version);
+		return new KokyakuTantoBushoHanbaiDomain(kokyakuDomain, bushoDomain, blockNumber, version);
 	}
 
 	@Override
@@ -73,7 +73,7 @@ public class KokyakuTantoBushoHanbaiDomainBuilder
 		addConfigurator(new BuilderConfigurator<KokyakuTantoBushoHanbaiDomainBuilder>() {
 			@Override
 			public void configure(KokyakuTantoBushoHanbaiDomainBuilder builder) {
-				builder.budhoDomain = budhoDomain;
+				builder.bushoDomain = budhoDomain;
 			}
 		});
 		return getThis();

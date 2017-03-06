@@ -14,7 +14,7 @@ public class KokyakuTantoBushoDomain extends AbstractDomain {
 	private KokyakuDomain kokyakuDomain;
 
 	/** 担当部署の部署ドメイン */
-	private BushoDomain budhoDomain;
+	private BushoDomain bushoDomain;
 
 	/** 消費税区分 */
 	private ShohizeiKubun shohizeiKubun;
@@ -44,7 +44,7 @@ public class KokyakuTantoBushoDomain extends AbstractDomain {
 	 * @return 販売担当部署の顧客として正しければtrue
 	 */
 	public boolean validateHanbaiTanto() {
-		if (!budhoDomain.isHanbaiJigyoBusho()) {
+		if (!bushoDomain.isHanbaiJigyoBusho()) {
 			return false;
 		}
 		if (this.kokyakuTantoBushoHanbaiDomain == null) {
@@ -59,7 +59,7 @@ public class KokyakuTantoBushoDomain extends AbstractDomain {
 	 * @return レンタル担当部署の顧客として正しければtrue
 	 */
 	public boolean validateRentalTanto() {
-		if (!budhoDomain.isRentalJigyoBusho()) {
+		if (!bushoDomain.isRentalJigyoBusho()) {
 			return false;
 		}
 		if (this.kokyakuTantoBushoRentalDomain == null) {
@@ -71,11 +71,11 @@ public class KokyakuTantoBushoDomain extends AbstractDomain {
 	@Override
 	protected boolean equals(AbstractDomain other) {
 		KokyakuTantoBushoDomain o = (KokyakuTantoBushoDomain) other;
-		return (this.kokyakuDomain.equals(o.kokyakuDomain) && this.budhoDomain.equals(o.budhoDomain));
+		return (this.kokyakuDomain.equals(o.kokyakuDomain) && this.bushoDomain.equals(o.bushoDomain));
 	}
 
 	@Override
 	public int hashCode() {
-		return generateHashCode(this.kokyakuDomain.hashCode(), this.budhoDomain.hashCode());
+		return generateHashCode(this.kokyakuDomain.hashCode(), this.bushoDomain.hashCode());
 	}
 }

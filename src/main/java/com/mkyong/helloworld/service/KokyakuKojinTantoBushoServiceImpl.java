@@ -25,7 +25,7 @@ public class KokyakuKojinTantoBushoServiceImpl extends KokyakuTantoBushoServiceI
 		// この個人顧客の担当部署 ∈ 親納品先の担当部署一覧
 		KokyakuKojinDomain kojin = domain.getKokyakuKojinDomain();
 		KokyakuDomain oya = kojin.getOyaKokyakuDomain();
-		BushoDomain tantoBusho = domain.getBudhoDomain();
+		BushoDomain tantoBusho = domain.getBushoDomain();
 		boolean existsTantoBusho = existsKokyakuTantoBusho(oya.getCode(), tantoBusho.getCode());
 		if (!existsTantoBusho) {
 			throw new ValidateException("個人顧客の担当部署は、親顧客の担当部署として登録されている必要があります。");
