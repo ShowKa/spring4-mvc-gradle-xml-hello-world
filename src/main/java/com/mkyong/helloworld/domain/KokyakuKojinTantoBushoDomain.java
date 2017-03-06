@@ -11,21 +11,26 @@ public class KokyakuKojinTantoBushoDomain extends KokyakuTantoBushoDomain {
 	private KokyakuKojinDomain kokyakuKojinDomain;
 
 	/**
-	 * コンストラクター.
+	 * コンストラクタ
 	 * 
 	 * @param kokyakuKojinDomain
 	 * @param budhoDomain
 	 * @param shohizeiKubun
 	 * @param sekininshaName
+	 * @param kokyakuTantoBushoHanbaiDomain
+	 * @param kokyakuTantoBushoRentalDomain
 	 * @param nyukinMotoDomain
 	 * @param seikyuSakiDomain
 	 * @param version
 	 */
 	public KokyakuKojinTantoBushoDomain(KokyakuKojinDomain kokyakuKojinDomain, BushoDomain budhoDomain,
-			ShohizeiKubun shohizeiKubun, String sekininshaName, NyukinMotoDomain nyukinMotoDomain,
+			ShohizeiKubun shohizeiKubun, String sekininshaName,
+			KokyakuTantoBushoHanbaiDomain kokyakuTantoBushoHanbaiDomain,
+			KokyakuTantoBushoRentalDomain kokyakuTantoBushoRentalDomain, NyukinMotoDomain nyukinMotoDomain,
 			SeikyuSakiDomain seikyuSakiDomain, int version) {
-		super(kokyakuKojinDomain, budhoDomain, shohizeiKubun, sekininshaName, nyukinMotoDomain, seikyuSakiDomain,
-				version);
+
+		super(kokyakuKojinDomain, budhoDomain, shohizeiKubun, sekininshaName, kokyakuTantoBushoHanbaiDomain,
+				kokyakuTantoBushoRentalDomain, nyukinMotoDomain, seikyuSakiDomain, version);
 		this.kokyakuKojinDomain = kokyakuKojinDomain;
 	}
 

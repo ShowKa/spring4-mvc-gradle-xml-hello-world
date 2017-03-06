@@ -22,6 +22,12 @@ public class KokyakuTantoBushoDomain extends AbstractDomain {
 	/** 責任者名 */
 	private String sekininshaName;
 
+	/** 顧客担当部署販売ドメイン */
+	private KokyakuTantoBushoHanbaiDomain kokyakuTantoBushoHanbaiDomain;
+
+	/** 顧客担当部署レンタルドメイン */
+	private KokyakuTantoBushoRentalDomain kokyakuTantoBushoRentalDomain;
+
 	/** 入金元 */
 	private NyukinMotoDomain nyukinMotoDomain;
 
@@ -33,13 +39,12 @@ public class KokyakuTantoBushoDomain extends AbstractDomain {
 
 	@Override
 	protected boolean equals(AbstractDomain other) {
-		// FIXME
-		return true;
+		KokyakuTantoBushoDomain o = (KokyakuTantoBushoDomain) other;
+		return (this.kokyakuDomain.equals(o.kokyakuDomain) && this.budhoDomain.equals(o.budhoDomain));
 	}
 
 	@Override
 	public int hashCode() {
-		// TODO Auto-generated method stub
-		return 0;
+		return generateHashCode(this.kokyakuDomain.hashCode(), this.budhoDomain.hashCode());
 	}
 }

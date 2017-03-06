@@ -1,35 +1,36 @@
 package com.mkyong.helloworld.domain.builder;
 
-import com.mkyong.helloworld.domain.BushoDomain;
-import com.mkyong.helloworld.domain.KokyakuDomain;
 import com.mkyong.helloworld.domain.KokyakuTantoBushoDomain;
-import com.mkyong.helloworld.domain.NyukinMotoDomain;
-import com.mkyong.helloworld.domain.SeikyuSakiDomain;
-import com.mkyong.helloworld.kubun.ShohizeiKubun;
 
 public class KokyakuTantoBushoDomainBuilder
 		extends AbstractDomainBuilder<KokyakuTantoBushoDomain, KokyakuTantoBushoDomainBuilder> {
 
 	// private member
-	/** 顧客ドメイン */
-	private KokyakuDomain kokyakuDomain;
+	/** kokyakuDomain */
+	private com.mkyong.helloworld.domain.KokyakuDomain kokyakuDomain;
 
-	/** 部署ドメイン */
-	private BushoDomain budhoDomain;
+	/** budhoDomain */
+	private com.mkyong.helloworld.domain.BushoDomain budhoDomain;
 
-	/** 消費税区分 */
-	private ShohizeiKubun shohizeiKubun;
+	/** shohizeiKubun */
+	private com.mkyong.helloworld.kubun.ShohizeiKubun shohizeiKubun;
 
-	/** 責任者名 */
-	private String sekininshaName;
+	/** sekininshaName */
+	private java.lang.String sekininshaName;
 
-	/** 入金元 */
-	private NyukinMotoDomain nyukinMotoDomain;
+	/** kokyakuTantoBushoHanbaiDomain */
+	private com.mkyong.helloworld.domain.KokyakuTantoBushoHanbaiDomain kokyakuTantoBushoHanbaiDomain;
 
-	/** 請求先 */
-	private SeikyuSakiDomain seikyuSakiDomain;
+	/** kokyakuTantoBushoRentalDomain */
+	private com.mkyong.helloworld.domain.KokyakuTantoBushoRentalDomain kokyakuTantoBushoRentalDomain;
 
-	/** バージョン（排他制御用） */
+	/** nyukinMotoDomain */
+	private com.mkyong.helloworld.domain.NyukinMotoDomain nyukinMotoDomain;
+
+	/** seikyuSakiDomain */
+	private com.mkyong.helloworld.domain.SeikyuSakiDomain seikyuSakiDomain;
+
+	/** version */
 	private int version;
 
 	// protected method
@@ -39,6 +40,8 @@ public class KokyakuTantoBushoDomainBuilder
 		builder.withBudhoDomain(domain.getBudhoDomain());
 		builder.withShohizeiKubun(domain.getShohizeiKubun());
 		builder.withSekininshaName(domain.getSekininshaName());
+		builder.withKokyakuTantoBushoHanbaiDomain(domain.getKokyakuTantoBushoHanbaiDomain());
+		builder.withKokyakuTantoBushoRentalDomain(domain.getKokyakuTantoBushoRentalDomain());
 		builder.withNyukinMotoDomain(domain.getNyukinMotoDomain());
 		builder.withSeikyuSakiDomain(domain.getSeikyuSakiDomain());
 		builder.withVersion(domain.getVersion());
@@ -46,8 +49,9 @@ public class KokyakuTantoBushoDomainBuilder
 
 	@Override
 	protected KokyakuTantoBushoDomain createDomainObject() {
-		return new KokyakuTantoBushoDomain(kokyakuDomain, budhoDomain, shohizeiKubun, sekininshaName, nyukinMotoDomain,
-				seikyuSakiDomain, version);
+		return new KokyakuTantoBushoDomain(kokyakuDomain, budhoDomain, shohizeiKubun, sekininshaName,
+				kokyakuTantoBushoHanbaiDomain, kokyakuTantoBushoRentalDomain, nyukinMotoDomain, seikyuSakiDomain,
+				version);
 	}
 
 	@Override
@@ -62,13 +66,14 @@ public class KokyakuTantoBushoDomainBuilder
 
 	// public method
 	/**
-	 * {@link KokyakuTantoBushoDomain}に与える顧客ドメインをこのビルダに設定する。
+	 * {@link KokyakuTantoBushoDomain}に与えるkokyakuDomainをこのビルダに設定する。
 	 *
 	 * @param kokyakuDomain
-	 *            顧客ドメイン
+	 *            kokyakuDomain
 	 * @return {@link KokyakuTantoBushoDomainBuilder}
 	 */
-	public KokyakuTantoBushoDomainBuilder withKokyakuDomain(final KokyakuDomain kokyakuDomain) {
+	public KokyakuTantoBushoDomainBuilder withKokyakuDomain(
+			final com.mkyong.helloworld.domain.KokyakuDomain kokyakuDomain) {
 		addConfigurator(new BuilderConfigurator<KokyakuTantoBushoDomainBuilder>() {
 			@Override
 			public void configure(KokyakuTantoBushoDomainBuilder builder) {
@@ -79,13 +84,13 @@ public class KokyakuTantoBushoDomainBuilder
 	}
 
 	/**
-	 * {@link KokyakuTantoBushoDomain}に与える部署ドメインをこのビルダに設定する。
+	 * {@link KokyakuTantoBushoDomain}に与えるbudhoDomainをこのビルダに設定する。
 	 *
 	 * @param budhoDomain
-	 *            部署ドメイン
+	 *            budhoDomain
 	 * @return {@link KokyakuTantoBushoDomainBuilder}
 	 */
-	public KokyakuTantoBushoDomainBuilder withBudhoDomain(final BushoDomain budhoDomain) {
+	public KokyakuTantoBushoDomainBuilder withBudhoDomain(final com.mkyong.helloworld.domain.BushoDomain budhoDomain) {
 		addConfigurator(new BuilderConfigurator<KokyakuTantoBushoDomainBuilder>() {
 			@Override
 			public void configure(KokyakuTantoBushoDomainBuilder builder) {
@@ -96,13 +101,14 @@ public class KokyakuTantoBushoDomainBuilder
 	}
 
 	/**
-	 * {@link KokyakuTantoBushoDomain}に与える消費税区分をこのビルダに設定する。
+	 * {@link KokyakuTantoBushoDomain}に与えるshohizeiKubunをこのビルダに設定する。
 	 *
 	 * @param shohizeiKubun
-	 *            消費税区分
+	 *            shohizeiKubun
 	 * @return {@link KokyakuTantoBushoDomainBuilder}
 	 */
-	public KokyakuTantoBushoDomainBuilder withShohizeiKubun(final ShohizeiKubun shohizeiKubun) {
+	public KokyakuTantoBushoDomainBuilder withShohizeiKubun(
+			final com.mkyong.helloworld.kubun.ShohizeiKubun shohizeiKubun) {
 		addConfigurator(new BuilderConfigurator<KokyakuTantoBushoDomainBuilder>() {
 			@Override
 			public void configure(KokyakuTantoBushoDomainBuilder builder) {
@@ -113,13 +119,13 @@ public class KokyakuTantoBushoDomainBuilder
 	}
 
 	/**
-	 * {@link KokyakuTantoBushoDomain}に与える責任者名をこのビルダに設定する。
+	 * {@link KokyakuTantoBushoDomain}に与えるsekininshaNameをこのビルダに設定する。
 	 *
 	 * @param sekininshaName
-	 *            責任者名
+	 *            sekininshaName
 	 * @return {@link KokyakuTantoBushoDomainBuilder}
 	 */
-	public KokyakuTantoBushoDomainBuilder withSekininshaName(final String sekininshaName) {
+	public KokyakuTantoBushoDomainBuilder withSekininshaName(final java.lang.String sekininshaName) {
 		addConfigurator(new BuilderConfigurator<KokyakuTantoBushoDomainBuilder>() {
 			@Override
 			public void configure(KokyakuTantoBushoDomainBuilder builder) {
@@ -130,13 +136,50 @@ public class KokyakuTantoBushoDomainBuilder
 	}
 
 	/**
-	 * {@link KokyakuTantoBushoDomain}に与える入金元をこのビルダに設定する。
+	 * {@link KokyakuTantoBushoDomain}に与えるkokyakuTantoBushoHanbaiDomainをこのビルダに設定する。
 	 *
-	 * @param nyukinMotoDomain
-	 *            入金元ドメイン
+	 * @param kokyakuTantoBushoHanbaiDomain
+	 *            kokyakuTantoBushoHanbaiDomain
 	 * @return {@link KokyakuTantoBushoDomainBuilder}
 	 */
-	public KokyakuTantoBushoDomainBuilder withNyukinMotoDomain(final NyukinMotoDomain nyukinMotoDomain) {
+	public KokyakuTantoBushoDomainBuilder withKokyakuTantoBushoHanbaiDomain(
+			final com.mkyong.helloworld.domain.KokyakuTantoBushoHanbaiDomain kokyakuTantoBushoHanbaiDomain) {
+		addConfigurator(new BuilderConfigurator<KokyakuTantoBushoDomainBuilder>() {
+			@Override
+			public void configure(KokyakuTantoBushoDomainBuilder builder) {
+				builder.kokyakuTantoBushoHanbaiDomain = kokyakuTantoBushoHanbaiDomain;
+			}
+		});
+		return getThis();
+	}
+
+	/**
+	 * {@link KokyakuTantoBushoDomain}に与えるkokyakuTantoBushoRentalDomainをこのビルダに設定する。
+	 *
+	 * @param kokyakuTantoBushoRentalDomain
+	 *            kokyakuTantoBushoRentalDomain
+	 * @return {@link KokyakuTantoBushoDomainBuilder}
+	 */
+	public KokyakuTantoBushoDomainBuilder withKokyakuTantoBushoRentalDomain(
+			final com.mkyong.helloworld.domain.KokyakuTantoBushoRentalDomain kokyakuTantoBushoRentalDomain) {
+		addConfigurator(new BuilderConfigurator<KokyakuTantoBushoDomainBuilder>() {
+			@Override
+			public void configure(KokyakuTantoBushoDomainBuilder builder) {
+				builder.kokyakuTantoBushoRentalDomain = kokyakuTantoBushoRentalDomain;
+			}
+		});
+		return getThis();
+	}
+
+	/**
+	 * {@link KokyakuTantoBushoDomain}に与えるnyukinMotoDomainをこのビルダに設定する。
+	 *
+	 * @param nyukinMotoDomain
+	 *            nyukinMotoDomain
+	 * @return {@link KokyakuTantoBushoDomainBuilder}
+	 */
+	public KokyakuTantoBushoDomainBuilder withNyukinMotoDomain(
+			final com.mkyong.helloworld.domain.NyukinMotoDomain nyukinMotoDomain) {
 		addConfigurator(new BuilderConfigurator<KokyakuTantoBushoDomainBuilder>() {
 			@Override
 			public void configure(KokyakuTantoBushoDomainBuilder builder) {
@@ -147,13 +190,14 @@ public class KokyakuTantoBushoDomainBuilder
 	}
 
 	/**
-	 * {@link KokyakuTantoBushoDomain}に与える入金元をこのビルダに設定する。
+	 * {@link KokyakuTantoBushoDomain}に与えるseikyuSakiDomainをこのビルダに設定する。
 	 *
 	 * @param seikyuSakiDomain
-	 *            請求先ドメイン
+	 *            seikyuSakiDomain
 	 * @return {@link KokyakuTantoBushoDomainBuilder}
 	 */
-	public KokyakuTantoBushoDomainBuilder withSeikyuSakiDomain(final SeikyuSakiDomain seikyuSakiDomain) {
+	public KokyakuTantoBushoDomainBuilder withSeikyuSakiDomain(
+			final com.mkyong.helloworld.domain.SeikyuSakiDomain seikyuSakiDomain) {
 		addConfigurator(new BuilderConfigurator<KokyakuTantoBushoDomainBuilder>() {
 			@Override
 			public void configure(KokyakuTantoBushoDomainBuilder builder) {
@@ -164,10 +208,10 @@ public class KokyakuTantoBushoDomainBuilder
 	}
 
 	/**
-	 * {@link KokyakuTantoBushoDomain}に与えるバージョン（排他制御用）をこのビルダに設定する。
+	 * {@link KokyakuTantoBushoDomain}に与えるversionをこのビルダに設定する。
 	 *
 	 * @param version
-	 *            バージョン（排他制御用）
+	 *            version
 	 * @return {@link KokyakuTantoBushoDomainBuilder}
 	 */
 	public KokyakuTantoBushoDomainBuilder withVersion(final int version) {
