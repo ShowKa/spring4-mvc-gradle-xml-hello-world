@@ -1,5 +1,6 @@
 package com.mkyong.helloworld.domain;
 
+import com.mkyong.helloworld.system.exception.SystemException;
 import com.mkyong.helloworld.value.EigyoDate;
 import com.mkyong.helloworld.value.KeijyoDate;
 
@@ -33,5 +34,11 @@ public class BushoDateDomain extends AbstractDomain {
 	@Override
 	public int hashCode() {
 		return bushoCode.hashCode();
+	}
+
+	@Override
+	public void validate() throws SystemException {
+		// TODO Auto-generated method stub
+
 	}
 }

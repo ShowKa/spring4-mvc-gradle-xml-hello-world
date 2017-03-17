@@ -2,6 +2,7 @@ package com.mkyong.helloworld.domain;
 
 import com.mkyong.helloworld.kubun.BushoKubun;
 import com.mkyong.helloworld.kubun.JigyoKubun;
+import com.mkyong.helloworld.system.exception.SystemException;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -69,6 +70,12 @@ public class BushoDomain extends AbstractDomain {
 	@Override
 	public int hashCode() {
 		return code.hashCode();
+	}
+
+	@Override
+	public void validate() throws SystemException {
+		// TODO Auto-generated method stub
+
 	}
 
 	// private method

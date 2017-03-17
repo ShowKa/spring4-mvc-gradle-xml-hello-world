@@ -43,7 +43,9 @@ public abstract class AbstractDomainBuilder<T extends AbstractDomain, S extends 
 			configurator.configure(getThis());
 		}
 
-		return createDomainObject();
+		T domain = createDomainObject();
+		domain.validate();
+		return domain;
 	}
 
 	/**

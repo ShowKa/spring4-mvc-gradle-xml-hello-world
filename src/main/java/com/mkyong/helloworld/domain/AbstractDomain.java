@@ -1,6 +1,19 @@
 package com.mkyong.helloworld.domain;
 
+import com.mkyong.helloworld.system.exception.SystemException;
+
 public abstract class AbstractDomain {
+
+	/**
+	 * ドメイン整合性検証
+	 * 
+	 * <pre>
+	 * 画面入力ミスによる不整合ではなく、ドメインの設定ミス（プログラムミス）がないか検証する。
+	 * </pre>
+	 * 
+	 * @throws SystemException
+	 */
+	public abstract void validate() throws SystemException;
 
 	/**
 	 * 同値判定

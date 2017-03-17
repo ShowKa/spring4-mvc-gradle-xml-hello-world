@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import com.mkyong.helloworld.kubun.NyukinHohoKubun;
 import com.mkyong.helloworld.kubun.NyukinTsukiKubun;
+import com.mkyong.helloworld.system.exception.SystemException;
 import com.mkyong.helloworld.value.TheDate;
 
 import lombok.AllArgsConstructor;
@@ -105,6 +106,12 @@ public class NyukinKakeInfoDomain extends AbstractDomain {
 	@Override
 	public int hashCode() {
 		return id.hashCode();
+	}
+
+	@Override
+	public void validate() throws SystemException {
+		// TODO Auto-generated method stub
+
 	}
 
 }

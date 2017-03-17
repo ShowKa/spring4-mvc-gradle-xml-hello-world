@@ -1,6 +1,7 @@
 package com.mkyong.helloworld.domain;
 
 import com.mkyong.helloworld.kubun.ShohizeiKubun;
+import com.mkyong.helloworld.system.exception.SystemException;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -38,35 +39,6 @@ public class KokyakuTantoBushoDomain extends AbstractDomain {
 	private int version;
 
 	// public method
-	/**
-	 * 販売事業部署の顧客ドメインとしての整合性検証
-	 * 
-	 * @return 販売担当部署の顧客として正しければtrue
-	 */
-	public boolean validateHanbaiTanto() {
-		if (!bushoDomain.isHanbaiJigyoBusho()) {
-			return false;
-		}
-		if (this.kokyakuTantoBushoHanbaiDomain == null) {
-			return false;
-		}
-		return true;
-	}
-
-	/**
-	 * レンタル事業部署の顧客ドメインとしての整合性検証
-	 * 
-	 * @return レンタル担当部署の顧客として正しければtrue
-	 */
-	public boolean validateRentalTanto() {
-		if (!bushoDomain.isRentalJigyoBusho()) {
-			return false;
-		}
-		if (this.kokyakuTantoBushoRentalDomain == null) {
-			return false;
-		}
-		return true;
-	}
 
 	@Override
 	protected boolean equals(AbstractDomain other) {
@@ -77,5 +49,19 @@ public class KokyakuTantoBushoDomain extends AbstractDomain {
 	@Override
 	public int hashCode() {
 		return generateHashCode(this.kokyakuDomain.hashCode(), this.bushoDomain.hashCode());
+	}
+
+	@Override
+	public void validate() throws SystemException {
+		if (bushoDomain.isHanbaiJigyoBusho()) {
+			if (kokyakuTantoBushoHanbaiDomain == null) {
+				throw new SystemException("顧客担当部署販売ドメインが設定されていません。");
+			}
+		}
+		if (bushoDomain.isRentalJigyoBusho()) {
+			if (kokyakuTantoBushoRentalDomain == null) {
+				throw new SystemException("顧客担当部署レンタルドメインが設定されていません。");
+			}
+		}
 	}
 }

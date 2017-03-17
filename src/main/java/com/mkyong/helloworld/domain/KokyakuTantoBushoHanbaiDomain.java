@@ -1,5 +1,7 @@
 package com.mkyong.helloworld.domain;
 
+import com.mkyong.helloworld.system.exception.SystemException;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -30,5 +32,11 @@ public class KokyakuTantoBushoHanbaiDomain extends AbstractDomain {
 	@Override
 	public int hashCode() {
 		return generateHashCode(this.kokyakuDomain.hashCode(), this.bushoDomain.hashCode());
+	}
+
+	@Override
+	public void validate() throws SystemException {
+		// TODO Auto-generated method stub
+
 	}
 }
