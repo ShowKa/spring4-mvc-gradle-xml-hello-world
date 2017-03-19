@@ -3,18 +3,11 @@ package com.mkyong.helloworld.entity;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
@@ -26,26 +19,25 @@ import javax.persistence.Version;
 @Table(name = "m_nyukin_moto", catalog = "spring")
 public class MNyukinMoto extends AbstractEntity implements java.io.Serializable {
 
+	/**
+	 * SID.
+	 */
+	private static final long serialVersionUID = 5718076066467915505L;
+
 	private Integer id;
 	private int version;
-	private MKokyakuTantoBusho MKokyakuTantoBusho;
 	private String hanbaiKubun;
-	private Set<MKokyakuTantoBusho> MKokyakuTantoBushos = new HashSet<MKokyakuTantoBusho>(0);
 	private MNyukinKakeInfo MNyukinKakeInfo;
 
 	public MNyukinMoto() {
 	}
 
-	public MNyukinMoto(MKokyakuTantoBusho MKokyakuTantoBusho, String hanbaiKubun) {
-		this.MKokyakuTantoBusho = MKokyakuTantoBusho;
+	public MNyukinMoto(String hanbaiKubun) {
 		this.hanbaiKubun = hanbaiKubun;
 	}
 
-	public MNyukinMoto(MKokyakuTantoBusho MKokyakuTantoBusho, String hanbaiKubun,
-			Set<MKokyakuTantoBusho> MKokyakuTantoBushos, MNyukinKakeInfo MNyukinKakeInfo) {
-		this.MKokyakuTantoBusho = MKokyakuTantoBusho;
+	public MNyukinMoto(String hanbaiKubun, MNyukinKakeInfo MNyukinKakeInfo) {
 		this.hanbaiKubun = hanbaiKubun;
-		this.MKokyakuTantoBushos = MKokyakuTantoBushos;
 		this.MNyukinKakeInfo = MNyukinKakeInfo;
 	}
 
@@ -71,17 +63,6 @@ public class MNyukinMoto extends AbstractEntity implements java.io.Serializable 
 		this.version = version;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumns({ @JoinColumn(name = "tanto_kokyaku_code", referencedColumnName = "kokyaku_code", nullable = false),
-			@JoinColumn(name = "tanto_busho_code", referencedColumnName = "busho_code", nullable = false) })
-	public MKokyakuTantoBusho getMKokyakuTantoBusho() {
-		return this.MKokyakuTantoBusho;
-	}
-
-	public void setMKokyakuTantoBusho(MKokyakuTantoBusho MKokyakuTantoBusho) {
-		this.MKokyakuTantoBusho = MKokyakuTantoBusho;
-	}
-
 	@Column(name = "hanbai_kubun", nullable = false)
 	public String getHanbaiKubun() {
 		return this.hanbaiKubun;
@@ -91,16 +72,7 @@ public class MNyukinMoto extends AbstractEntity implements java.io.Serializable 
 		this.hanbaiKubun = hanbaiKubun;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "MNyukinMoto")
-	public Set<MKokyakuTantoBusho> getMKokyakuTantoBushos() {
-		return this.MKokyakuTantoBushos;
-	}
-
-	public void setMKokyakuTantoBushos(Set<MKokyakuTantoBusho> MKokyakuTantoBushos) {
-		this.MKokyakuTantoBushos = MKokyakuTantoBushos;
-	}
-
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "MNyukinMoto")
+	@OneToOne(fetch = FetchType.EAGER, mappedBy = "MNyukinMoto")
 	public MNyukinKakeInfo getMNyukinKakeInfo() {
 		return this.MNyukinKakeInfo;
 	}

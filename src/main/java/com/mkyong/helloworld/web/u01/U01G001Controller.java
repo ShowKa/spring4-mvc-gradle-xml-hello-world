@@ -3,6 +3,7 @@ package com.mkyong.helloworld.web.u01;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,7 @@ import com.mkyong.helloworld.kubun.KokyakuKubun;
 import com.mkyong.helloworld.kubun.NyukinHohoKubun;
 import com.mkyong.helloworld.kubun.NyukinTsukiKubun;
 import com.mkyong.helloworld.kubun.ShohizeiKubun;
+import com.mkyong.helloworld.service.KokyakuServiceImpl;
 import com.mkyong.helloworld.service.i.BushoService;
 import com.mkyong.helloworld.service.i.KokyakuKojinService;
 import com.mkyong.helloworld.service.i.KokyakuKojinTantoBushoService;
@@ -39,12 +41,14 @@ public class U01G001Controller {
 
 	// service
 	@Autowired
+	@Qualifier("kokyakuServiceImpl")
 	private KokyakuService kokyakuService;
 
 	@Autowired
 	private KokyakuKojinService kokyakuKojinService;
 
 	@Autowired
+	@Qualifier("kokyakuTantoBushoServiceImpl")
 	private KokyakuTantoBushoService kokyakuTantoBushoService;
 
 	@Autowired
@@ -116,6 +120,7 @@ public class U01G001Controller {
 
 		// 登録
 		kokyakuKojinService.registerKokyakuKojin(domain);
+		KokyakuServiceImpl.class.getSimpleName();
 	}
 
 	// private method
@@ -213,7 +218,6 @@ public class U01G001Controller {
 				.withNyukinKakeInfoDomain(nyukinKakeInfoDomain)
 				.withVersion(form.getNyukinMotoVersion())
 				.build();
-
 		return domain;
 	}
 

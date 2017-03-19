@@ -11,7 +11,7 @@ import com.mkyong.helloworld.entity.MNyukinMoto;
 import com.mkyong.helloworld.kubun.HanbaiKubun;
 
 @Component
-public class NyukinMotoDaoImple extends AbstractDao<Integer, MNyukinMoto> implements NyukinMotoDao {
+public class NyukinMotoDaoImpl extends AbstractDao<Integer, MNyukinMoto> implements NyukinMotoDao {
 
 	@Autowired
 	NyukinKakeInfoDao nyukinKakeInfoDao;

@@ -1,9 +1,6 @@
 package com.mkyong.helloworld.entity;
 // Generated Mar 19, 2017 11:27:00 PM by Hibernate Tools 4.3.1.Final
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
@@ -12,7 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
@@ -34,7 +30,6 @@ public class MKokyakuTantoBusho extends AbstractEntity implements java.io.Serial
 	private String sekininshaName;
 	private MKokyakuTantoBushoHanbai MKokyakuTantoBushoHanbai;
 	private MKokyakuTantoBushoRental MKokyakuTantoBushoRental;
-	private Set<MNyukinMoto> MNyukinMotos = new HashSet<MNyukinMoto>(0);
 
 	public MKokyakuTantoBusho() {
 	}
@@ -52,8 +47,7 @@ public class MKokyakuTantoBusho extends AbstractEntity implements java.io.Serial
 
 	public MKokyakuTantoBusho(MKokyakuTantoBushoId id, MBusho MBusho, MKokyaku MKokyaku, MNyukinMoto MNyukinMoto,
 			MSeikyuSaki MSeikyuSaki, String shohizeiKubun, String sekininshaName,
-			MKokyakuTantoBushoHanbai MKokyakuTantoBushoHanbai, MKokyakuTantoBushoRental MKokyakuTantoBushoRental,
-			Set<MNyukinMoto> MNyukinMotos) {
+			MKokyakuTantoBushoHanbai MKokyakuTantoBushoHanbai, MKokyakuTantoBushoRental MKokyakuTantoBushoRental) {
 		this.id = id;
 		this.MBusho = MBusho;
 		this.MKokyaku = MKokyaku;
@@ -63,7 +57,6 @@ public class MKokyakuTantoBusho extends AbstractEntity implements java.io.Serial
 		this.sekininshaName = sekininshaName;
 		this.MKokyakuTantoBushoHanbai = MKokyakuTantoBushoHanbai;
 		this.MKokyakuTantoBushoRental = MKokyakuTantoBushoRental;
-		this.MNyukinMotos = MNyukinMotos;
 	}
 
 	@EmbeddedId
@@ -163,15 +156,6 @@ public class MKokyakuTantoBusho extends AbstractEntity implements java.io.Serial
 
 	public void setMKokyakuTantoBushoRental(MKokyakuTantoBushoRental MKokyakuTantoBushoRental) {
 		this.MKokyakuTantoBushoRental = MKokyakuTantoBushoRental;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "MKokyakuTantoBusho")
-	public Set<MNyukinMoto> getMNyukinMotos() {
-		return this.MNyukinMotos;
-	}
-
-	public void setMNyukinMotos(Set<MNyukinMoto> MNyukinMotos) {
-		this.MNyukinMotos = MNyukinMotos;
 	}
 
 }

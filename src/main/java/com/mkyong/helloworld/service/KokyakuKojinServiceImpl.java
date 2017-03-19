@@ -9,7 +9,6 @@ import com.mkyong.helloworld.dao.i.KokyakuKojinDao;
 import com.mkyong.helloworld.domain.KokyakuDomain;
 import com.mkyong.helloworld.domain.KokyakuKojinDomain;
 import com.mkyong.helloworld.service.i.KokyakuKojinService;
-import com.mkyong.helloworld.service.i.KokyakuTantoBushoService;
 import com.mkyong.helloworld.system.exception.IncorrectKubunException;
 import com.mkyong.helloworld.system.exception.NotExistException;
 
@@ -20,9 +19,6 @@ public class KokyakuKojinServiceImpl extends KokyakuServiceImpl implements Kokya
 
 	@Autowired
 	KokyakuKojinDao kokyakuKojinDao;
-
-	@Autowired
-	KokyakuTantoBushoService kokyakuTantoBushoService;
 
 	/**
 	 * 顧客個人整合性検証
