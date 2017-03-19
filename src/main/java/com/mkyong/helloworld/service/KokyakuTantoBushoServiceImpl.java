@@ -10,7 +10,7 @@ import com.mkyong.helloworld.domain.BushoDomain;
 import com.mkyong.helloworld.domain.KokyakuDomain;
 import com.mkyong.helloworld.domain.KokyakuTantoBushoDomain;
 import com.mkyong.helloworld.entity.MKokyakuTantoBusho;
-import com.mkyong.helloworld.entity.MKokyakuTantoBushoPK;
+import com.mkyong.helloworld.entity.MKokyakuTantoBushoId;
 import com.mkyong.helloworld.kubun.BushoKubun;
 import com.mkyong.helloworld.service.i.BushoService;
 import com.mkyong.helloworld.service.i.KokyakuTantoBushoService;
@@ -35,7 +35,7 @@ public class KokyakuTantoBushoServiceImpl implements KokyakuTantoBushoService {
 	 */
 	@Override
 	public boolean existsKokyakuTantoBusho(String kokyakuCode, String bushoCode) {
-		MKokyakuTantoBushoPK id = new MKokyakuTantoBushoPK();
+		MKokyakuTantoBushoId id = new MKokyakuTantoBushoId();
 		id.setKokyakuCode(kokyakuCode);
 		id.setBushoCode(bushoCode);
 		MKokyakuTantoBusho e = kokyakuBushoDao.getByPrimaryKey(id);

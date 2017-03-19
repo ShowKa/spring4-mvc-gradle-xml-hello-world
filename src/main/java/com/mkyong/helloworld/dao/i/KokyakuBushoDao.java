@@ -2,7 +2,7 @@ package com.mkyong.helloworld.dao.i;
 
 import com.mkyong.helloworld.domain.KokyakuTantoBushoDomain;
 import com.mkyong.helloworld.entity.MKokyakuTantoBusho;
-import com.mkyong.helloworld.entity.MKokyakuTantoBushoPK;
+import com.mkyong.helloworld.entity.MKokyakuTantoBushoId;
 
 public interface KokyakuBushoDao {
 	/**
@@ -12,7 +12,7 @@ public interface KokyakuBushoDao {
 	 *            主キー
 	 * @return エンティティ
 	 */
-	public MKokyakuTantoBusho getByPrimaryKey(MKokyakuTantoBushoPK id);
+	public MKokyakuTantoBusho getByPrimaryKey(MKokyakuTantoBushoId id);
 
 	/**
 	 * 登録

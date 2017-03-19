@@ -7,10 +7,10 @@ import com.mkyong.helloworld.domain.BushoDomain;
 import com.mkyong.helloworld.domain.KokyakuDomain;
 import com.mkyong.helloworld.domain.KokyakuTantoBushoDomain;
 import com.mkyong.helloworld.entity.MKokyakuTantoBusho;
-import com.mkyong.helloworld.entity.MKokyakuTantoBushoPK;
+import com.mkyong.helloworld.entity.MKokyakuTantoBushoId;
 
 @Component
-public class KokyakuBushoDaoImpl extends AbstractDao<MKokyakuTantoBushoPK, MKokyakuTantoBusho>
+public class KokyakuBushoDaoImpl extends AbstractDao<MKokyakuTantoBushoId, MKokyakuTantoBusho>
 		implements KokyakuBushoDao {
 
 	/**
@@ -22,7 +22,7 @@ public class KokyakuBushoDaoImpl extends AbstractDao<MKokyakuTantoBushoPK, MKoky
 		KokyakuDomain kokyaku = domain.getKokyakuDomain();
 		BushoDomain busho = domain.getBushoDomain();
 
-		MKokyakuTantoBushoPK id = new MKokyakuTantoBushoPK();
+		MKokyakuTantoBushoId id = new MKokyakuTantoBushoId();
 		id.setKokyakuCode(kokyaku.getCode());
 		id.setBushoCode(busho.getCode());
 
