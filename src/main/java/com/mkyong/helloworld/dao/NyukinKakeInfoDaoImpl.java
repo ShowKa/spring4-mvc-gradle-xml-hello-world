@@ -12,6 +12,9 @@ import com.mkyong.helloworld.kubun.NyukinTsukiKubun;
 @Component
 public class NyukinKakeInfoDaoImpl extends AbstractDao<Integer, MNyukinKakeInfo> implements NyukinKakeInfoDao {
 
+	/**
+	 * ドメイン取得
+	 */
 	@Override
 	public NyukinKakeInfoDomain getNyukinKakeInfoDomain(Integer id) {
 		MNyukinKakeInfo e = getByPrimaryKey(id);
@@ -24,6 +27,19 @@ public class NyukinKakeInfoDaoImpl extends AbstractDao<Integer, MNyukinKakeInfo>
 				.withVersion(e.getVersion())
 				.build();
 		return domain;
+	}
+
+	/**
+	 * ドメイン登録
+	 */
+	@Override
+	public void register(NyukinKakeInfoDomain domain) {
+		MNyukinKakeInfo e = new MNyukinKakeInfo();
+		e.setNyukinDate(domain.getNyukinDate());
+		e.setNyukinHohoKubun(domain.getNyukinHohoKubun().getCode());
+		e.setNyukinTsukiKubun(domain.getNyukinTsukiKubun().getCode());
+		e.setShimebi(domain.getShimeDate());
+		persist(e);
 	}
 
 }

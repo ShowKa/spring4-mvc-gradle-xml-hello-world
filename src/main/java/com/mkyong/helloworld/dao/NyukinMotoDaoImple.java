@@ -28,4 +28,16 @@ public class NyukinMotoDaoImple extends AbstractDao<Integer, MNyukinMoto> implem
 		return domain;
 	}
 
+	/**
+	 * ドメイン登録
+	 */
+	@Override
+	public void register(NyukinMotoDomain domain) {
+		MNyukinMoto e = new MNyukinMoto();
+
+		// TODO
+		e.setHanbaiKubun(domain.getHanbaiKubun().getCode());
+
+		persist(e);
+	}
 }

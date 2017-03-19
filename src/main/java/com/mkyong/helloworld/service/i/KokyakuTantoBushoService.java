@@ -20,7 +20,7 @@ public interface KokyakuTantoBushoService {
 	 * @param kokyakuTantoBushoDomain
 	 * @return チェック結果
 	 */
-	public boolean validateKokyakuTantoBusho(KokyakuTantoBushoDomain kokyakuTantoBushoDomain);
+	public boolean validate(KokyakuTantoBushoDomain kokyakuTantoBushoDomain);
 
 	/**
 	 * 顧客担当部署情報更新
@@ -36,5 +36,5 @@ public interface KokyakuTantoBushoService {
 	 * @param domain
 	 *            顧客担当部署ドメイン
 	 */
-	public void persist(KokyakuTantoBushoDomain domain);
+	public void register(KokyakuTantoBushoDomain domain);
 }

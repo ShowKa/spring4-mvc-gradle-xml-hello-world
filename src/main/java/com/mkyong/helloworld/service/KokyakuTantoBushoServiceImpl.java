@@ -49,7 +49,7 @@ public class KokyakuTantoBushoServiceImpl implements KokyakuTantoBushoService {
 	 * 顧客担当部署整合性検証
 	 */
 	@Override
-	public boolean validateKokyakuTantoBusho(KokyakuTantoBushoDomain kokyakuTantoBushoDomain) {
+	public boolean validate(KokyakuTantoBushoDomain kokyakuTantoBushoDomain) {
 
 		// 顧客担当部署
 		KokyakuTantoBushoDomain d = kokyakuTantoBushoDomain;
@@ -91,8 +91,8 @@ public class KokyakuTantoBushoServiceImpl implements KokyakuTantoBushoService {
 	}
 
 	@Override
-	public void persist(KokyakuTantoBushoDomain domain) {
-		// TODO Auto-generated method stub
+	public void register(KokyakuTantoBushoDomain domain) {
+		kokyakuBushoDao.register(domain);
 	}
 
 }

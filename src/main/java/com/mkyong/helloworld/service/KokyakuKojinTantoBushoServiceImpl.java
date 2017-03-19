@@ -8,7 +8,9 @@ import com.mkyong.helloworld.domain.BushoDomain;
 import com.mkyong.helloworld.domain.KokyakuDomain;
 import com.mkyong.helloworld.domain.KokyakuKojinDomain;
 import com.mkyong.helloworld.domain.KokyakuKojinTantoBushoDomain;
+import com.mkyong.helloworld.kubun.ShohizeiKubun;
 import com.mkyong.helloworld.service.i.KokyakuKojinTantoBushoService;
+import com.mkyong.helloworld.system.exception.IncorrectKubunException;
 import com.mkyong.helloworld.system.exception.ValidateException;
 
 @Component
@@ -31,6 +33,10 @@ public class KokyakuKojinTantoBushoServiceImpl extends KokyakuTantoBushoServiceI
 			throw new ValidateException("個人顧客の担当部署は、親顧客の担当部署として登録されている必要があります。");
 		}
 
+		// 個人顧客の場合、内税
+		if (domain.getShohizeiKubun() != ShohizeiKubun.内税) {
+			throw new IncorrectKubunException("消費税区分", domain.getShohizeiKubun());
+		}
 		return true;
 	}
 

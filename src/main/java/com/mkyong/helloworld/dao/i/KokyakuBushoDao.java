@@ -1,5 +1,6 @@
 package com.mkyong.helloworld.dao.i;
 
+import com.mkyong.helloworld.domain.KokyakuTantoBushoDomain;
 import com.mkyong.helloworld.entity.MKokyakuTantoBusho;
 import com.mkyong.helloworld.entity.MKokyakuTantoBushoPK;
 
@@ -36,5 +37,12 @@ public interface KokyakuBushoDao {
 	 *            エンティティ
 	 */
 	public void delete(MKokyakuTantoBusho entity);
+
+	/**
+	 * ドメイン登録
+	 * 
+	 * @param domain
+	 */
+	public void register(KokyakuTantoBushoDomain domain);
 
 }

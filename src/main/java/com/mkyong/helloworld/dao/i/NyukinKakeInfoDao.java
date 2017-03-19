@@ -43,4 +43,11 @@ public interface NyukinKakeInfoDao {
 	 * @param id
 	 */
 	public NyukinKakeInfoDomain getNyukinKakeInfoDomain(Integer id);
+
+	/**
+	 * ドメイン登録
+	 * 
+	 * @param domain
+	 */
+	public void register(NyukinKakeInfoDomain domain);
 }

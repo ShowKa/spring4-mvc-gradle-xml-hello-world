@@ -44,4 +44,11 @@ public interface NyukinMotoDao {
 	 */
 	public NyukinMotoDomain getNyukinMotoDomain(Integer id);
 
+	/**
+	 * ドメイン登録
+	 * 
+	 * @param domain
+	 */
+	public void register(NyukinMotoDomain domain);
+
 }

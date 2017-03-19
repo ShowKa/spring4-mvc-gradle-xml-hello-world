@@ -24,6 +24,24 @@ public class NyukinMotoDomain extends AbstractDomain {
 	Integer version;
 
 	// public method
+	@Override
+	protected boolean equals(AbstractDomain other) {
+		NyukinMotoDomain o = (NyukinMotoDomain) other;
+		return id.equals(o.id);
+	}
+
+	@Override
+	public int hashCode() {
+		return id.hashCode();
+	}
+
+	@Override
+	public void validate() throws SystemException {
+		if (!validateNyukinMoto()) {
+			throw new SystemException("掛売情報が不正です。");
+		}
+	}
+
 	/**
 	 * 入金元整合性判定
 	 * 
@@ -43,22 +61,4 @@ public class NyukinMotoDomain extends AbstractDomain {
 		}
 		return true;
 	}
-
-	@Override
-	protected boolean equals(AbstractDomain other) {
-		NyukinMotoDomain o = (NyukinMotoDomain) other;
-		return id.equals(o.id);
-	}
-
-	@Override
-	public int hashCode() {
-		return id.hashCode();
-	}
-
-	@Override
-	public void validate() throws SystemException {
-		// TODO Auto-generated method stub
-
-	}
-
 }
