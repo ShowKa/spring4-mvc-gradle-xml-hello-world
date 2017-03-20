@@ -8,6 +8,7 @@ import com.mkyong.helloworld.domain.KokyakuDomain;
 import com.mkyong.helloworld.domain.KokyakuTantoBushoDomain;
 import com.mkyong.helloworld.entity.MKokyakuTantoBusho;
 import com.mkyong.helloworld.entity.MKokyakuTantoBushoId;
+import com.mkyong.helloworld.entity.MNyukinMoto;
 
 @Component
 public class KokyakuBushoDaoImpl extends AbstractDao<MKokyakuTantoBushoId, MKokyakuTantoBusho>
@@ -30,6 +31,10 @@ public class KokyakuBushoDaoImpl extends AbstractDao<MKokyakuTantoBushoId, MKoky
 		e.setId(id);
 		e.setSekininshaName(domain.getSekininshaName());
 		e.setShohizeiKubun(domain.getShohizeiKubun().getCode());
+
+		MNyukinMoto nyukinMoto = new MNyukinMoto();
+		nyukinMoto.setId(domain.getNyukinMotoDomain().getId());
+		e.setMNyukinMoto(nyukinMoto);
 
 		persist(e);
 	}

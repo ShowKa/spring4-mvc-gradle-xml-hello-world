@@ -21,4 +21,13 @@ public class NyukinMotoDaoImplTest extends DaoTestCaseBase {
 		Assert.assertEquals(Integer.valueOf(1), result.getId());
 		Assert.assertEquals(20, kake.getNyukinDate());
 	}
+
+	@Test
+	public void testPersistAutoIncrement() {
+		MNyukinMoto e = new MNyukinMoto();
+		e.setHanbaiKubun("99");
+		nyukinMotoDao.persist(e);
+
+		Assert.assertTrue(e.getId() > 0);
+	}
 }

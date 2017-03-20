@@ -42,7 +42,5 @@ public class SeikyuSakiDomain extends AbstractDomain {
 
 	@Override
 	public void validate() throws SystemException {
-		// TODO Auto-generated method stub
-
 	}
 }

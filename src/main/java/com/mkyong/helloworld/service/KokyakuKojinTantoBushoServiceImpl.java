@@ -23,7 +23,7 @@ public class KokyakuKojinTantoBushoServiceImpl extends KokyakuTantoBushoServiceI
 	 * 顧客個人整合性検証
 	 */
 	@Override
-	public boolean validateKokyakuKojinTantoBusho(KokyakuKojinTantoBushoDomain domain) {
+	public boolean validate(KokyakuKojinTantoBushoDomain domain) {
 		// この個人顧客の担当部署 ∈ 親納品先の担当部署一覧
 		KokyakuKojinDomain kojin = domain.getKokyakuKojinDomain();
 		KokyakuDomain oya = kojin.getOyaKokyakuDomain();
@@ -37,6 +37,7 @@ public class KokyakuKojinTantoBushoServiceImpl extends KokyakuTantoBushoServiceI
 		if (domain.getShohizeiKubun() != ShohizeiKubun.内税) {
 			throw new IncorrectKubunException("消費税区分", domain.getShohizeiKubun());
 		}
+
 		return true;
 	}
 

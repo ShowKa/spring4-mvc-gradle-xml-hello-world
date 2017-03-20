@@ -9,6 +9,6 @@ public interface KokyakuKojinTantoBushoService {
 	 * @param kokyakuTantoBushoDomain
 	 * @return チェック結果
 	 */
-	public boolean validateKokyakuKojinTantoBusho(KokyakuKojinTantoBushoDomain domain);
+	public boolean validate(KokyakuKojinTantoBushoDomain domain);
 
 }
