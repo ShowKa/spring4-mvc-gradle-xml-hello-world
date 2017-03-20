@@ -1,5 +1,7 @@
 package com.mkyong.helloworld.web.u01;
 
+import java.util.UUID;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -46,7 +48,7 @@ public class U01G001Form {
 
 	// 入金元ドメイン
 	/** 入金元ID */
-	private Integer nyukinMotoId;
+	private Integer nyukinMotoId = UUID.randomUUID().hashCode();
 
 	/** 販売区分 */
 	private String hanabaiKubun;
@@ -55,9 +57,6 @@ public class U01G001Form {
 	private Integer nyukinMotoVersion;
 
 	// 入金掛売情報ドメイン
-	/** 入金掛売情報ID（入金元と同じはず） */
-	private Integer nyukinKakeInfoId;
-
 	/** 入金日 */
 	private Integer nyukinDate;
 

@@ -241,7 +241,7 @@ public class U01G001Controller {
 	 */
 	private NyukinKakeInfoDomain buildNyukinKakeInfoDomain(U01G001Form form) {
 		NyukinKakeInfoDomainBuilder b = new NyukinKakeInfoDomainBuilder();
-		NyukinKakeInfoDomain domain = b.withId(form.getNyukinKakeInfoId())
+		NyukinKakeInfoDomain domain = b.withId(form.getNyukinMotoId())
 				.withNyukinDate(form.getNyukinDate())
 				.withNyukinHohoKubun(NyukinHohoKubun.valueOf(form.getNyukinHohoKubun()))
 				.withNyukinTsukiKubun(NyukinTsukiKubun.valueOf(form.getNyukinTsukiKubun()))

@@ -34,10 +34,8 @@ public class NyukinMotoDaoImpl extends AbstractDao<Integer, MNyukinMoto> impleme
 	@Override
 	public void register(NyukinMotoDomain domain) {
 		MNyukinMoto e = new MNyukinMoto();
-
-		// TODO
+		e.setId(domain.getId());
 		e.setHanbaiKubun(domain.getHanbaiKubun().getCode());
-
 		persist(e);
 	}
 }

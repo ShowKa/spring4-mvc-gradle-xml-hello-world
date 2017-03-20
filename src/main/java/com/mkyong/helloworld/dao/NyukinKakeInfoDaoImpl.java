@@ -35,6 +35,7 @@ public class NyukinKakeInfoDaoImpl extends AbstractDao<Integer, MNyukinKakeInfo>
 	@Override
 	public void register(NyukinKakeInfoDomain domain) {
 		MNyukinKakeInfo e = new MNyukinKakeInfo();
+		e.setId(domain.getId());
 		e.setNyukinDate(domain.getNyukinDate());
 		e.setNyukinHohoKubun(domain.getNyukinHohoKubun().getCode());
 		e.setNyukinTsukiKubun(domain.getNyukinTsukiKubun().getCode());

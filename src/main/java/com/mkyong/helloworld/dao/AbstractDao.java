@@ -37,6 +37,7 @@ public abstract class AbstractDao<PK extends Serializable, T extends AbstractEnt
 	}
 
 	public void persist(T entity) {
+		entity.setVersion(1);
 		getSession().persist(entity);
 	}
 
