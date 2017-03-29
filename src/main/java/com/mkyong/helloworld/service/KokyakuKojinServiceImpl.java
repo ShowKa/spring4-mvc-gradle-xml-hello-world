@@ -4,11 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import com.mkyong.helloworld.dao.i.KokyakuKojinDao;
 import com.mkyong.helloworld.domain.KokyakuDomain;
 import com.mkyong.helloworld.domain.KokyakuKojinDomain;
 import com.mkyong.helloworld.service.i.KokyakuKojinService;
+import com.mkyong.helloworld.system.exception.EmptyException;
 import com.mkyong.helloworld.system.exception.IncorrectKubunException;
 import com.mkyong.helloworld.system.exception.NotExistException;
 
@@ -28,6 +30,11 @@ public class KokyakuKojinServiceImpl extends KokyakuServiceImpl implements Kokya
 		// 顧客区分チェック
 		if (!domain.isKojin()) {
 			throw new IncorrectKubunException("顧客区分", domain.getKokyakuKubun());
+		}
+
+		// 住所未入力ならNG
+		if (StringUtils.isEmpty(domain.getAddress())) {
+			throw new EmptyException("住所");
 		}
 
 		// 親顧客が存在しないならNG

@@ -7,6 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mkyong.helloworld.dao.i.NyukinMotoDao;
 import com.mkyong.helloworld.domain.NyukinMotoDomain;
+import com.mkyong.helloworld.kubun.HanbaiKubun;
+import com.mkyong.helloworld.service.i.NyukinKakeInfoService;
 import com.mkyong.helloworld.service.i.NyukinMotoService;
 
 @Component
@@ -15,13 +17,20 @@ import com.mkyong.helloworld.service.i.NyukinMotoService;
 public class NyukinMotoServiceImpl implements NyukinMotoService {
 
 	@Autowired
-	NyukinMotoDao nyukinMotoDao;
+	private NyukinMotoDao nyukinMotoDao;
+
+	@Autowired
+	private NyukinKakeInfoService nyukinKakeInfoService;
 
 	/**
 	 * 整合性判定
 	 */
 	@Override
 	public void validate(NyukinMotoDomain domain) {
+		HanbaiKubun hanbaiKubun = domain.getHanbaiKubun();
+		if (hanbaiKubun == HanbaiKubun.掛売) {
+			nyukinKakeInfoService.validate(domain.getNyukinKakeInfoDomain());
+		}
 	}
 
 	/**

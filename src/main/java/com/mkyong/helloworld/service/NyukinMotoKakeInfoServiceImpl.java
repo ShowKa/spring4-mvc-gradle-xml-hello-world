@@ -16,11 +16,11 @@ import com.mkyong.helloworld.system.exception.WrongDateOrderException;
 public class NyukinMotoKakeInfoServiceImpl implements NyukinKakeInfoService {
 
 	@Autowired
-	private NyukinKakeInfoDao NyukinKakeInfoDao;
+	private NyukinKakeInfoDao nyukinKakeInfoDao;
 
 	@Override
 	public void register(NyukinKakeInfoDomain domain) {
-		NyukinKakeInfoDao.register(domain);
+		nyukinKakeInfoDao.register(domain);
 	}
 
 	@Override

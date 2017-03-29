@@ -96,9 +96,6 @@ public class U01G001Controller {
 		kokyakuService.validateKokyakuHojin(domain.getKokyakuDomain());
 		kokyakuTantoBushoService.validate(domain);
 		nyukinMotoService.validate(nyukinMoto);
-		if (nyukinKakeInfo != null) {
-			nyukinKakeInfoService.validate(nyukinKakeInfo);
-		}
 		seikyuSakiService.validate(seikyuSaki);
 
 		// 登録
