@@ -13,7 +13,10 @@ import com.mkyong.helloworld.entity.MKokyakuTantoBusho;
 import com.mkyong.helloworld.entity.MKokyakuTantoBushoId;
 import com.mkyong.helloworld.kubun.BushoKubun;
 import com.mkyong.helloworld.service.i.BushoService;
+import com.mkyong.helloworld.service.i.KokyakuService;
 import com.mkyong.helloworld.service.i.KokyakuTantoBushoService;
+import com.mkyong.helloworld.service.i.NyukinMotoService;
+import com.mkyong.helloworld.service.i.SeikyuSakiService;
 import com.mkyong.helloworld.system.exception.IncorrectKubunException;
 import com.mkyong.helloworld.system.exception.NotExistException;
 import com.mkyong.helloworld.system.exception.ValidateException;
@@ -29,6 +32,15 @@ public class KokyakuTantoBushoServiceImpl implements KokyakuTantoBushoService {
 
 	@Autowired
 	private BushoService bushoService;
+
+	@Autowired
+	private KokyakuService kokyakuService;
+
+	@Autowired
+	private NyukinMotoService nyukinMotoService;
+
+	@Autowired
+	private SeikyuSakiService seikyuSakiService;
 
 	/**
 	 * 担当部署存在チェック
@@ -81,18 +93,36 @@ public class KokyakuTantoBushoServiceImpl implements KokyakuTantoBushoService {
 			}
 		}
 
+		// 含有ドメインの整合性判定
+		kokyakuService.validate(kokyaku);
+		nyukinMotoService.validate(d.getNyukinMotoDomain());
+		seikyuSakiService.validate(d.getSeikyuSakiDomain());
+
 		// OK
 		return true;
+	}
+
+	@Override
+	public void register(KokyakuTantoBushoDomain domain) {
+		kokyakuBushoDao.register(domain);
+
+		// 含有ドメイン登録
+
+		// 顧客ドメイン
+		if (domain.isShukan()) {
+			kokyakuService.register(domain.getKokyakuDomain());
+		}
+
+		// 入金元ドメイン
+		nyukinMotoService.register(domain.getNyukinMotoDomain());
+
+		// 請求先
+		seikyuSakiService.register(domain.getSeikyuSakiDomain());
+
 	}
 
 	@Override
 	public void update(KokyakuTantoBushoDomain domain) {
 		// TODO Auto-generated method stub
 	}
-
-	@Override
-	public void register(KokyakuTantoBushoDomain domain) {
-		kokyakuBushoDao.register(domain);
-	}
-
 }

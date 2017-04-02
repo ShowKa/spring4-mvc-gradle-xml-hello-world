@@ -17,7 +17,7 @@ public interface KokyakuKojinService {
 	 *            個人顧客ドメイン
 	 * @return 検証結果
 	 */
-	public boolean validateKokyakuKojin(KokyakuKojinDomain domain);
+	public boolean validate(KokyakuKojinDomain domain);
 	
 	/**
 	 * 顧客個人ドメイン登録

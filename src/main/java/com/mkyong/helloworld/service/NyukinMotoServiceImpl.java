@@ -39,6 +39,9 @@ public class NyukinMotoServiceImpl implements NyukinMotoService {
 	@Override
 	public void register(NyukinMotoDomain domain) {
 		nyukinMotoDao.register(domain);
+		HanbaiKubun hanbaiKubun = domain.getHanbaiKubun();
+		if (hanbaiKubun == HanbaiKubun.掛売) {
+			nyukinKakeInfoService.register(domain.getNyukinKakeInfoDomain());
+		}
 	}
-
 }
