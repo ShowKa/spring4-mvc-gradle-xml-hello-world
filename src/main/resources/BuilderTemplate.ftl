@@ -5,7 +5,7 @@ public class ${domain}DomainBuilder extends ${builderBaseClass}<${domain}Domain,
 	// private member
 	<#list members as m>
 	/** ${m.explain} */
-	protected ${m.type} ${m.name};
+	private ${m.type} ${m.name};
 
     </#list>
 	

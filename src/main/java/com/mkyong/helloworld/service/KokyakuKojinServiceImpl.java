@@ -26,7 +26,7 @@ public class KokyakuKojinServiceImpl extends KokyakuServiceImpl implements Kokya
 	 * 顧客個人整合性検証
 	 */
 	@Override
-	public boolean validate(KokyakuKojinDomain domain) {
+	public boolean validateKokyakuKojin(KokyakuKojinDomain domain) {
 		// 顧客区分チェック
 		if (!domain.isKojin()) {
 			throw new IncorrectKubunException("顧客区分", domain.getKokyakuKubun());
@@ -47,9 +47,6 @@ public class KokyakuKojinServiceImpl extends KokyakuServiceImpl implements Kokya
 		if (oya.isKojin()) {
 			throw new IncorrectKubunException("親納品先", oya.getKokyakuKubun());
 		}
-
-		// 基底ドメインの整合性判定
-		super.validate(domain);
 
 		return true;
 	}

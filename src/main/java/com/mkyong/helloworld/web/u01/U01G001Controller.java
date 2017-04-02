@@ -18,7 +18,6 @@ import com.mkyong.helloworld.domain.NyukinMotoDomain;
 import com.mkyong.helloworld.domain.SeikyuSakiDomain;
 import com.mkyong.helloworld.domain.builder.KokyakuDomainBuilder;
 import com.mkyong.helloworld.domain.builder.KokyakuKojinDomainBuilder;
-import com.mkyong.helloworld.domain.builder.KokyakuKojinTantoBushoDomainBuilder;
 import com.mkyong.helloworld.domain.builder.KokyakuTantoBushoDomainBuilder;
 import com.mkyong.helloworld.domain.builder.NyukinKakeInfoDomainBuilder;
 import com.mkyong.helloworld.domain.builder.NyukinMotoDomainBuilder;
@@ -28,6 +27,7 @@ import com.mkyong.helloworld.kubun.KokyakuKubun;
 import com.mkyong.helloworld.kubun.NyukinHohoKubun;
 import com.mkyong.helloworld.kubun.NyukinTsukiKubun;
 import com.mkyong.helloworld.kubun.ShohizeiKubun;
+import com.mkyong.helloworld.service.KokyakuServiceImpl;
 import com.mkyong.helloworld.service.i.BushoService;
 import com.mkyong.helloworld.service.i.KokyakuKojinService;
 import com.mkyong.helloworld.service.i.KokyakuKojinTantoBushoService;
@@ -96,10 +96,14 @@ public class U01G001Controller {
 		KokyakuKojinDomain domain = buildKokyakuKojijnDomainFromForm(form);
 
 		// 検証
+		kokyakuService.validate(domain);
+		kokyakuKojinService.validateKokyakuKojin(domain);
 		// FIXME
 		kokyakuKojinTantoBushoService.validate(null);
 
 		// 登録
+		kokyakuKojinService.registerKokyakuKojin(domain);
+		KokyakuServiceImpl.class.getSimpleName();
 	}
 
 	// private method
@@ -167,39 +171,10 @@ public class U01G001Controller {
 
 		// 顧客担当部署ドメイン
 		KokyakuTantoBushoDomainBuilder b = new KokyakuTantoBushoDomainBuilder();
-		KokyakuTantoBushoDomain domain = b.withBushoDomain(tantoBudhoDomain)
+		KokyakuTantoBushoDomain domain = b.withBudhoDomain(tantoBudhoDomain)
 				.withKokyakuDomain(kokyakuDomain)
 				.withNyukinMotoDomain(nyukinMotoDomain)
 				.withSeikyuSakiDomain(seikyuSakiDomain)
-				.withSekininshaName(form.getSekininshaName())
-				.withShohizeiKubun(ShohizeiKubun.valueOf(form.getShohizeiKubun()))
-				.withVersion(form.getKokyakuTantoBushoVersion())
-				.build();
-
-		return domain;
-	}
-
-	/**
-	 * Formから顧客担当部署ドメインを作成.
-	 * 
-	 * @param form
-	 *            フォーム
-	 * @return 顧客担当部署ドメイン
-	 */
-	private KokyakuTantoBushoDomain builKokyakuKojinTantoBushoDomain(U01G001Form form) {
-		// 顧客ドメイン
-		KokyakuKojinDomain kokyakuKojinDomain = buildKokyakuKojijnDomainFromForm(form);
-		// 担当部署ドメイン
-		BushoDomain tantoBudhoDomain = bushoService.getBushoDomain(form.getTantoBushoCode());
-
-		// 親納品先から、入金元と請求先を取得
-
-		// 顧客担当部署ドメイン
-		KokyakuKojinTantoBushoDomainBuilder b = new KokyakuKojinTantoBushoDomainBuilder();
-		KokyakuTantoBushoDomain domain = b.withKokyakuKojinDomain(kokyakuKojinDomain)
-				.withBushoDomain(tantoBudhoDomain)
-				// .withNyukinMotoDomain(nyukinMotoDomain)
-				// .withSeikyuSakiDomain(seikyuSakiDomain)
 				.withSekininshaName(form.getSekininshaName())
 				.withShohizeiKubun(ShohizeiKubun.valueOf(form.getShohizeiKubun()))
 				.withVersion(form.getKokyakuTantoBushoVersion())

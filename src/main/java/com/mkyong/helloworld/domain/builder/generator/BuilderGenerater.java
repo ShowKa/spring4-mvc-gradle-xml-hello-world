@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.mkyong.helloworld.domain.KokyakuKojinTantoBushoDomain;
+import com.mkyong.helloworld.domain.KokyakuKojinDomain;
 
 import freemarker.template.Configuration;
 import freemarker.template.TemplateException;
@@ -23,7 +23,7 @@ public class BuilderGenerater {
 	private static String DESTINATION = "generated/";
 
 	@SuppressWarnings("rawtypes")
-	static Class TARGET_CLASS = KokyakuKojinTantoBushoDomain.class;
+	static Class TARGET_CLASS = KokyakuKojinDomain.class;
 
 	public static void main(String[] args) {
 
