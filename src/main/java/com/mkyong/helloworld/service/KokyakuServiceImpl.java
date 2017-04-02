@@ -49,7 +49,7 @@ public class KokyakuServiceImpl implements KokyakuService {
 	 * 顧客新規登録
 	 */
 	@Override
-	public boolean registerKokyakuHojin(KokyakuDomain domain) {
+	public boolean register(KokyakuDomain domain) {
 		kokyakuDao.register(domain);
 		return true;
 	}
@@ -76,7 +76,7 @@ public class KokyakuServiceImpl implements KokyakuService {
 	 * 顧客整合性検証
 	 */
 	@Override
-	public boolean validateKokyaku(KokyakuDomain domain) {
+	public boolean validate(KokyakuDomain domain) {
 
 		// 主幹部署存在しないならエラー
 		BushoDomain shukanBusho = domain.getShukanBushoDomain();
@@ -88,6 +88,11 @@ public class KokyakuServiceImpl implements KokyakuService {
 		// 主幹部署が営業所ならOK
 		if (BushoKubun.営業所 != shukanBusho.getBushoKubun()) {
 			throw new IncorrectKubunException("主幹部署", shukanBusho.getBushoKubun());
+		}
+
+		// 法人チェック
+		if (domain.isHojin()) {
+			this.validateKokyakuHojin(domain);
 		}
 
 		return true;

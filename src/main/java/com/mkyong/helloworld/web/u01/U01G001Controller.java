@@ -33,9 +33,6 @@ import com.mkyong.helloworld.service.i.KokyakuKojinService;
 import com.mkyong.helloworld.service.i.KokyakuKojinTantoBushoService;
 import com.mkyong.helloworld.service.i.KokyakuService;
 import com.mkyong.helloworld.service.i.KokyakuTantoBushoService;
-import com.mkyong.helloworld.service.i.NyukinKakeInfoService;
-import com.mkyong.helloworld.service.i.NyukinMotoService;
-import com.mkyong.helloworld.service.i.SeikyuSakiService;
 
 @Controller
 public class U01G001Controller {
@@ -56,15 +53,6 @@ public class U01G001Controller {
 	private KokyakuKojinTantoBushoService kokyakuKojinTantoBushoService;
 
 	@Autowired
-	private NyukinMotoService nyukinMotoService;
-
-	@Autowired
-	private NyukinKakeInfoService nyukinKakeInfoService;
-
-	@Autowired
-	private SeikyuSakiService seikyuSakiService;
-
-	@Autowired
 	private BushoService bushoService;
 
 	// public method called by request
@@ -78,34 +66,21 @@ public class U01G001Controller {
 	}
 
 	/**
-	 * 法人顧客の新規登録
+	 * 顧客の新規登録
 	 * 
 	 * @param form
 	 *            画面フォーム
 	 */
 	@RequestMapping(value = "/U01G001/registerHojin", method = RequestMethod.POST)
-	public void registerHojin(@ModelAttribute U01G001Form form) {
+	public void register(@ModelAttribute U01G001Form form) {
 		// ドメイン作成
 		KokyakuTantoBushoDomain domain = builKokyakuTantoBushoDomain(form);
-		NyukinMotoDomain nyukinMoto = domain.getNyukinMotoDomain();
-		NyukinKakeInfoDomain nyukinKakeInfo = nyukinMoto.getNyukinKakeInfoDomain();
-		SeikyuSakiDomain seikyuSaki = domain.getSeikyuSakiDomain();
 
 		// 検証
-		kokyakuService.validateKokyaku(domain.getKokyakuDomain());
-		kokyakuService.validateKokyakuHojin(domain.getKokyakuDomain());
 		kokyakuTantoBushoService.validate(domain);
-		nyukinMotoService.validate(nyukinMoto);
-		seikyuSakiService.validate(seikyuSaki);
 
 		// 登録
-		kokyakuService.registerKokyakuHojin(domain.getKokyakuDomain());
 		kokyakuTantoBushoService.register(domain);
-		nyukinMotoService.register(nyukinMoto);
-		if (nyukinKakeInfo != null) {
-			nyukinKakeInfoService.register(nyukinKakeInfo);
-		}
-		seikyuSakiService.register(seikyuSaki);
 	}
 
 	/**
@@ -121,7 +96,7 @@ public class U01G001Controller {
 		KokyakuKojinDomain domain = buildKokyakuKojijnDomainFromForm(form);
 
 		// 検証
-		kokyakuService.validateKokyaku(domain);
+		kokyakuService.validate(domain);
 		kokyakuKojinService.validateKokyakuKojin(domain);
 		// FIXME
 		kokyakuKojinTantoBushoService.validate(null);

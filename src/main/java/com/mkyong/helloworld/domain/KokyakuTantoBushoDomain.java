@@ -39,7 +39,6 @@ public class KokyakuTantoBushoDomain extends AbstractDomain {
 	private int version;
 
 	// public method
-
 	@Override
 	protected boolean equals(AbstractDomain other) {
 		KokyakuTantoBushoDomain o = (KokyakuTantoBushoDomain) other;
@@ -64,4 +63,17 @@ public class KokyakuTantoBushoDomain extends AbstractDomain {
 			}
 		}
 	}
+
+	/**
+	 * 主幹判定
+	 * 
+	 * @return 担当部署が顧客の主幹ならtrue
+	 */
+	public boolean isShukan() {
+		return kokyakuDomain.getShukanBushoDomain().getCode().equals(this.bushoDomain.getCode());
+	}
+
+	/**
+	 * 入金取りまとめ判定
+	 */
 }

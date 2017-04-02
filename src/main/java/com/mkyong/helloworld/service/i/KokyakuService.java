@@ -20,7 +20,16 @@ public interface KokyakuService {
 	 *            顧客ドメイン
 	 * @return 登録成否
 	 */
-	public boolean registerKokyakuHojin(KokyakuDomain domain);
+	public boolean register(KokyakuDomain domain);
+
+	/**
+	 * 顧客データとして正しいか検証する
+	 * 
+	 * @param domain
+	 *            顧客ドメイン
+	 * @return 検証結果
+	 */
+	public boolean validate(KokyakuDomain domain);
 
 	/**
 	 * 法人顧客データとして正しいか検証する
@@ -32,19 +41,6 @@ public interface KokyakuService {
 	public boolean validateKokyakuHojin(KokyakuDomain domain);
 
 	/**
-	 * 顧客データとして正しいか検証する
-	 * 
-	 * <pre>
-	 * 全顧客区分で行う共通処理
-	 * </pre>
-	 * 
-	 * @param domain
-	 *            顧客ドメイン
-	 * @return 検証結果
-	 */
-	public boolean validateKokyaku(KokyakuDomain domain);
-
-	/**
 	 * 顧客ドメイン取得
 	 * 
 	 * @param kokyakuCode
@@ -52,4 +48,5 @@ public interface KokyakuService {
 	 * @return 顧客ドメイン
 	 */
 	public KokyakuDomain getKokyakuDomain(String kokyakuCode);
+
 }
