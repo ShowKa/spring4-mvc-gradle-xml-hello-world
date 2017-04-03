@@ -96,13 +96,11 @@ public class U01G001Controller {
 		KokyakuKojinDomain domain = buildKokyakuKojijnDomainFromForm(form);
 
 		// 検証
-		kokyakuService.validate(domain);
-		kokyakuKojinService.validateKokyakuKojin(domain);
 		// FIXME
 		kokyakuKojinTantoBushoService.validate(null);
 
 		// 登録
-		kokyakuKojinService.registerKokyakuKojin(domain);
+		kokyakuKojinService.register(domain);
 		KokyakuServiceImpl.class.getSimpleName();
 	}
 

@@ -1,5 +1,6 @@
 package com.mkyong.helloworld.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,6 +10,7 @@ import com.mkyong.helloworld.domain.KokyakuDomain;
 import com.mkyong.helloworld.domain.KokyakuKojinDomain;
 import com.mkyong.helloworld.domain.KokyakuKojinTantoBushoDomain;
 import com.mkyong.helloworld.kubun.ShohizeiKubun;
+import com.mkyong.helloworld.service.i.KokyakuKojinService;
 import com.mkyong.helloworld.service.i.KokyakuKojinTantoBushoService;
 import com.mkyong.helloworld.system.exception.IncorrectKubunException;
 import com.mkyong.helloworld.system.exception.ValidateException;
@@ -18,6 +20,9 @@ import com.mkyong.helloworld.system.exception.ValidateException;
 @Transactional
 public class KokyakuKojinTantoBushoServiceImpl extends KokyakuTantoBushoServiceImpl
 		implements KokyakuKojinTantoBushoService {
+
+	@Autowired
+	private KokyakuKojinService kokyakuKojinService;
 
 	/**
 	 * 顧客個人整合性検証
@@ -37,6 +42,9 @@ public class KokyakuKojinTantoBushoServiceImpl extends KokyakuTantoBushoServiceI
 		if (domain.getShohizeiKubun() != ShohizeiKubun.内税) {
 			throw new IncorrectKubunException("消費税区分", domain.getShohizeiKubun());
 		}
+
+		// 含有ドメインの整合性検証
+		kokyakuKojinService.validate(domain.getKokyakuKojinDomain());
 
 		return true;
 	}
