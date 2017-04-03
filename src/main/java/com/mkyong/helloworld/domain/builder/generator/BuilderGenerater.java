@@ -12,7 +12,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.mkyong.helloworld.domain.KokyakuKojinDomain;
+import com.mkyong.helloworld.domain.AbstractDomain;
+import com.mkyong.helloworld.domain.KokyakuKojinTantoBushoDomain;
 
 import freemarker.template.Configuration;
 import freemarker.template.TemplateException;
@@ -23,13 +24,29 @@ public class BuilderGenerater {
 	private static String DESTINATION = "generated/";
 
 	@SuppressWarnings("rawtypes")
-	static Class TARGET_CLASS = KokyakuKojinDomain.class;
+	static Class TARGET_CLASS = KokyakuKojinTantoBushoDomain.class;
 
 	public static void main(String[] args) {
 
 		// get domain private fields
 		List<Field> privateFields = new ArrayList<>();
-		Field[] allFields = TARGET_CLASS.getDeclaredFields();
+		ArrayList<Field> allFields = new ArrayList<Field>();
+		for (Field f : TARGET_CLASS.getDeclaredFields()) {
+			allFields.add(f);
+		}
+
+		// get domain parent private fields if exists
+		Class<?> parent = TARGET_CLASS.getSuperclass();
+		while (parent != null) {
+			if (!AbstractDomain.class.isAssignableFrom(parent)) {
+				break;
+			}
+			for (Field f : parent.getDeclaredFields()) {
+				allFields.add(f);
+			}
+			parent = parent.getSuperclass();
+		}
+
 		for (Field field : allFields) {
 			if (Modifier.isPrivate(field.getModifiers())) {
 				privateFields.add(field);
