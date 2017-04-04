@@ -37,7 +37,7 @@ public class KokyakuTantoBushoDomainBuilder
 	@Override
 	protected void apply(KokyakuTantoBushoDomain domain, KokyakuTantoBushoDomainBuilder builder) {
 		builder.withKokyakuDomain(domain.getKokyakuDomain());
-		builder.withBudhoDomain(domain.getBushoDomain());
+		builder.withBushoDomain(domain.getBushoDomain());
 		builder.withShohizeiKubun(domain.getShohizeiKubun());
 		builder.withSekininshaName(domain.getSekininshaName());
 		builder.withKokyakuTantoBushoHanbaiDomain(domain.getKokyakuTantoBushoHanbaiDomain());
@@ -90,7 +90,7 @@ public class KokyakuTantoBushoDomainBuilder
 	 *            budhoDomain
 	 * @return {@link KokyakuTantoBushoDomainBuilder}
 	 */
-	public KokyakuTantoBushoDomainBuilder withBudhoDomain(final com.mkyong.helloworld.domain.BushoDomain budhoDomain) {
+	public KokyakuTantoBushoDomainBuilder withBushoDomain(final com.mkyong.helloworld.domain.BushoDomain budhoDomain) {
 		addConfigurator(new BuilderConfigurator<KokyakuTantoBushoDomainBuilder>() {
 			@Override
 			public void configure(KokyakuTantoBushoDomainBuilder builder) {

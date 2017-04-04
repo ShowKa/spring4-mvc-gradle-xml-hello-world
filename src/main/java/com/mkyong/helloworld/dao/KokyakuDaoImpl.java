@@ -7,16 +7,26 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
+import com.mkyong.helloworld.dao.i.BushoDao;
 import com.mkyong.helloworld.dao.i.KokyakuDao;
 import com.mkyong.helloworld.dao.parameter.KokyakuSearchParameter;
+import com.mkyong.helloworld.domain.BushoDomain;
 import com.mkyong.helloworld.domain.KokyakuDomain;
+import com.mkyong.helloworld.domain.builder.KokyakuDomainBuilder;
 import com.mkyong.helloworld.entity.MKokyaku;
+import com.mkyong.helloworld.kubun.GenteiKubun;
+import com.mkyong.helloworld.kubun.KokyakuKubun;
 
 @Component
 public class KokyakuDaoImpl extends AbstractDao<String, MKokyaku> implements KokyakuDao {
+
+	// DAO
+	@Autowired
+	private BushoDao bushoDao;
 
 	@Override
 	@SuppressWarnings("unchecked")
@@ -54,6 +64,30 @@ public class KokyakuDaoImpl extends AbstractDao<String, MKokyaku> implements Kok
 			list.add((MKokyaku) o);
 		}
 		return list;
+	}
+
+	/**
+	 * 顧客ドメイン取得
+	 */
+	@Override
+	public KokyakuDomain getDomain(String kokyakuCode) {
+
+		// get entity
+		MKokyaku e = getByPrimaryKey(kokyakuCode);
+
+		// get another domains
+		BushoDomain shukanBushoDomain = bushoDao.getBushoDomain(e.getShukanBushoCode());
+
+		// build domain
+		KokyakuDomainBuilder builder = new KokyakuDomainBuilder();
+		builder.withAddress(e.getAddress());
+		builder.withCode(kokyakuCode);
+		builder.withGenteiKubun(GenteiKubun.valueOf(e.getGenteiKubun()));
+		builder.withKokyakuKubun(KokyakuKubun.valueOf(e.getKokyakuKubun()));
+		builder.withName(e.getName());
+		builder.withShukanBushoDomain(shukanBushoDomain);
+
+		return builder.build();
 	}
 
 	@Override

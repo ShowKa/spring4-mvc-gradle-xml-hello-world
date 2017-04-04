@@ -49,4 +49,12 @@ public class KokyakuKojinTantoBushoServiceImpl extends KokyakuTantoBushoServiceI
 		return true;
 	}
 
+	/**
+	 * 登録
+	 */
+	@Override
+	public void register(KokyakuKojinTantoBushoDomain domain) {
+		// TODO Auto-generated method stub
+	}
+
 }

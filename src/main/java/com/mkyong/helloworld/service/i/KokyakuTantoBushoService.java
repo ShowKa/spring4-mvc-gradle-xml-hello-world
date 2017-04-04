@@ -1,8 +1,10 @@
 package com.mkyong.helloworld.service.i;
 
 import com.mkyong.helloworld.domain.KokyakuTantoBushoDomain;
+import com.mkyong.helloworld.domain.NyukinMotoDomain;
 
 public interface KokyakuTantoBushoService {
+
 	/**
 	 * 顧客に、すでに担当部署が登録されているかチェックする
 	 * 
@@ -21,6 +23,17 @@ public interface KokyakuTantoBushoService {
 	 * @return チェック結果
 	 */
 	public boolean validate(KokyakuTantoBushoDomain kokyakuTantoBushoDomain);
+
+	/**
+	 * 入金元取得
+	 * 
+	 * @param kokyakuCode
+	 *            顧客コード
+	 * @param BushoCode
+	 *            部署コード
+	 * @return 入金元ドメイン
+	 */
+	public NyukinMotoDomain getNyukinMoto(String kokyakuCode, String bushoCode);
 
 	/**
 	 * 顧客担当部署情報更新

@@ -51,7 +51,16 @@ public interface KokyakuDao {
 	 * @return 顧客 Entity List
 	 */
 	public List<MKokyaku> searchByName(String name);
-	
+
+	/**
+	 * ドメイン取得
+	 * 
+	 * @param kokyakuCode
+	 *            顧客コード
+	 * @return 顧客ドメイン
+	 */
+	public KokyakuDomain getDomain(String kokyakuCode);
+
 	/**
 	 * 顧客ドメイン登録
 	 */

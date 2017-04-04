@@ -39,6 +39,17 @@ public interface KokyakuBushoDao {
 	public void delete(MKokyakuTantoBusho entity);
 
 	/**
+	 * ドメイン取得
+	 * 
+	 * @param kokyakuCode
+	 *            顧客コード
+	 * @param bushoCode
+	 *            部署コード
+	 * @return 顧客担当部署ドメイン
+	 */
+	public KokyakuTantoBushoDomain getDomain(String kokyakuCode, String bushoCode);
+
+	/**
 	 * ドメイン登録
 	 * 
 	 * @param domain

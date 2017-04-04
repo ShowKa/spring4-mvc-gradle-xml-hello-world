@@ -11,4 +11,11 @@ public interface KokyakuKojinTantoBushoService {
 	 */
 	public boolean validate(KokyakuKojinTantoBushoDomain domain);
 
+	/**
+	 * ドメイン登録
+	 * 
+	 * @param domain
+	 */
+	public void register(KokyakuKojinTantoBushoDomain domain);
+
 }

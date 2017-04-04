@@ -9,6 +9,7 @@ import com.mkyong.helloworld.dao.i.KokyakuBushoDao;
 import com.mkyong.helloworld.domain.BushoDomain;
 import com.mkyong.helloworld.domain.KokyakuDomain;
 import com.mkyong.helloworld.domain.KokyakuTantoBushoDomain;
+import com.mkyong.helloworld.domain.NyukinMotoDomain;
 import com.mkyong.helloworld.entity.MKokyakuTantoBusho;
 import com.mkyong.helloworld.entity.MKokyakuTantoBushoId;
 import com.mkyong.helloworld.kubun.BushoKubun;
@@ -26,10 +27,11 @@ import com.mkyong.helloworld.system.exception.ValidateException;
 @Transactional
 public class KokyakuTantoBushoServiceImpl implements KokyakuTantoBushoService {
 
-	// service
+	// DAO
 	@Autowired
 	private KokyakuBushoDao kokyakuBushoDao;
 
+	// service
 	@Autowired
 	private BushoService bushoService;
 
@@ -100,6 +102,15 @@ public class KokyakuTantoBushoServiceImpl implements KokyakuTantoBushoService {
 
 		// OK
 		return true;
+	}
+
+	/**
+	 * 入金元取得
+	 */
+	@Override
+	public NyukinMotoDomain getNyukinMoto(String kokyakuCode, String bushoCode) {
+		KokyakuTantoBushoDomain kokyakuTantoBusho = kokyakuBushoDao.getDomain(kokyakuCode, bushoCode);
+		return kokyakuTantoBusho.getNyukinMotoDomain();
 	}
 
 	@Override
