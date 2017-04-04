@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mkyong.helloworld.dao.i.KokyakuBushoDao;
 import com.mkyong.helloworld.domain.BushoDomain;
 import com.mkyong.helloworld.domain.KokyakuDomain;
 import com.mkyong.helloworld.domain.KokyakuKojinDomain;
@@ -20,6 +21,9 @@ import com.mkyong.helloworld.system.exception.ValidateException;
 @Transactional
 public class KokyakuKojinTantoBushoServiceImpl extends KokyakuTantoBushoServiceImpl
 		implements KokyakuKojinTantoBushoService {
+
+	@Autowired
+	private KokyakuBushoDao kokyakuBushoDao;
 
 	@Autowired
 	private KokyakuKojinService kokyakuKojinService;
@@ -54,7 +58,10 @@ public class KokyakuKojinTantoBushoServiceImpl extends KokyakuTantoBushoServiceI
 	 */
 	@Override
 	public void register(KokyakuKojinTantoBushoDomain domain) {
-		// TODO Auto-generated method stub
+		// 含有ドメイン
+		kokyakuKojinService.register(domain.getKokyakuKojinDomain());
+		// 登録
+		kokyakuBushoDao.register(domain);
 	}
 
 }

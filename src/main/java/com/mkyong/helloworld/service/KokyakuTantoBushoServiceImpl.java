@@ -115,14 +115,14 @@ public class KokyakuTantoBushoServiceImpl implements KokyakuTantoBushoService {
 
 	@Override
 	public void register(KokyakuTantoBushoDomain domain) {
-		kokyakuBushoDao.register(domain);
-
-		// 含有ドメイン登録
 
 		// 顧客ドメイン
 		if (domain.isShukan()) {
 			kokyakuService.register(domain.getKokyakuDomain());
 		}
+
+		// メインドメイン
+		kokyakuBushoDao.register(domain);
 
 		// 入金元ドメイン
 		nyukinMotoService.register(domain.getNyukinMotoDomain());

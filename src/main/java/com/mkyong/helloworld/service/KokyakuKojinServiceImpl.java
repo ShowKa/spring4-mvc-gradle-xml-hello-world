@@ -20,7 +20,7 @@ import com.mkyong.helloworld.system.exception.NotExistException;
 public class KokyakuKojinServiceImpl extends KokyakuServiceImpl implements KokyakuKojinService {
 
 	@Autowired
-	KokyakuKojinDao kokyakuKojinDao;
+	private KokyakuKojinDao kokyakuKojinDao;
 
 	/**
 	 * 顧客個人整合性検証
@@ -56,10 +56,9 @@ public class KokyakuKojinServiceImpl extends KokyakuServiceImpl implements Kokya
 
 	@Override
 	public boolean register(KokyakuKojinDomain domain) {
-		kokyakuKojinDao.register(domain);
-		// 基底クラス登録
+		// 基底クラス登録（依存関係を考慮し、基底クラスが先）
 		super.register(domain);
+		kokyakuKojinDao.register(domain);
 		return true;
 	}
-
 }
