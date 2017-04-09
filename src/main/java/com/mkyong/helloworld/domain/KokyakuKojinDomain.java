@@ -2,6 +2,7 @@ package com.mkyong.helloworld.domain;
 
 import com.mkyong.helloworld.kubun.GenteiKubun;
 import com.mkyong.helloworld.kubun.KokyakuKubun;
+import com.mkyong.helloworld.system.exception.SystemException;
 
 import lombok.Getter;
 
@@ -41,6 +42,13 @@ public class KokyakuKojinDomain extends KokyakuDomain {
 			String address, BushoDomain shukanBushoDomain, KokyakuDomain oyaKokyakuDomain) {
 		super(code, genteiKubun, kokyakuKubun, name, address, shukanBushoDomain);
 		this.oyaKokyakuDomain = oyaKokyakuDomain;
+	}
+
+	@Override
+	public void validate() throws SystemException {
+		if (oyaKokyakuDomain == null) {
+			throw new SystemException("親顧客が未設定です。");
+		}
 	}
 
 	@Override

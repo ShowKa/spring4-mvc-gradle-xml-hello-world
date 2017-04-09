@@ -32,13 +32,18 @@ public class KokyakuKojinServiceImpl extends KokyakuServiceImpl implements Kokya
 			throw new IncorrectKubunException("顧客区分", domain.getKokyakuKubun());
 		}
 
+		// 親顧客コード未入力ならNG
+		KokyakuDomain oya = domain.getOyaKokyakuDomain();
+		if (StringUtils.isEmpty(oya.getCode())) {
+			throw new EmptyException("親顧客");
+		}
+
 		// 住所未入力ならNG
 		if (StringUtils.isEmpty(domain.getAddress())) {
 			throw new EmptyException("住所");
 		}
 
 		// 親顧客が存在しないならNG
-		KokyakuDomain oya = domain.getOyaKokyakuDomain();
 		if (!this.existsKokyaku(oya.getCode())) {
 			throw new NotExistException("親顧客として指定した顧客", oya.getCode());
 		}
