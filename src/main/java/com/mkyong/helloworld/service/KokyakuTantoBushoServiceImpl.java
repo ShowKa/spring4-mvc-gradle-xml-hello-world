@@ -15,6 +15,7 @@ import com.mkyong.helloworld.entity.MKokyakuTantoBushoId;
 import com.mkyong.helloworld.kubun.BushoKubun;
 import com.mkyong.helloworld.service.i.BushoService;
 import com.mkyong.helloworld.service.i.KokyakuService;
+import com.mkyong.helloworld.service.i.KokyakuTantoBushoHanbaiService;
 import com.mkyong.helloworld.service.i.KokyakuTantoBushoService;
 import com.mkyong.helloworld.service.i.NyukinMotoService;
 import com.mkyong.helloworld.service.i.SeikyuSakiService;
@@ -37,6 +38,9 @@ public class KokyakuTantoBushoServiceImpl implements KokyakuTantoBushoService {
 
 	@Autowired
 	private KokyakuService kokyakuService;
+
+	@Autowired
+	private KokyakuTantoBushoHanbaiService kokyakuTantoBushoHanbaiService;
 
 	@Autowired
 	private NyukinMotoService nyukinMotoService;
@@ -63,16 +67,13 @@ public class KokyakuTantoBushoServiceImpl implements KokyakuTantoBushoService {
 	 * 顧客担当部署整合性検証
 	 */
 	@Override
-	public boolean validate(KokyakuTantoBushoDomain kokyakuTantoBushoDomain) {
-
-		// 顧客担当部署
-		KokyakuTantoBushoDomain d = kokyakuTantoBushoDomain;
+	public boolean validate(KokyakuTantoBushoDomain domain) {
 
 		// 顧客
-		KokyakuDomain kokyaku = d.getKokyakuDomain();
+		KokyakuDomain kokyaku = domain.getKokyakuDomain();
 
 		// 担当部署
-		BushoDomain tantoBusho = d.getBushoDomain();
+		BushoDomain tantoBusho = domain.getBushoDomain();
 
 		// 担当部署存在チェック
 		boolean existsTantoBusho = bushoService.existsBusho(tantoBusho.getCode());
@@ -97,8 +98,11 @@ public class KokyakuTantoBushoServiceImpl implements KokyakuTantoBushoService {
 
 		// 含有ドメインの整合性判定
 		kokyakuService.validate(kokyaku);
-		nyukinMotoService.validate(d.getNyukinMotoDomain());
-		seikyuSakiService.validate(d.getSeikyuSakiDomain());
+		if (domain.isHanbaiBusho()) {
+			kokyakuTantoBushoHanbaiService.validate(domain.getKokyakuTantoBushoHanbaiDomain());
+		}
+		nyukinMotoService.validate(domain.getNyukinMotoDomain());
+		seikyuSakiService.validate(domain.getSeikyuSakiDomain());
 
 		// OK
 		return true;
@@ -123,6 +127,11 @@ public class KokyakuTantoBushoServiceImpl implements KokyakuTantoBushoService {
 
 		// メインドメイン
 		kokyakuBushoDao.register(domain);
+
+		// 販売部署
+		if (domain.isHanbaiBusho()) {
+			kokyakuTantoBushoHanbaiService.register(domain.getKokyakuTantoBushoHanbaiDomain());
+		}
 
 		// 入金元ドメイン
 		nyukinMotoService.register(domain.getNyukinMotoDomain());

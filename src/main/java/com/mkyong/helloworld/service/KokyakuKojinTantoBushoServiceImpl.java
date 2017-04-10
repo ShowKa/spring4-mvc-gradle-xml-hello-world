@@ -33,6 +33,7 @@ public class KokyakuKojinTantoBushoServiceImpl extends KokyakuTantoBushoServiceI
 	 */
 	@Override
 	public boolean validate(KokyakuKojinTantoBushoDomain domain) {
+
 		// この個人顧客の担当部署 ∈ 親納品先の担当部署一覧
 		KokyakuKojinDomain kojin = domain.getKokyakuKojinDomain();
 		KokyakuDomain oya = kojin.getOyaKokyakuDomain();
@@ -45,6 +46,11 @@ public class KokyakuKojinTantoBushoServiceImpl extends KokyakuTantoBushoServiceI
 		// 個人顧客の場合、内税
 		if (domain.getShohizeiKubun() != ShohizeiKubun.内税) {
 			throw new IncorrectKubunException("消費税区分", domain.getShohizeiKubun());
+		}
+
+		// 顧客個人は必ず不定期
+		if (!domain.isHanbaiBusho()) {
+			validateHanbaiBusho(domain);
 		}
 
 		// 含有ドメインの整合性検証
@@ -64,4 +70,12 @@ public class KokyakuKojinTantoBushoServiceImpl extends KokyakuTantoBushoServiceI
 		kokyakuBushoDao.register(domain);
 	}
 
+	/**
+	 * 部署=販売の場合の整合性判定
+	 */
+	public void validateHanbaiBusho(KokyakuKojinTantoBushoDomain domain) throws ValidateException {
+		if (domain.getKokyakuTantoBushoHanbaiDomain().isHuteiki()) {
+			throw new IncorrectKubunException("ブロックNo.", domain.getKokyakuTantoBushoHanbaiDomain().getBlockNumber());
+		}
+	}
 }

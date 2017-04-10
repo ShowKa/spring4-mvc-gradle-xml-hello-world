@@ -1,5 +1,6 @@
 package com.mkyong.helloworld.domain;
 
+import com.mkyong.helloworld.kubun.BlockNumber;
 import com.mkyong.helloworld.system.exception.SystemException;
 
 import lombok.AllArgsConstructor;
@@ -17,7 +18,7 @@ public class KokyakuTantoBushoHanbaiDomain extends AbstractDomain {
 	private BushoDomain bushoDomain;
 
 	/** ブロックナンバー */
-	private String blockNumber;
+	private BlockNumber blockNumber;
 
 	/** バージョン（排他制御用） */
 	private Integer version;
@@ -36,7 +37,14 @@ public class KokyakuTantoBushoHanbaiDomain extends AbstractDomain {
 
 	@Override
 	public void validate() throws SystemException {
-		// TODO Auto-generated method stub
+	}
 
+	/**
+	 * 不定期巡回か判定
+	 * 
+	 * @return 不定期巡回（ブロック=ZZ)ならtrue
+	 */
+	public boolean isHuteiki() {
+		return blockNumber.isHuteiki();
 	}
 }

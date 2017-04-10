@@ -74,6 +74,20 @@ public class KokyakuTantoBushoDomain extends AbstractDomain {
 	}
 
 	/**
-	 * 入金取りまとめ判定
+	 * 販売部署判定
+	 * 
+	 * @return 担当部署の事業が販売の場合true
 	 */
+	public boolean isHanbaiBusho() {
+		return bushoDomain.isHanbaiJigyoBusho();
+	}
+
+	/**
+	 * レンタル部署判定
+	 * 
+	 * @return 担当部署の事業がレンタルの場合true
+	 */
+	public boolean isRentalBusho() {
+		return bushoDomain.isRentalJigyoBusho();
+	}
 }

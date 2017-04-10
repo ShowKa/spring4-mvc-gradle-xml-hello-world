@@ -1,6 +1,7 @@
 package com.mkyong.helloworld.domain.builder;
 
 import com.mkyong.helloworld.domain.KokyakuTantoBushoHanbaiDomain;
+import com.mkyong.helloworld.kubun.BlockNumber;
 
 public class KokyakuTantoBushoHanbaiDomainBuilder
 		extends AbstractDomainBuilder<KokyakuTantoBushoHanbaiDomain, KokyakuTantoBushoHanbaiDomainBuilder> {
@@ -13,7 +14,7 @@ public class KokyakuTantoBushoHanbaiDomainBuilder
 	private com.mkyong.helloworld.domain.BushoDomain bushoDomain;
 
 	/** blockNumber */
-	private java.lang.String blockNumber;
+	private BlockNumber blockNumber;
 
 	/** version */
 	private java.lang.Integer version;
@@ -86,7 +87,7 @@ public class KokyakuTantoBushoHanbaiDomainBuilder
 	 *            blockNumber
 	 * @return {@link KokyakuTantoBushoHanbaiDomainBuilder}
 	 */
-	public KokyakuTantoBushoHanbaiDomainBuilder withBlockNumber(final java.lang.String blockNumber) {
+	public KokyakuTantoBushoHanbaiDomainBuilder withBlockNumber(final BlockNumber blockNumber) {
 		addConfigurator(new BuilderConfigurator<KokyakuTantoBushoHanbaiDomainBuilder>() {
 			@Override
 			public void configure(KokyakuTantoBushoHanbaiDomainBuilder builder) {
