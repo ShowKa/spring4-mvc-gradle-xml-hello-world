@@ -64,6 +64,14 @@ public class KokyakuTantoBushoServiceImpl implements KokyakuTantoBushoService {
 	}
 
 	/**
+	 * 顧客担当部署取得
+	 */
+	@Override
+	public KokyakuTantoBushoDomain getKokyakuTantoBusho(String kokyakuCode, String bushoCode) {
+		return kokyakuBushoDao.getDomain(kokyakuCode, bushoCode);
+	}
+
+	/**
 	 * 顧客担当部署整合性検証
 	 */
 	@Override
@@ -145,4 +153,5 @@ public class KokyakuTantoBushoServiceImpl implements KokyakuTantoBushoService {
 	public void update(KokyakuTantoBushoDomain domain) {
 		// TODO Auto-generated method stub
 	}
+
 }

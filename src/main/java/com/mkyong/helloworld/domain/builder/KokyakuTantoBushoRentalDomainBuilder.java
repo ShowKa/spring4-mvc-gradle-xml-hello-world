@@ -1,6 +1,7 @@
 package com.mkyong.helloworld.domain.builder;
 
 import com.mkyong.helloworld.domain.KokyakuTantoBushoRentalDomain;
+import com.mkyong.helloworld.kubun.CourseCode;
 
 public class KokyakuTantoBushoRentalDomainBuilder
 		extends AbstractDomainBuilder<KokyakuTantoBushoRentalDomain, KokyakuTantoBushoRentalDomainBuilder> {
@@ -13,7 +14,7 @@ public class KokyakuTantoBushoRentalDomainBuilder
 	private com.mkyong.helloworld.domain.BushoDomain bushoDomain;
 
 	/** courseCode */
-	private java.lang.String courseCode;
+	private CourseCode courseCode;
 
 	/** version */
 	private java.lang.Integer version;
@@ -86,7 +87,7 @@ public class KokyakuTantoBushoRentalDomainBuilder
 	 *            courseCode
 	 * @return {@link KokyakuTantoBushoRentalDomainBuilder}
 	 */
-	public KokyakuTantoBushoRentalDomainBuilder withCourseCode(final java.lang.String courseCode) {
+	public KokyakuTantoBushoRentalDomainBuilder withCourseCode(final CourseCode courseCode) {
 		addConfigurator(new BuilderConfigurator<KokyakuTantoBushoRentalDomainBuilder>() {
 			@Override
 			public void configure(KokyakuTantoBushoRentalDomainBuilder builder) {

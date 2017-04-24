@@ -10,6 +10,7 @@ import com.mkyong.helloworld.domain.BushoDomain;
 import com.mkyong.helloworld.domain.KokyakuDomain;
 import com.mkyong.helloworld.domain.KokyakuKojinDomain;
 import com.mkyong.helloworld.domain.KokyakuKojinTantoBushoDomain;
+import com.mkyong.helloworld.kubun.CourseCode;
 import com.mkyong.helloworld.kubun.ShohizeiKubun;
 import com.mkyong.helloworld.service.i.KokyakuKojinService;
 import com.mkyong.helloworld.service.i.KokyakuKojinTantoBushoService;
@@ -48,9 +49,14 @@ public class KokyakuKojinTantoBushoServiceImpl extends KokyakuTantoBushoServiceI
 			throw new IncorrectKubunException("消費税区分", domain.getShohizeiKubun());
 		}
 
-		// 顧客個人は必ず不定期
-		if (!domain.isHanbaiBusho()) {
+		// 販売部署の場合の整合性検証
+		if (domain.isHanbaiBusho()) {
 			validateHanbaiBusho(domain);
+		}
+
+		// レンタル部署の場合の整合性検証
+		if (domain.isRentalBusho()) {
+			validateRentalBusho(domain);
 		}
 
 		// 含有ドメインの整合性検証
@@ -71,11 +77,27 @@ public class KokyakuKojinTantoBushoServiceImpl extends KokyakuTantoBushoServiceI
 	}
 
 	/**
-	 * 部署=販売の場合の整合性判定
+	 * 部署=販売の場合の整合性判定.
+	 * 
+	 * <pre>
+	 * TODO 本当は専用のServiceに定義した方が良い
+	 * </pre>
 	 */
+	@Override
 	public void validateHanbaiBusho(KokyakuKojinTantoBushoDomain domain) throws ValidateException {
 		if (domain.getKokyakuTantoBushoHanbaiDomain().isHuteiki()) {
 			throw new IncorrectKubunException("ブロックNo.", domain.getKokyakuTantoBushoHanbaiDomain().getBlockNumber());
+		}
+	}
+
+	/**
+	 * 部署＝レンタルの場合の整合性検証
+	 */
+	@Override
+	public void validateRentalBusho(KokyakuKojinTantoBushoDomain domain) throws ValidateException {
+		CourseCode course = domain.getKokyakuTantoBushoRentalDomain().getCourseCode();
+		if (course != CourseCode.ZZZZ) {
+			throw new IncorrectKubunException("コースコード", course);
 		}
 	}
 }

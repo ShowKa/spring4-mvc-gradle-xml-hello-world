@@ -1,5 +1,6 @@
 package com.mkyong.helloworld.domain;
 
+import com.mkyong.helloworld.kubun.CourseCode;
 import com.mkyong.helloworld.system.exception.SystemException;
 
 import lombok.AllArgsConstructor;
@@ -17,7 +18,7 @@ public class KokyakuTantoBushoRentalDomain extends AbstractDomain {
 	private BushoDomain bushoDomain;
 
 	/** コースコード */
-	private String courseCode;
+	private CourseCode courseCode;
 
 	/** バージョン（排他制御用） */
 	private Integer version;

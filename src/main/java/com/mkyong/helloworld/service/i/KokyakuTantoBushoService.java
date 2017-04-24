@@ -17,6 +17,17 @@ public interface KokyakuTantoBushoService {
 	public boolean existsKokyakuTantoBusho(String kokyakuCode, String bushoCode);
 
 	/**
+	 * コードから顧客担当部署を取得する
+	 * 
+	 * @param kokyakuCode
+	 *            顧客コード
+	 * @param bushoCode
+	 *            部署コード
+	 * @return 顧客担当部署ドメイン
+	 */
+	public KokyakuTantoBushoDomain getKokyakuTantoBusho(String kokyakuCode, String bushoCode);
+
+	/**
 	 * 顧客担当部署の整合性チェック
 	 * 
 	 * @param kokyakuTantoBushoDomain

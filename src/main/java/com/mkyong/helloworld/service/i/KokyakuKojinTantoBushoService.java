@@ -1,6 +1,7 @@
 package com.mkyong.helloworld.service.i;
 
 import com.mkyong.helloworld.domain.KokyakuKojinTantoBushoDomain;
+import com.mkyong.helloworld.system.exception.ValidateException;
 
 public interface KokyakuKojinTantoBushoService {
 	/**
@@ -17,5 +18,25 @@ public interface KokyakuKojinTantoBushoService {
 	 * @param domain
 	 */
 	public void register(KokyakuKojinTantoBushoDomain domain);
+
+	/**
+	 * 販売部署の場合の整合性検証
+	 * 
+	 * @param domain
+	 *            ドメイン
+	 * @throws ValidateException
+	 *             検証例外
+	 */
+	public void validateHanbaiBusho(KokyakuKojinTantoBushoDomain domain) throws ValidateException;
+
+	/**
+	 * レンタル部署の整合性検証
+	 * 
+	 * @param domain
+	 *            ドメイン
+	 * @throws ValidateException
+	 *             検証例外
+	 */
+	public void validateRentalBusho(KokyakuKojinTantoBushoDomain domain) throws ValidateException;
 
 }
