@@ -2,6 +2,8 @@ package com.mkyong.helloworld.web.u01;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -54,7 +56,8 @@ public class U01G001Controller {
 
 	// public method called by request
 	@RequestMapping(value = "/U01G001", method = RequestMethod.GET)
-	public String index(Map<String, Object> model) {
+	public String index(Map<String, Object> model, HttpSession session) {
+		System.out.println(session);
 		return "/u01/u01g001";
 	}
 
