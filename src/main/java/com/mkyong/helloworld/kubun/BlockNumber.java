@@ -8,7 +8,7 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum BlockNumber implements Kubun {
-	AA("AA"), ZZ("ZZ");
+	AA("AA"), ZZ("ZZ"), NULL("");
 	private String code;
 
 	public boolean isHuteiki() {

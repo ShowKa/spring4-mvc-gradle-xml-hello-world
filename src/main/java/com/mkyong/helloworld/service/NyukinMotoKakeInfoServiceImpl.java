@@ -7,7 +7,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mkyong.helloworld.dao.i.NyukinKakeInfoDao;
 import com.mkyong.helloworld.domain.NyukinKakeInfoDomain;
+import com.mkyong.helloworld.kubun.NyukinHohoKubun;
 import com.mkyong.helloworld.service.i.NyukinKakeInfoService;
+import com.mkyong.helloworld.system.exception.EmptyException;
 import com.mkyong.helloworld.system.exception.WrongDateOrderException;
 
 @Component
@@ -25,6 +27,9 @@ public class NyukinMotoKakeInfoServiceImpl implements NyukinKakeInfoService {
 
 	@Override
 	public void validate(NyukinKakeInfoDomain domain) {
+		if (domain.getNyukinHohoKubun() == NyukinHohoKubun.NULL) {
+			throw new EmptyException("販売方法");
+		}
 		// 締日 >= 入金日ならエラー
 		if (!domain.shimeDateBeforeNyukinDate()) {
 			throw new WrongDateOrderException("請求の締日", "入金日");
