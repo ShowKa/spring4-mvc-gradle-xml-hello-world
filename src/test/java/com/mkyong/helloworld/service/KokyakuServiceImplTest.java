@@ -75,7 +75,7 @@ public class KokyakuServiceImplTest extends ServiceTestCaseBase {
 	@Test
 	public void testValidateHojin() {
 		BushoDomain shukanBushoDomain = new BushoDomainBuilder().withBushoKubun(BushoKubun.営業所).build();
-		KokyakuDomain domain = new KokyakuDomainBuilder().withKokyakuKubun(KokyakuKubun.法人)
+		KokyakuDomain domain = new KokyakuDomainBuilder().withKokyakuKubun(KokyakuKubun.通常法人)
 				.withGenteiKubun(GenteiKubun.限定しない)
 				.withShukanBushoDomain(shukanBushoDomain)
 				.build();

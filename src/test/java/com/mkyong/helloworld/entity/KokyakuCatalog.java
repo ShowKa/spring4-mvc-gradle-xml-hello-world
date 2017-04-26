@@ -9,7 +9,7 @@ public class KokyakuCatalog {
 	public static KokyakuDomain KOKYAKU_UT001 = new KokyakuDomainBuilder().withAddress("UT001住所")
 			.withCode("UT001")
 			.withGenteiKubun(GenteiKubun.限定しない)
-			.withKokyakuKubun(KokyakuKubun.法人)
+			.withKokyakuKubun(KokyakuKubun.通常法人)
 			.withName("UT001名前")
 			// .withShukanBushoCode("UT001")
 			.build();

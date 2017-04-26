@@ -64,7 +64,7 @@ public class KokyakuDaoImplTest extends DaoTestCaseBase {
 		KokyakuDomain d = new KokyakuDomainBuilder().withAddress("住所テスト")
 				.withCode("XXXXX")
 				.withGenteiKubun(GenteiKubun.限定しない)
-				.withKokyakuKubun(KokyakuKubun.法人)
+				.withKokyakuKubun(KokyakuKubun.通常法人)
 				.withName("名前テスト")
 				.withShukanBushoDomain(new BushoDomainBuilder().withCode("UT01").build())
 				.build();

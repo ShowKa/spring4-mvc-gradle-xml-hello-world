@@ -20,7 +20,7 @@ public class KokyakuDomainTest extends TestCase {
 
 	@Test
 	public void test_IsKojin_02() {
-		KokyakuDomain kokyakuDomain = new KokyakuDomainBuilder().withKokyakuKubun(KokyakuKubun.法人)
+		KokyakuDomain kokyakuDomain = new KokyakuDomainBuilder().withKokyakuKubun(KokyakuKubun.通常法人)
 				.withGenteiKubun(GenteiKubun.限定)
 				.build();
 
