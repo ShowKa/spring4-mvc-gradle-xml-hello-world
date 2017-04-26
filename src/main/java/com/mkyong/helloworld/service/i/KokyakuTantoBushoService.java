@@ -2,6 +2,7 @@ package com.mkyong.helloworld.service.i;
 
 import com.mkyong.helloworld.domain.KokyakuTantoBushoDomain;
 import com.mkyong.helloworld.domain.NyukinMotoDomain;
+import com.mkyong.helloworld.system.exception.ValidateException;
 
 public interface KokyakuTantoBushoService {
 
@@ -34,6 +35,15 @@ public interface KokyakuTantoBushoService {
 	 * @return チェック結果
 	 */
 	public boolean validate(KokyakuTantoBushoDomain kokyakuTantoBushoDomain);
+
+	/**
+	 * 
+	 * カフェラウンジの場合の顧客担当部署の整合性チェック
+	 * 
+	 * @param domain
+	 *            ドメイン
+	 */
+	public void validateCafe(KokyakuTantoBushoDomain domain) throws ValidateException;
 
 	/**
 	 * 入金元取得
