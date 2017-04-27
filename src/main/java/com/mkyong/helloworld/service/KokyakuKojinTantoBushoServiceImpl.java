@@ -59,6 +59,9 @@ public class KokyakuKojinTantoBushoServiceImpl extends KokyakuTantoBushoServiceI
 			validateRentalBusho(domain);
 		}
 
+		// 基底
+		super.validate(domain);
+
 		// 含有ドメインの整合性検証
 		kokyakuKojinService.validate(domain.getKokyakuKojinDomain());
 

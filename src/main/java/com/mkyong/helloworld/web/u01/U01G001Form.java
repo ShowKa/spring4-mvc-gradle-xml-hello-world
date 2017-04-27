@@ -65,11 +65,26 @@ public class U01G001Form {
 
 	/** 入金月区分 */
 	private String nyukinTsukiKubun;
-	/** 締日 */
 
+	/** 締日 */
 	private Integer ShimeDate;
 
 	/** 入金掛売情報バージョン */
 	private Integer nyukinKakeInfoVersion;
 
+	// 請求先ドメイン
+	/** 請求先ID */
+	private Integer seikyuSakiId = UUID.randomUUID().hashCode();
+
+	/** 請求区分 */
+	private String seikyuKubun;
+
+	/** 請求書作成場所区分 */
+	private String seikyushoSakuseiBashoKubun;
+
+	/** 請求先名 */
+	private String seikyuSakiName;
+
+	/** 請求先バージョン */
+	private Integer seikyuSakiVersion;
 }

@@ -25,12 +25,16 @@ import com.mkyong.helloworld.domain.builder.KokyakuKojinTantoBushoDomainBuilder;
 import com.mkyong.helloworld.domain.builder.KokyakuTantoBushoDomainBuilder;
 import com.mkyong.helloworld.domain.builder.NyukinKakeInfoDomainBuilder;
 import com.mkyong.helloworld.domain.builder.NyukinMotoDomainBuilder;
+import com.mkyong.helloworld.domain.builder.SeikyuSakiDomainBuilder;
 import com.mkyong.helloworld.kubun.GenteiKubun;
 import com.mkyong.helloworld.kubun.HanbaiKubun;
 import com.mkyong.helloworld.kubun.KokyakuKubun;
 import com.mkyong.helloworld.kubun.NyukinHohoKubun;
 import com.mkyong.helloworld.kubun.NyukinTsukiKubun;
+import com.mkyong.helloworld.kubun.SeikyuKubun;
+import com.mkyong.helloworld.kubun.SeikyushoSakuseiBashoKubun;
 import com.mkyong.helloworld.kubun.ShohizeiKubun;
+import com.mkyong.helloworld.kubun.i.Kubun;
 import com.mkyong.helloworld.service.i.BushoService;
 import com.mkyong.helloworld.service.i.KokyakuKojinTantoBushoService;
 import com.mkyong.helloworld.service.i.KokyakuService;
@@ -258,7 +262,17 @@ public class U01G001Controller {
 	 * @return 請求先ドメイン
 	 */
 	private SeikyuSakiDomain buildSeikyuSakiDomain(U01G001Form form) {
-		// TODO Auto-generated method stub
-		return null;
+		// get kubun
+		SeikyuKubun seikyuKubun = Kubun.get(SeikyuKubun.class, form.getSeikyuKubun());
+		SeikyushoSakuseiBashoKubun seikyushoSakuseiBashoKubun = Kubun.get(SeikyushoSakuseiBashoKubun.class,
+				form.getSeikyushoSakuseiBashoKubun());
+		// build
+		SeikyuSakiDomainBuilder b = new SeikyuSakiDomainBuilder();
+		b.withId(form.getSeikyuSakiId());
+		b.withSeikyuKubun(seikyuKubun);
+		b.withSeikyuSaskiName(form.getSeikyuSakiName());
+		b.withSeikyushoSakuseiBashoKubun(seikyushoSakuseiBashoKubun);
+		b.withVersion(form.getSeikyuSakiVersion());
+		return b.build();
 	}
 }

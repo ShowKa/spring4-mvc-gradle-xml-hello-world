@@ -10,17 +10,21 @@ import com.mkyong.helloworld.domain.BushoDomain;
 import com.mkyong.helloworld.domain.KokyakuDomain;
 import com.mkyong.helloworld.domain.KokyakuTantoBushoDomain;
 import com.mkyong.helloworld.domain.NyukinMotoDomain;
+import com.mkyong.helloworld.domain.SeikyuSakiDomain;
 import com.mkyong.helloworld.entity.MKokyakuTantoBusho;
 import com.mkyong.helloworld.entity.MKokyakuTantoBushoId;
 import com.mkyong.helloworld.kubun.BushoKubun;
 import com.mkyong.helloworld.kubun.HanbaiKubun;
 import com.mkyong.helloworld.kubun.KokyakuKubun;
+import com.mkyong.helloworld.kubun.SeikyuKubun;
+import com.mkyong.helloworld.kubun.SeikyushoSakuseiBashoKubun;
 import com.mkyong.helloworld.service.i.BushoService;
 import com.mkyong.helloworld.service.i.KokyakuService;
 import com.mkyong.helloworld.service.i.KokyakuTantoBushoHanbaiService;
 import com.mkyong.helloworld.service.i.KokyakuTantoBushoService;
 import com.mkyong.helloworld.service.i.NyukinMotoService;
 import com.mkyong.helloworld.service.i.SeikyuSakiService;
+import com.mkyong.helloworld.system.exception.EmptyException;
 import com.mkyong.helloworld.system.exception.IncorrectKubunException;
 import com.mkyong.helloworld.system.exception.NotExistException;
 import com.mkyong.helloworld.system.exception.ValidateException;
@@ -112,6 +116,11 @@ public class KokyakuTantoBushoServiceImpl implements KokyakuTantoBushoService {
 			this.validateCafe(domain);
 		}
 
+		// 販売区分 = 掛売の場合の整合性検証
+		if (domain.getNyukinMotoDomain().getHanbaiKubun() == HanbaiKubun.掛売) {
+			this.validateKakeuri(domain);
+		}
+
 		// 含有ドメインの整合性判定
 		kokyakuService.validate(kokyaku);
 		if (domain.isHanbaiBusho()) {
@@ -133,6 +142,21 @@ public class KokyakuTantoBushoServiceImpl implements KokyakuTantoBushoService {
 		HanbaiKubun hanbaiKubun = domain.getNyukinMotoDomain().getHanbaiKubun();
 		if (hanbaiKubun != HanbaiKubun.現金) {
 			throw new IncorrectKubunException("販売区分", hanbaiKubun);
+		}
+	}
+
+	/**
+	 * 掛売販売の場合の整合性検証
+	 */
+	@Override
+	public void validateKakeuri(KokyakuTantoBushoDomain domain) throws ValidateException {
+		// 販売区分 = 掛売の場合、請求書作成場所区分、請求区分（発送方法）の設定が必要
+		SeikyuSakiDomain seikyuSaki = domain.getSeikyuSakiDomain();
+		if (seikyuSaki.getSeikyuKubun() == SeikyuKubun.未設定) {
+			throw new EmptyException("請求区分");
+		}
+		if (seikyuSaki.getSeikyushoSakuseiBashoKubun() == SeikyushoSakuseiBashoKubun.未設定) {
+			throw new EmptyException("請求場所作成区分");
 		}
 	}
 

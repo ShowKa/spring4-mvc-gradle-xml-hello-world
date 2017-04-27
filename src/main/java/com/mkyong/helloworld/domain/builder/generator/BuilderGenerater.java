@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.mkyong.helloworld.domain.AbstractDomain;
-import com.mkyong.helloworld.domain.KokyakuKojinTantoBushoDomain;
+import com.mkyong.helloworld.domain.SeikyuSakiDomain;
 
 import freemarker.template.Configuration;
 import freemarker.template.TemplateException;
@@ -24,7 +24,7 @@ public class BuilderGenerater {
 	private static String DESTINATION = "generated/";
 
 	@SuppressWarnings("rawtypes")
-	static Class TARGET_CLASS = KokyakuKojinTantoBushoDomain.class;
+	static Class TARGET_CLASS = SeikyuSakiDomain.class;
 
 	public static void main(String[] args) {
 
@@ -60,7 +60,7 @@ public class BuilderGenerater {
 		ArrayList<HashMap<String, String>> members = new ArrayList<HashMap<String, String>>();
 		for (Field m : privateFields) {
 			HashMap<String, String> map = new HashMap<String, String>();
-			map.put("type", m.getType().getName());
+			map.put("type", m.getType().getSimpleName());
 			map.put("name", m.getName());
 			map.put("explain", m.getName());
 			members.add(map);

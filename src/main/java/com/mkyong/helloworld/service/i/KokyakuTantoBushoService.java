@@ -46,6 +46,15 @@ public interface KokyakuTantoBushoService {
 	public void validateCafe(KokyakuTantoBushoDomain domain) throws ValidateException;
 
 	/**
+	 * 
+	 * 掛売販売の場合の顧客担当部署の整合性チェック
+	 * 
+	 * @param domain
+	 *            ドメイン
+	 */
+	public void validateKakeuri(KokyakuTantoBushoDomain domain) throws ValidateException;
+
+	/**
 	 * 入金元取得
 	 * 
 	 * @param kokyakuCode
