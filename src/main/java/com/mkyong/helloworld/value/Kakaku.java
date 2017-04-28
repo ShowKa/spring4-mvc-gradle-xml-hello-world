@@ -22,8 +22,8 @@ public class Kakaku extends AbstractValue {
 	/** 価格表示用フォーマッタ */
 	private static DecimalFormat formatter = new DecimalFormat("\u00A5###,###");
 
-	// // constructor
-	Kakaku(long kakaku, double zei) {
+	// constructor
+	public Kakaku(long kakaku, double zei) {
 		this.kakaku = BigDecimal.valueOf(kakaku);
 		this.zei = BigDecimal.valueOf(zei);
 	}
@@ -31,7 +31,7 @@ public class Kakaku extends AbstractValue {
 	// public method
 	@Override
 	public boolean isEmpty() {
-		return kakaku == null;
+		return this instanceof EmptyKakaku;
 	}
 
 	/**
@@ -145,4 +145,59 @@ public class Kakaku extends AbstractValue {
 	public String getZeinukiKakakuFormatted() {
 		return formatter.format(kakaku);
 	}
+
+	/**
+	 * Empty
+	 */
+	public static final Kakaku EMPTY = EmptyKakaku.getInstance();
+
+	/**
+	 * Empty Class
+	 * 
+	 * @author ShowKa
+	 *
+	 */
+	private static class EmptyKakaku extends Kakaku {
+
+		private static EmptyKakaku singleton = new EmptyKakaku();
+
+		private EmptyKakaku() {
+			super(null, null);
+		}
+
+		public static Kakaku getInstance() {
+			return singleton;
+		}
+
+		@Override
+		public BigDecimal getZeikomiKakaku() {
+			return BigDecimal.ZERO;
+		}
+
+		@Override
+		public Kakaku add(Kakaku other) {
+			return this;
+		}
+
+		@Override
+		public Kakaku add(Kakaku... others) {
+			return this;
+		}
+
+		@Override
+		public Kakaku subtract(Kakaku other) {
+			return this;
+		}
+
+		@Override
+		public String getZeikomiKakakuFormatted() {
+			return new String();
+		}
+
+		@Override
+		public String getZeinukiKakakuFormatted() {
+			return new String();
+		}
+	}
+
 }
