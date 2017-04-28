@@ -78,12 +78,19 @@ eclipse {
   
   classpath {
   	file {
+
+  	  beforeMerged { classpath ->
+  	    classpath.entries.removeAll { it.path == 'src/generator/java' }
+  	    classpath.entries.removeAll { it.path == 'src/generator/resources' }
+  	  }
+
   	  whenMerged { classpath ->
   	    def genSrc = new org.gradle.plugins.ide.eclipse.model.SourceFolder('src/generator/java', null)
   	    def genResources = new org.gradle.plugins.ide.eclipse.model.SourceFolder('src/generator/resources', null)
   	    classpath.entries.add(genSrc)
   	    classpath.entries.add(genResources)
   	  }
+
   	}
   }
 }
