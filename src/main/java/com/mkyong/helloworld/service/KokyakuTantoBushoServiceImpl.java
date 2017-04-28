@@ -1,5 +1,8 @@
 package com.mkyong.helloworld.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -24,6 +27,7 @@ import com.mkyong.helloworld.service.i.KokyakuTantoBushoHanbaiService;
 import com.mkyong.helloworld.service.i.KokyakuTantoBushoService;
 import com.mkyong.helloworld.service.i.NyukinMotoService;
 import com.mkyong.helloworld.service.i.SeikyuSakiService;
+import com.mkyong.helloworld.system.Warning;
 import com.mkyong.helloworld.system.exception.EmptyException;
 import com.mkyong.helloworld.system.exception.IncorrectKubunException;
 import com.mkyong.helloworld.system.exception.NotExistException;
@@ -131,6 +135,26 @@ public class KokyakuTantoBushoServiceImpl implements KokyakuTantoBushoService {
 
 		// OK
 		return true;
+	}
+
+	/**
+	 * 顧客担当部署整合性検証(警告)
+	 */
+	@Override
+	public List<Warning> warn(KokyakuTantoBushoDomain domain) {
+		ArrayList<Warning> warnings = new ArrayList<Warning>();
+
+		// get old Data
+		String bushoCode = domain.getBushoDomain().getCode();
+		String kokyakuCode = domain.getKokyakuDomain().getCode();
+		KokyakuTantoBushoDomain kokyakuBeforeUpdate = kokyakuBushoDao.getDomain(kokyakuCode, bushoCode);
+
+		if (kokyakuBeforeUpdate.getShohizeiKubun() != domain.getShohizeiKubun()) {
+			Warning w = new Warning("消費税区分が変更されました。契約・売上情報に表示される単価が変更されます。");
+			warnings.add(w);
+		}
+
+		return warnings;
 	}
 
 	/**

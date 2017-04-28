@@ -1,7 +1,10 @@
 package com.mkyong.helloworld.service.i;
 
+import java.util.List;
+
 import com.mkyong.helloworld.domain.KokyakuTantoBushoDomain;
 import com.mkyong.helloworld.domain.NyukinMotoDomain;
+import com.mkyong.helloworld.system.Warning;
 import com.mkyong.helloworld.system.exception.ValidateException;
 
 public interface KokyakuTantoBushoService {
@@ -35,6 +38,14 @@ public interface KokyakuTantoBushoService {
 	 * @return チェック結果
 	 */
 	public boolean validate(KokyakuTantoBushoDomain kokyakuTantoBushoDomain);
+
+	/**
+	 * 顧客担当部署の整合性チェック（警告レベル）
+	 * 
+	 * @param kokyakuTantoBushoDomain
+	 * @return 警告
+	 */
+	public List<Warning> warn(KokyakuTantoBushoDomain domain);
 
 	/**
 	 * 

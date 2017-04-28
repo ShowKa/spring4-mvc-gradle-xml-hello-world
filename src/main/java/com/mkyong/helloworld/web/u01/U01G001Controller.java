@@ -1,5 +1,6 @@
 package com.mkyong.helloworld.web.u01;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -39,6 +40,7 @@ import com.mkyong.helloworld.service.i.BushoService;
 import com.mkyong.helloworld.service.i.KokyakuKojinTantoBushoService;
 import com.mkyong.helloworld.service.i.KokyakuService;
 import com.mkyong.helloworld.service.i.KokyakuTantoBushoService;
+import com.mkyong.helloworld.system.Warning;
 
 @Controller
 public class U01G001Controller {
@@ -82,6 +84,8 @@ public class U01G001Controller {
 
 		// 検証
 		kokyakuTantoBushoService.validate(domain);
+		List<Warning> warnings = kokyakuTantoBushoService.warn(domain);
+		warnings.size();
 
 		// 登録
 		kokyakuTantoBushoService.register(domain);
