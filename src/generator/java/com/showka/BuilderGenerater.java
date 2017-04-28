@@ -1,4 +1,4 @@
-package com.mkyong.helloworld.domain.builder.generator;
+package com.showka;
 
 import java.io.BufferedWriter;
 import java.io.File;

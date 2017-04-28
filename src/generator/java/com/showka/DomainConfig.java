@@ -1,8 +1,7 @@
-package com.mkyong.helloworld.domain.builder.generator;
+package com.showka;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
 
 import lombok.Getter;
 import lombok.Setter;

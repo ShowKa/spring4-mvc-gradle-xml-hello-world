@@ -75,6 +75,17 @@ eclipse {
         defaultOutputDir = file('src/main/webapp/WEB-INF/classes')
     }
   }
+  
+  classpath {
+  	file {
+  	  whenMerged { classpath ->
+  	    def genSrc = new org.gradle.plugins.ide.eclipse.model.SourceFolder('src/generator/java', null)
+  	    def genResources = new org.gradle.plugins.ide.eclipse.model.SourceFolder('src/generator/resources', null)
+  	    classpath.entries.add(genSrc)
+  	    classpath.entries.add(genResources)
+  	  }
+  	}
+  }
 }
 
 eclipse.jdt.file {
