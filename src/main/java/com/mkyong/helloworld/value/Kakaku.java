@@ -76,6 +76,9 @@ public class Kakaku extends AbstractValue {
 	 * @return 加算後の価格
 	 */
 	public Kakaku add(Kakaku other) {
+		if (other instanceof EmptyKakaku) {
+			return new Kakaku(kakaku, zei);
+		}
 		if (!zei.equals(other.zei)) {
 			throw new SystemException("加算対象の金額の税率が一致しません。");
 		}
@@ -97,6 +100,9 @@ public class Kakaku extends AbstractValue {
 	public Kakaku add(Kakaku... others) {
 		Kakaku base = new Kakaku(this.kakaku, this.zei);
 		for (Kakaku o : others) {
+			if (o instanceof EmptyKakaku) {
+				continue;
+			}
 			if (!zei.equals(o.zei)) {
 				throw new SystemException("加算対象の金額の税率が一致しません。");
 			}
@@ -149,55 +155,61 @@ public class Kakaku extends AbstractValue {
 	/**
 	 * Empty
 	 */
-	public static final Kakaku EMPTY = EmptyKakaku.getInstance();
+	public static final Kakaku EMPTY = EmptyKakaku.SINGLETON_INSTANCE;
 
-	/**
-	 * Empty Class
-	 * 
-	 * @author ShowKa
-	 *
-	 */
-	private static class EmptyKakaku extends Kakaku {
+}
 
-		private static EmptyKakaku singleton = new EmptyKakaku();
+/**
+ * Empty Class
+ * 
+ * @author ShowKa
+ *
+ */
+class EmptyKakaku extends Kakaku {
 
-		private EmptyKakaku() {
-			super(null, null);
-		}
+	public static EmptyKakaku SINGLETON_INSTANCE = new EmptyKakaku();
 
-		public static Kakaku getInstance() {
-			return singleton;
-		}
-
-		@Override
-		public BigDecimal getZeikomiKakaku() {
-			return BigDecimal.ZERO;
-		}
-
-		@Override
-		public Kakaku add(Kakaku other) {
-			return this;
-		}
-
-		@Override
-		public Kakaku add(Kakaku... others) {
-			return this;
-		}
-
-		@Override
-		public Kakaku subtract(Kakaku other) {
-			return this;
-		}
-
-		@Override
-		public String getZeikomiKakakuFormatted() {
-			return new String();
-		}
-
-		@Override
-		public String getZeinukiKakakuFormatted() {
-			return new String();
-		}
+	private EmptyKakaku() {
+		super(null, null);
 	}
 
+	@Override
+	public BigDecimal getZeikomiKakaku() {
+		return BigDecimal.ZERO;
+	}
+
+	@Override
+	public Kakaku add(Kakaku other) {
+		return other;
+	}
+
+	@Override
+	public Kakaku add(Kakaku... others) {
+		Kakaku r = null;
+
+		for (int i = 0; i < others.length; i++) {
+			if (i == 0) {
+				r = others[i];
+				continue;
+			}
+			r = r.add(others[i]);
+		}
+
+		return r != null ? r : this;
+	}
+
+	@Override
+	public Kakaku subtract(Kakaku other) {
+		return other;
+	}
+
+	@Override
+	public String getZeikomiKakakuFormatted() {
+		return new String();
+	}
+
+	@Override
+	public String getZeinukiKakakuFormatted() {
+		return new String();
+	}
 }

@@ -16,12 +16,10 @@ public class TestSample extends TestCase {
 
 		Kakaku a = Kakaku.EMPTY;
 		System.out.println(a.isEmpty());
-		System.out.println(a.getZeikomiKakakuFormatted());
 
-		System.out.println(a.add(new Kakaku(1, 1)) == Kakaku.EMPTY);
-
-		Kakaku b = new Kakaku(100l, 0.05);
+		Kakaku b = new Kakaku(100, 0.05);
 		System.out.println(b.isEmpty());
+		System.out.println(a.add(b, a, b).getZeikomiKakakuFormatted());
 
 	}
 }
