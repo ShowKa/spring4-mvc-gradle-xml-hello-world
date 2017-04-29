@@ -5,8 +5,10 @@ import com.mkyong.helloworld.system.exception.SystemException;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 public class KokyakuTantoBushoRentalDomain extends AbstractDomain {
 
@@ -37,7 +39,22 @@ public class KokyakuTantoBushoRentalDomain extends AbstractDomain {
 
 	@Override
 	public void validate() throws SystemException {
-		// TODO Auto-generated method stub
+	}
 
+	// Empty
+	public static final KokyakuTantoBushoRentalDomain EMPTY = EmptyKokyakuTantoBushoRentalDomain.INSTANCE;
+}
+
+/**
+ * Empty
+ * 
+ * @author ShowKa
+ *
+ */
+class EmptyKokyakuTantoBushoRentalDomain extends KokyakuTantoBushoRentalDomain {
+	public static final EmptyKokyakuTantoBushoRentalDomain INSTANCE = new EmptyKokyakuTantoBushoRentalDomain();
+
+	private EmptyKokyakuTantoBushoRentalDomain() {
+		super();
 	}
 }

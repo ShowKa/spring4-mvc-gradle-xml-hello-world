@@ -5,17 +5,19 @@ import com.mkyong.helloworld.system.exception.SystemException;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 public class NyukinMotoDomain extends AbstractDomain {
 
 	// private members
 	/** ID */
-	Integer id;
+	Integer id = INTEGER_EMPTY;
 
 	/** 販売区分 */
-	HanbaiKubun hanbaiKubun;
+	HanbaiKubun hanbaiKubun = HanbaiKubun.EMPTY;
 
 	/** 入金掛売情報 */
 	NyukinKakeInfoDomain nyukinKakeInfoDomain;
@@ -61,4 +63,8 @@ public class NyukinMotoDomain extends AbstractDomain {
 		}
 		return true;
 	}
+}
+
+class EmptyNyukinMotoDomain extends NyukinMotoDomain {
+
 }

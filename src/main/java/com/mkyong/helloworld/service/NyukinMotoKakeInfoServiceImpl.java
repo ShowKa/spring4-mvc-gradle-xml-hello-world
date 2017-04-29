@@ -27,7 +27,7 @@ public class NyukinMotoKakeInfoServiceImpl implements NyukinKakeInfoService {
 
 	@Override
 	public void validate(NyukinKakeInfoDomain domain) {
-		if (domain.getNyukinHohoKubun() == NyukinHohoKubun.NULL) {
+		if (domain.getNyukinHohoKubun() == NyukinHohoKubun.EMPTY) {
 			throw new EmptyException("販売方法");
 		}
 		// 締日 >= 入金日ならエラー

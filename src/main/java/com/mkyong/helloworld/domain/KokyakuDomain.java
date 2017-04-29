@@ -6,6 +6,7 @@ import com.mkyong.helloworld.system.exception.SystemException;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /**
  * 顧客ドメイン
@@ -14,27 +15,34 @@ import lombok.Getter;
  *
  */
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 public class KokyakuDomain extends AbstractDomain {
 
 	// private member
 	/** 顧客コード */
-	private String code;
+	private String code = STRING_EMPTY;
 
 	/** 限定区分 */
-	private GenteiKubun genteiKubun;
+	private GenteiKubun genteiKubun = GenteiKubun.EMPTY;;
 
 	/** 顧客区分 */
-	private KokyakuKubun kokyakuKubun;
+	private KokyakuKubun kokyakuKubun = KokyakuKubun.EMPTY;
 
 	/** 顧客名 */
-	private String name;
+	private String name = STRING_EMPTY;
 
 	/** 住所 */
-	private String address;
+	private String address = STRING_EMPTY;
 
 	/** 主幹部署 */
-	private BushoDomain shukanBushoDomain;
+	private BushoDomain shukanBushoDomain = BushoDomain.EMPTY;
+
+	public KokyakuDomain(String code) {
+		System.out.println(this.code);
+		this.code = code;
+		System.out.println(this.code);
+	}
 
 	// public method
 	/**
@@ -72,6 +80,15 @@ public class KokyakuDomain extends AbstractDomain {
 	}
 
 	/**
+	 * 空チェック
+	 * 
+	 * @return
+	 */
+	public boolean isEmpty() {
+		return this instanceof EmptyKokyakuDomain;
+	}
+
+	/**
 	 * 顧客コードが一緒なら同値
 	 */
 	@Override
@@ -87,8 +104,23 @@ public class KokyakuDomain extends AbstractDomain {
 
 	@Override
 	public void validate() throws SystemException {
-		// TODO Auto-generated method stub
-
 	}
 
+	// Empty
+	public static final KokyakuDomain EMPTY = EmptyKokyakuDomain.INSTANCE;
+
+}
+
+/**
+ * Empty
+ * 
+ * @author ShowKa
+ *
+ */
+class EmptyKokyakuDomain extends KokyakuDomain {
+	public static final EmptyKokyakuDomain INSTANCE = new EmptyKokyakuDomain();
+
+	private EmptyKokyakuDomain() {
+		super();
+	}
 }

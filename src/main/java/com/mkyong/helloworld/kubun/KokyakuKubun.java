@@ -7,7 +7,7 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public enum KokyakuKubun implements Kubun {
-	通常法人("01"), 個人("02"), カフェラウンジ("03"), 特殊("99"), 未設定("");
+public enum KokyakuKubun implements Kubun<KokyakuKubun> {
+	通常法人("01"), 個人("02"), カフェラウンジ("03"), 特殊("99"), EMPTY("");
 	private String code;
 }

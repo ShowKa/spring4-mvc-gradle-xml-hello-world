@@ -7,7 +7,7 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public enum CourseCode implements Kubun {
+public enum CourseCode implements Kubun<CourseCode> {
 	ZZZZ("ZZZZ");
 	private String code;
 }

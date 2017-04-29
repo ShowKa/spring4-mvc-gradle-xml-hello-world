@@ -17,13 +17,13 @@ public class BlockNumberTest extends TestCase {
 	@Test
 	public void test02() {
 		BlockNumber bn = Kubun.get(BlockNumber.class, "");
-		assertTrue(bn == BlockNumber.未設定);
+		assertTrue(bn == BlockNumber.EMPTY);
 	}
 
 	@Test
 	public void test03() {
 		BlockNumber bn = Kubun.get(BlockNumber.class, null);
-		assertTrue(bn == BlockNumber.未設定);
+		assertTrue(bn == BlockNumber.EMPTY);
 	}
 
 	@Test
@@ -44,7 +44,7 @@ public class BlockNumberTest extends TestCase {
 
 	@Test
 	public void test06() {
-		assertTrue(!BlockNumber.未設定.isHuteiki());
+		assertTrue(!BlockNumber.EMPTY.isHuteiki());
 	}
 
 }

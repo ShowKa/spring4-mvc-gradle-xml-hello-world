@@ -22,4 +22,16 @@ public class KeijyoDate extends TheDate {
 		super(date);
 	}
 
+	public static final EmptyKeijoDate EMPTY = EmptyKeijoDate.SINGLETON_INSTANCE;
+
+}
+
+class EmptyKeijoDate extends KeijyoDate {
+
+	public static final EmptyKeijoDate SINGLETON_INSTANCE = new EmptyKeijoDate();
+
+	private EmptyKeijoDate() {
+		super(LocalDate.MIN);
+	}
+
 }

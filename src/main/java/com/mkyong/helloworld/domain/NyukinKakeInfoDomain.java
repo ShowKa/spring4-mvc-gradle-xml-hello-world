@@ -9,31 +9,37 @@ import com.mkyong.helloworld.value.TheDate;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 public class NyukinKakeInfoDomain extends AbstractDomain {
 
 	// private member
 	/** ID */
-	Integer id;
+	private Integer id = INTEGER_EMPTY;
 
 	/** 締日 */
-	Integer shimeDate;
+	private Integer shimeDate = INTEGER_EMPTY;
 
 	/** 入金月区分 */
-	NyukinTsukiKubun nyukinTsukiKubun;
+	private NyukinTsukiKubun nyukinTsukiKubun = NyukinTsukiKubun.EMPTY;
 
 	/** 入金方法 */
-	NyukinHohoKubun nyukinHohoKubun;
+	private NyukinHohoKubun nyukinHohoKubun = NyukinHohoKubun.EMPTY;
 
 	/** 入金日 */
-	Integer nyukinDate;
+	private Integer nyukinDate = INTEGER_EMPTY;
 
 	/** バージョン(排他制御用) */
-	Integer version;
+	private Integer version = INTEGER_EMPTY;
 
 	// public method
+	public boolean isEmpty() {
+		return this instanceof EmptyNyukinKakeInfoDomain;
+	}
+
 	/**
 	 * 入金サイト取得
 	 * 
@@ -88,7 +94,7 @@ public class NyukinKakeInfoDomain extends AbstractDomain {
 	 * @return
 	 */
 	public boolean shimeDateBeforeNyukinDate() {
-		if (this.nyukinTsukiKubun != NyukinTsukiKubun.当月) {
+		if (this.nyukinTsukiKubun.isIncludedIn(NyukinTsukiKubun.翌月, NyukinTsukiKubun.翌々月)) {
 			return true;
 		}
 		if (nyukinDate.compareTo(shimeDate) > 0) {
@@ -110,8 +116,33 @@ public class NyukinKakeInfoDomain extends AbstractDomain {
 
 	@Override
 	public void validate() throws SystemException {
-		// TODO Auto-generated method stub
-
 	}
 
+	// Empty
+	public static final NyukinKakeInfoDomain EMPTY = EmptyNyukinKakeInfoDomain.INSTANCE;
+}
+
+/**
+ * Empty
+ * 
+ * @author ShowKa
+ *
+ */
+class EmptyNyukinKakeInfoDomain extends NyukinKakeInfoDomain {
+
+	public static final EmptyNyukinKakeInfoDomain INSTANCE = new EmptyNyukinKakeInfoDomain();
+
+	private EmptyNyukinKakeInfoDomain() {
+		super();
+	}
+
+	@Override
+	public TheDate getNextSeikyuSimeDate(TheDate date) {
+		return TheDate.EMPTY;
+	}
+
+	@Override
+	public TheDate getNyukinYoteiDate(TheDate date) {
+		return TheDate.EMPTY;
+	}
 }

@@ -5,25 +5,31 @@ import com.mkyong.helloworld.system.exception.SystemException;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 public class KokyakuTantoBushoHanbaiDomain extends AbstractDomain {
 
 	// private members
 	/** 顧客ドメイン */
-	private KokyakuDomain kokyakuDomain;
+	private KokyakuDomain kokyakuDomain = KokyakuDomain.EMPTY;
 
 	/** 部署ドメイン */
-	private BushoDomain bushoDomain;
+	private BushoDomain bushoDomain = BushoDomain.EMPTY;
 
 	/** ブロックナンバー */
-	private BlockNumber blockNumber;
+	private BlockNumber blockNumber = BlockNumber.EMPTY;
 
 	/** バージョン（排他制御用） */
-	private Integer version;
+	private Integer version = INTEGER_EMPTY;
 
 	// public method
+	public boolean isEmpty() {
+		return this instanceof EmptyKokyakuTantoBushoHanbaiDomain;
+	}
+
 	@Override
 	protected boolean equals(AbstractDomain other) {
 		KokyakuTantoBushoHanbaiDomain o = (KokyakuTantoBushoHanbaiDomain) other;
@@ -46,5 +52,24 @@ public class KokyakuTantoBushoHanbaiDomain extends AbstractDomain {
 	 */
 	public boolean isHuteiki() {
 		return blockNumber.isHuteiki();
+	}
+
+	/**
+	 * Empty
+	 */
+	public static final KokyakuTantoBushoHanbaiDomain EMPTY = EmptyKokyakuTantoBushoHanbaiDomain.INSTANCE;
+}
+
+/**
+ * Empty
+ * 
+ * @author ShowKa
+ *
+ */
+class EmptyKokyakuTantoBushoHanbaiDomain extends KokyakuTantoBushoHanbaiDomain {
+	public static final EmptyKokyakuTantoBushoHanbaiDomain INSTANCE = new EmptyKokyakuTantoBushoHanbaiDomain();
+
+	private EmptyKokyakuTantoBushoHanbaiDomain() {
+		super();
 	}
 }

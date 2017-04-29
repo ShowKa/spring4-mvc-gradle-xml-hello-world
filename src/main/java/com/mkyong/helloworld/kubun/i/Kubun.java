@@ -2,17 +2,17 @@ package com.mkyong.helloworld.kubun.i;
 
 import com.mkyong.helloworld.system.exception.SystemException;
 
-public interface Kubun {
+public interface Kubun<T> {
 
 	public String getCode();
 
 	@SuppressWarnings("unchecked")
-	public static <T extends Kubun> T get(Class<T> enumType, String code) {
+	public static <T extends Kubun<T>> T get(Class<T> enumType, String code) {
 
 		String _code = code == null ? "" : code;
 
-		Kubun[] constants = enumType.getEnumConstants();
-		for (Kubun k : constants) {
+		Kubun<T>[] constants = enumType.getEnumConstants();
+		for (Kubun<T> k : constants) {
 			if (k.getCode().equals(_code)) {
 				return (T) k;
 			}
@@ -32,6 +32,16 @@ public interface Kubun {
 	default boolean isIncludedIn(String... codes) {
 		for (String c : codes) {
 			if (getCode().equals(c)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@SuppressWarnings("unchecked")
+	default boolean isIncludedIn(T... kubuns) {
+		for (T kubun : kubuns) {
+			if (this == kubun) {
 				return true;
 			}
 		}

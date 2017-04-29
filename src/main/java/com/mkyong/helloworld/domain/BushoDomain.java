@@ -6,23 +6,25 @@ import com.mkyong.helloworld.system.exception.SystemException;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 public class BushoDomain extends AbstractDomain {
 
 	// private member
-	private String code;
+	private String code = "";
 
-	private BushoKubun bushoKubun;
+	private BushoKubun bushoKubun = BushoKubun.EMPTY;;
 
-	private JigyoKubun jigyoKubun;
+	private JigyoKubun jigyoKubun = JigyoKubun.EMPTY;
 
-	private String name;
+	private String name = "";
 
-	private BushoDateDomain bushoDateDomain;
+	private BushoDateDomain bushoDateDomain = BushoDateDomain.EMPTY;
 
-	private int version;
+	private int version = 0;
 
 	// public method
 	/**
@@ -61,6 +63,10 @@ public class BushoDomain extends AbstractDomain {
 		return false;
 	}
 
+	public boolean isEmpty() {
+		return this instanceof EmptyBushoDomain;
+	}
+
 	@Override
 	protected boolean equals(AbstractDomain other) {
 		BushoDomain o = (BushoDomain) other;
@@ -74,9 +80,19 @@ public class BushoDomain extends AbstractDomain {
 
 	@Override
 	public void validate() throws SystemException {
-		// TODO Auto-generated method stub
-
 	}
 
-	// private method
+	// Empty
+	public static final EmptyBushoDomain EMPTY = EmptyBushoDomain.INSTANCE;
+
+}
+
+/**
+ * Empty
+ * 
+ * @author ShowKa
+ *
+ */
+class EmptyBushoDomain extends BushoDomain {
+	public static final EmptyBushoDomain INSTANCE = new EmptyBushoDomain();
 }

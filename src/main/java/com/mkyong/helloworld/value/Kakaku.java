@@ -167,49 +167,10 @@ public class Kakaku extends AbstractValue {
  */
 class EmptyKakaku extends Kakaku {
 
-	public static EmptyKakaku SINGLETON_INSTANCE = new EmptyKakaku();
+	public static final EmptyKakaku SINGLETON_INSTANCE = new EmptyKakaku();
 
 	private EmptyKakaku() {
-		super(null, null);
+		super(0, 0);
 	}
 
-	@Override
-	public BigDecimal getZeikomiKakaku() {
-		return BigDecimal.ZERO;
-	}
-
-	@Override
-	public Kakaku add(Kakaku other) {
-		return other;
-	}
-
-	@Override
-	public Kakaku add(Kakaku... others) {
-		Kakaku r = null;
-
-		for (int i = 0; i < others.length; i++) {
-			if (i == 0) {
-				r = others[i];
-				continue;
-			}
-			r = r.add(others[i]);
-		}
-
-		return r != null ? r : this;
-	}
-
-	@Override
-	public Kakaku subtract(Kakaku other) {
-		return other;
-	}
-
-	@Override
-	public String getZeikomiKakakuFormatted() {
-		return new String();
-	}
-
-	@Override
-	public String getZeinukiKakakuFormatted() {
-		return new String();
-	}
 }

@@ -13,7 +13,7 @@ import lombok.Getter;
  */
 @AllArgsConstructor
 @Getter
-public enum SeikyuKubun implements Kubun {
-	請求書郵送("00"), 納品時請求("10"), 請求書不要("20"), 未設定("");
+public enum SeikyuKubun implements Kubun<SeikyuKubun> {
+	請求書郵送("00"), 納品時請求("10"), 請求書不要("20"), EMPTY("");
 	String code;
 }

@@ -5,6 +5,23 @@ import com.mkyong.helloworld.system.exception.SystemException;
 public abstract class AbstractDomain {
 
 	/**
+	 * Empty String
+	 */
+	protected static final String STRING_EMPTY = "";
+
+	/**
+	 * Empty Integer
+	 */
+	protected static final Integer INTEGER_EMPTY = new Integer(0);
+
+	/**
+	 * 空チェック
+	 * 
+	 * @return 空オブジェクトならtrue
+	 */
+	// public abstract boolean isEmpty();
+
+	/**
 	 * ドメイン整合性検証
 	 * 
 	 * <pre>

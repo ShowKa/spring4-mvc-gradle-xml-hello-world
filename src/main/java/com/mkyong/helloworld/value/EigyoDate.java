@@ -19,4 +19,17 @@ public class EigyoDate extends TheDate {
 	public EigyoDate(java.util.Date date) {
 		super(date);
 	}
+
+	public static final EmptyEigyoDate EMPTY = EmptyEigyoDate.SINGLETON_INSTANCE;
+
+}
+
+class EmptyEigyoDate extends EigyoDate {
+
+	public static final EmptyEigyoDate SINGLETON_INSTANCE = new EmptyEigyoDate();
+
+	private EmptyEigyoDate() {
+		super(LocalDate.MIN);
+	}
+
 }

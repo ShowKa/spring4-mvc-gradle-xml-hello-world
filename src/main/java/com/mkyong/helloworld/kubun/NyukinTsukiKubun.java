@@ -8,8 +8,8 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public enum NyukinTsukiKubun implements Kubun {
-	当月("00"), 翌月("10"), 翌々月("20");
+public enum NyukinTsukiKubun implements Kubun<NyukinTsukiKubun> {
+	当月("00"), 翌月("10"), 翌々月("20"), EMPTY("");
 	String code;
 
 	/**
@@ -25,6 +25,10 @@ public enum NyukinTsukiKubun implements Kubun {
 			return 1;
 		case 翌々月:
 			return 2;
+		case EMPTY:
+			return 0;
+		default:
+			break;
 		}
 		throw new SystemException("存在しない区分");
 	}

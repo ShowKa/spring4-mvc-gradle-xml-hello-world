@@ -176,10 +176,10 @@ public class KokyakuTantoBushoServiceImpl implements KokyakuTantoBushoService {
 	public void validateKakeuri(KokyakuTantoBushoDomain domain) throws ValidateException {
 		// 販売区分 = 掛売の場合、請求書作成場所区分、請求区分（発送方法）の設定が必要
 		SeikyuSakiDomain seikyuSaki = domain.getSeikyuSakiDomain();
-		if (seikyuSaki.getSeikyuKubun() == SeikyuKubun.未設定) {
+		if (seikyuSaki.getSeikyuKubun() == SeikyuKubun.EMPTY) {
 			throw new EmptyException("請求区分");
 		}
-		if (seikyuSaki.getSeikyushoSakuseiBashoKubun() == SeikyushoSakuseiBashoKubun.未設定) {
+		if (seikyuSaki.getSeikyushoSakuseiBashoKubun() == SeikyushoSakuseiBashoKubun.EMPTY) {
 			throw new EmptyException("請求場所作成区分");
 		}
 	}

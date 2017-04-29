@@ -6,11 +6,14 @@ import java.util.Calendar;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 public class TheDate extends AbstractValue {
-	private LocalDate date;
+
+	private LocalDate date = LocalDate.MIN;
 
 	public TheDate(java.util.Date date) {
 		this.date = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -52,5 +55,28 @@ public class TheDate extends AbstractValue {
 		}
 		TheDate _other = (TheDate) other;
 		return this.date.equals(_other.date);
+	}
+
+	@Override
+	public String toString() {
+		return date.toString();
+	}
+
+	// empty
+	public static final TheDate EMPTY = EmptyTheDate.INSTANCE;
+}
+
+/**
+ * Empty
+ * 
+ * @author ShowKa
+ *
+ */
+class EmptyTheDate extends TheDate {
+
+	public static final EmptyTheDate INSTANCE = new EmptyTheDate();
+
+	private EmptyTheDate() {
+		super();
 	}
 }
