@@ -105,8 +105,13 @@ public class TestSample extends TestCase {
 		CtClass origCtClass = classPool.get(KokyakuDomain.class.getName());
 		CtClass emptyCtClass = classPool.makeClass(origCtClass.getName() + "Empty", origCtClass);
 
-		CtMethod[] methods = origCtClass.getDeclaredMethods();
-		for (CtMethod method : methods) {
+		CtMethod[] origMethods = origCtClass.getDeclaredMethods();
+		CtMethod[] emptyMethods = emptyCtClass.getMethods();
+
+		// exclude superclass method from empty method
+		// TODO
+
+		for (CtMethod method : emptyMethods) {
 
 			System.out.println("---");
 			System.out.println(method.getName());
@@ -115,25 +120,22 @@ public class TestSample extends TestCase {
 
 			if (returnType.equals(CtClass.voidType)) {
 				method.setBody(";");
-				continue;
 			} else if (returnType.equals(CtClass.booleanType)) {
 				method.setBody("return false;");
-				continue;
 			}
 
 			boolean isDomain = returnType.subclassOf(classPool.get(AbstractDomain.class.getName()));
 			if (isDomain) {
-				continue;
 			}
 
 			CtClass[] interfaces = returnType.getInterfaces();
 			for (CtClass _interface : interfaces) {
 				boolean isKubun = _interface.equals(classPool.get(Kubun.class.getName()));
 				if (isKubun) {
-					continue;
+					method.setBody("return null;");
 				}
 			}
-
 		}
 	}
+
 }
