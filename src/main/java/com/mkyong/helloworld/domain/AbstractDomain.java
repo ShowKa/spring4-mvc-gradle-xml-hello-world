@@ -1,5 +1,7 @@
 package com.mkyong.helloworld.domain;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+
 import com.mkyong.helloworld.system.exception.SystemException;
 
 public abstract class AbstractDomain {
@@ -72,6 +74,14 @@ public abstract class AbstractDomain {
 			return equals((AbstractDomain) other);
 		}
 		return false;
+	}
+
+	/**
+	 * 文字列化
+	 */
+	@Override
+	public String toString() {
+		return ReflectionToStringBuilder.toString(this);
 	}
 
 	/**

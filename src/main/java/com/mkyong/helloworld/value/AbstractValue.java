@@ -1,5 +1,7 @@
 package com.mkyong.helloworld.value;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+
 public abstract class AbstractValue {
 	/**
 	 * 空チェック
@@ -30,6 +32,14 @@ public abstract class AbstractValue {
 			return equals((AbstractValue) other);
 		}
 		return false;
+	}
+
+	/**
+	 * 文字列化
+	 */
+	@Override
+	public String toString() {
+		return ReflectionToStringBuilder.toString(this);
 	}
 
 }
