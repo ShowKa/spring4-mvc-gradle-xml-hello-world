@@ -8,12 +8,23 @@ public class SystemException extends RuntimeException {
 
 	private String message;
 
+	private Throwable cause;
+
 	public SystemException(String message) {
 		this.message = message;
 	}
 
+	public SystemException(String message, Throwable cause) {
+		this.message = message;
+		this.cause = cause;
+	}
+
 	public String getMessage() {
 		return this.message;
+	}
+
+	public Throwable getCause() {
+		return this.cause;
 	}
 
 }
