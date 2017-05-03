@@ -20,7 +20,7 @@ import javassist.CtNewConstructor;
 import javassist.CtNewMethod;
 import javassist.NotFoundException;
 
-public class EmptyObjectProxy {
+public class EmptyProxy {
 
 	/**
 	 * 生成済みのEmpty Object
@@ -166,7 +166,7 @@ public class EmptyObjectProxy {
 				// Domain
 				boolean isDomain = returnType.subclassOf(cp.get(AbstractDomain.class.getName()));
 				if (isDomain) {
-					String body = "return (" + returnType.getName() + ") " + EmptyObjectProxy.class.getName()
+					String body = "return (" + returnType.getName() + ") " + EmptyProxy.class.getName()
 							+ ".domain(" + returnType.getName() + ".class);";
 					method.setBody(body);
 				}
@@ -174,7 +174,7 @@ public class EmptyObjectProxy {
 				// Value Object
 				boolean isValue = returnType.subclassOf(cp.get(AbstractValue.class.getName()));
 				if (isValue) {
-					String body = "return (" + returnType.getName() + ") " + EmptyObjectProxy.class.getName()
+					String body = "return (" + returnType.getName() + ") " + EmptyProxy.class.getName()
 							+ ".value(" + returnType.getName() + ".class);";
 					method.setBody(body);
 				}
