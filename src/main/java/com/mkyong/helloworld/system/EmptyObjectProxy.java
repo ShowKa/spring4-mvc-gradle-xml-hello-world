@@ -1,5 +1,6 @@
 package com.mkyong.helloworld.system;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -13,7 +14,9 @@ import com.mkyong.helloworld.value.AbstractValue;
 import javassist.CannotCompileException;
 import javassist.ClassPool;
 import javassist.CtClass;
+import javassist.CtConstructor;
 import javassist.CtMethod;
+import javassist.CtNewConstructor;
 import javassist.CtNewMethod;
 import javassist.NotFoundException;
 
@@ -52,6 +55,7 @@ public class EmptyObjectProxy {
 	 * @param clazz
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	private static <T extends Object> T get(Class<T> clazz) {
 
 		// get if already made
@@ -67,7 +71,8 @@ public class EmptyObjectProxy {
 			CtClass origCtClass = cp.get(clazz.getName());
 
 			// make empty class
-			CtClass emptyCtClass = cp.makeClass(origCtClass.getName() + "Empty", origCtClass);
+			String emptyClassName = origCtClass.getName() + "Empty";
+			CtClass emptyCtClass = cp.makeClass(emptyClassName, origCtClass);
 
 			// override methods of empty class
 			CtMethod[] emptyMethods = emptyCtClass.getMethods();
@@ -94,12 +99,20 @@ public class EmptyObjectProxy {
 				CtMethod method = CtNewMethod.copy(_m, emptyCtClass, null);
 
 				CtClass returnType = method.getReturnType();
+				// body will be overridden in the following
+				method.setBody("return null;");
 
 				// if return type is Primitive
 				if (returnType.equals(CtClass.voidType)) {
 					method.setBody("return;");
 				} else if (returnType.equals(CtClass.booleanType)) {
-					method.setBody("return false;");
+
+					if (method.getName().equals("isEmpty")) {
+						method.setBody("return true;");
+					} else {
+						method.setBody("return false;");
+					}
+
 				} else if (returnType.equals(CtClass.byteType)) {
 					method.setBody("return 0;");
 				} else if (returnType.equals(CtClass.charType)) {
@@ -129,10 +142,26 @@ public class EmptyObjectProxy {
 				// Integer
 				boolean isInteger = returnType.equals(cp.get(Integer.class.getName()));
 				if (isInteger) {
-					method.setBody("return new Integer(0);");
+					method.setBody("return Integer.valueOf(0);");
 				}
 
-				// TODO Others
+				// Long
+				boolean isLong = returnType.equals(cp.get(Long.class.getName()));
+				if (isLong) {
+					method.setBody("return Long.valueOf(0);");
+				}
+
+				// Double
+				boolean isDouble = returnType.equals(cp.get(Double.class.getName()));
+				if (isDouble) {
+					method.setBody("return Double.valueOf(0);");
+				}
+
+				// BigDecimal
+				boolean isBigDecimal = returnType.equals(cp.get(BigDecimal.class.getName()));
+				if (isBigDecimal) {
+					method.setBody("return BigDecimal.ZERO;");
+				}
 
 				// Domain
 				boolean isDomain = returnType.subclassOf(cp.get(AbstractDomain.class.getName()));
@@ -167,10 +196,56 @@ public class EmptyObjectProxy {
 				emptyCtClass.addMethod(method);
 			}
 
-			// TODO add isEmpty
+			// add isEmpty() if not exists
+			boolean hasIsEmptyMethod = methodsForOverride.stream().anyMatch(m -> {
+				return m.getName().equals("isEmpty");
+			});
+			if (!hasIsEmptyMethod) {
+				CtMethod isEmptyMethod = CtNewMethod.make("public boolean isEmpty() { return true; } ", emptyCtClass);
+				emptyCtClass.addMethod(isEmptyMethod);
+			}
+
+			// add toString
+			boolean hasToString = methodsForOverride.stream().anyMatch(m -> {
+				return m.getName().equals("toString");
+			});
+			if (!hasToString) {
+				CtMethod isEmptyMethod = CtNewMethod.make("public String toString() { return \"This is Empty Object of "
+						+ clazz.getSimpleName() + "\"; } ", emptyCtClass);
+				emptyCtClass.addMethod(isEmptyMethod);
+			}
+
+			// create no args constructor
+			CtConstructor[] originalConstructor = origCtClass.getConstructors();
+			CtClass[] params = originalConstructor[0].getParameterTypes();
+			String[] args = new String[params.length];
+			for (int i = 0; i < params.length; i++) {
+				if (params[i].isPrimitive()) {
+					if (params[i].getName().equals("boolean")) {
+						args[i] = "false";
+					} else {
+						args[i] = "0";
+					}
+				} else {
+					args[i] = "null";
+				}
+			}
+
+			StringBuilder cBody = new StringBuilder();
+			cBody.append("public ");
+			cBody.append(clazz.getSimpleName());
+			cBody.append("Empty(){ super(");
+			for (int i = 0; i < args.length; i++) {
+				if (i >= 1) {
+					cBody.append(",");
+				}
+				cBody.append(args[i]);
+			}
+			cBody.append("); }");
+			CtConstructor c = CtNewConstructor.make(cBody.toString(), emptyCtClass);
+			emptyCtClass.addConstructor(c);
 
 			// cretate instance
-			// TODO how to create instance that doesn't have NoArgsConstructor
 			Class<?> emptyClass = emptyCtClass.toClass();
 			T empty = (T) emptyClass.newInstance();
 
@@ -179,18 +254,18 @@ public class EmptyObjectProxy {
 			return empty;
 
 		} catch (NotFoundException e) {
-			e.printStackTrace();
 			throw new SystemException("ClassPoolに存在しないクラスかもしれません : " + clazz.getSimpleName(), e);
 		} catch (CannotCompileException e) {
-			e.printStackTrace();
 			throw new SystemException("コンパイルできず : " + clazz.getSimpleName(), e);
 		} catch (InstantiationException e) {
-			e.printStackTrace();
 			throw new SystemException(
 					"@NoArgsConstructorが設定されていない、あるいは引数なしのConstructorが実装されていない可能性 : " + clazz.getSimpleName(), e);
 		} catch (IllegalAccessException e) {
-			e.printStackTrace();
 			throw new SystemException("Constructorがpublicでない可能性 : " + clazz.getSimpleName(), e);
+		} catch (IllegalArgumentException e) {
+			throw new SystemException("Empty Class の Constructor 生成に失敗。", e);
+		} catch (SecurityException e) {
+			throw new SystemException("Empty Class の Constructor 生成に失敗。", e);
 		}
 	}
 

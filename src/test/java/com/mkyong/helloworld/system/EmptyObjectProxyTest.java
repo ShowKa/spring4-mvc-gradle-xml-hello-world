@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import com.mkyong.helloworld.domain.BushoDateDomain;
 import com.mkyong.helloworld.domain.BushoDomain;
+import com.mkyong.helloworld.domain.KokyakuDomain;
 import com.mkyong.helloworld.domain.NyukinKakeInfoDomain;
 import com.mkyong.helloworld.kubun.BushoKubun;
 
@@ -33,9 +34,15 @@ public class EmptyObjectProxyTest extends TestCase {
 
 	@Test
 	public void test04() {
-		new String();
 		NyukinKakeInfoDomain e = EmptyObjectProxy.domain(NyukinKakeInfoDomain.class);
 		assertEquals(new Integer(0), e.getNyukinDate());
+	}
+
+	@Test
+	public void test05() {
+		KokyakuDomain e = EmptyObjectProxy.domain(KokyakuDomain.class);
+		assertTrue(e.isEmpty());
+		System.out.println(e.toString());
 	}
 
 }

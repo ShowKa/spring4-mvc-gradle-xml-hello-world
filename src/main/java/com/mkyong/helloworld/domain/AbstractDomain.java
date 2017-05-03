@@ -21,7 +21,9 @@ public abstract class AbstractDomain {
 	 * 
 	 * @return 空オブジェクトならtrue
 	 */
-	// public abstract boolean isEmpty();
+	public boolean isEmpty() {
+		return false;
+	}
 
 	/**
 	 * ドメイン整合性検証
